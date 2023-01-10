@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "Qra+2LQ8QDPikNeaxfAHgXpipyEIiUaWmXsITi0+JVSThky+LDs9fUAQh+AkSJdzXdvGuuFP+P7Eq0Es6Z/yRA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map\\test map.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\piete\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\piete\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\piete\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\piete\\.nuget\\packages\\xamarin.essentials\\1.7.4\\xamarin.essentials.1.7.4.nupkg.sha512",
+    "C:\\Users\\piete\\.nuget\\packages\\xamarin.forms\\5.0.0.2545\\xamarin.forms.5.0.0.2545.nupkg.sha512",
+    "C:\\Users\\piete\\.nuget\\packages\\xamarin.forms.maps\\5.0.0.2545\\xamarin.forms.maps.5.0.0.2545.nupkg.sha512"
+  ],
+  "logs": []
+}

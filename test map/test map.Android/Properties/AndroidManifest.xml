@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.test_map">
+    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="31" />
+    <application android:label="test_map.Android" android:theme="@style/MainTheme">
+		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDuMAzP0SWaTZ9Uhgv1OH44zNzbvG7Igrk"/>
+
+		<uses-library android:name="org.apache.http.legacy" android:required="false"/>
+	</application>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-feature android:name="android.hardwarde.location" android:required="false" />
+	<uses-feature android:name="android.hardware.location.gps" android:required="false" />
+	<uses-feature android:name="android.hardware.location.network" android:required="false" />
+</manifest>
