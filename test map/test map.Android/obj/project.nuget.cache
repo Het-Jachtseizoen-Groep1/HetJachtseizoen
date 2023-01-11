@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8ouijxBu2kcrr6xSWDy8gnZC5CKnEJ23j6vhlP/Kmo8cEHN96mJfI5XlL35LeUjyq5LdGguEGrT6MomBAq4HxQ==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map.Android\\test map.Android.csproj",
+  "dgSpecHash": "FPRMPo0FSRLhqTZJ2Ji10YTAGUM4cNU8J+XN3kJND7iIUW0ksdXaKHxQbPFW6TI17gD8HVXsSUR4JYYNMAUMRw==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map.Android\\test map.Android.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\piete\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\piete\\.nuget\\packages\\xamarin.androidx.activity\\1.2.4.1\\xamarin.androidx.activity.1.2.4.1.nupkg.sha512",
@@ -67,7 +67,18 @@
     "C:\\Users\\piete\\.nuget\\packages\\xamarin.googleplayservices.base\\117.1.0\\xamarin.googleplayservices.base.117.1.0.nupkg.sha512",
     "C:\\Users\\piete\\.nuget\\packages\\xamarin.googleplayservices.basement\\117.1.0\\xamarin.googleplayservices.basement.117.1.0.nupkg.sha512",
     "C:\\Users\\piete\\.nuget\\packages\\xamarin.googleplayservices.maps\\117.0.0\\xamarin.googleplayservices.maps.117.0.0.nupkg.sha512",
-    "C:\\Users\\piete\\.nuget\\packages\\xamarin.googleplayservices.tasks\\117.0.0\\xamarin.googleplayservices.tasks.117.0.0.nupkg.sha512"
+    "C:\\Users\\piete\\.nuget\\packages\\xamarin.googleplayservices.tasks\\117.0.0\\xamarin.googleplayservices.tasks.117.0.0.nupkg.sha512",
+    "C:\\Users\\piete\\.nuget\\packages\\xamlanimatedgif\\2.1.0\\xamlanimatedgif.2.1.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1202",
+      "level": "Error",
+      "message": "Package XamlAnimatedGif 2.1.0 is not compatible with monoandroid12.0 (MonoAndroid,Version=v12.0). Package XamlAnimatedGif 2.1.0 supports:\r\n  - net45 (.NETFramework,Version=v4.5)\r\n  - net5.0-windows7.0 (.NETCoreApp,Version=v5.0)\r\n  - netcoreapp3.1 (.NETCoreApp,Version=v3.1)",
+      "libraryId": "XamlAnimatedGif",
+      "targetGraphs": [
+        "MonoAndroid,Version=v12.0"
+      ]
+    }
+  ]
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map.Android\\test map.Android.csproj": {}
+    "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map.Android\\test map.Android.csproj": {}
   },
   "projects": {
-    "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map.Android\\test map.Android.csproj": {
+    "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map.Android\\test map.Android.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map.Android\\test map.Android.csproj",
+        "projectUniqueName": "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map.Android\\test map.Android.csproj",
         "projectName": "test map.Android",
-        "projectPath": "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map.Android\\test map.Android.csproj",
+        "projectPath": "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map.Android\\test map.Android.csproj",
         "packagesPath": "C:\\Users\\piete\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map.Android\\obj\\",
+        "outputPath": "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map.Android\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -32,8 +32,8 @@
         "frameworks": {
           "monoandroid12.0": {
             "projectReferences": {
-              "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map\\test map.csproj": {
-                "projectPath": "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map\\test map.csproj"
+              "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map\\test map.csproj": {
+                "projectPath": "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map\\test map.csproj"
               }
             }
           }
@@ -58,14 +58,14 @@
         }
       }
     },
-    "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map\\test map.csproj": {
+    "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map\\test map.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map\\test map.csproj",
+        "projectUniqueName": "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map\\test map.csproj",
         "projectName": "test map",
-        "projectPath": "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map\\test map.csproj",
+        "projectPath": "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map\\test map.csproj",
         "packagesPath": "C:\\Users\\piete\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map\\obj\\",
+        "outputPath": "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -116,6 +116,10 @@
             "Xamarin.Forms.Maps": {
               "target": "Package",
               "version": "[5.0.0.2545, )"
+            },
+            "XamlAnimatedGif": {
+              "target": "Package",
+              "version": "[2.1.0, )"
             }
           },
           "imports": [

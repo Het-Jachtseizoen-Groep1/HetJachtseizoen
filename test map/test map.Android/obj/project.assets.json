@@ -1902,13 +1902,17 @@
           "build/MonoAndroid90/Xamarin.GooglePlayServices.Tasks.targets": {}
         }
       },
+      "XamlAnimatedGif/2.1.0": {
+        "type": "package"
+      },
       "test map/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Xamarin.Essentials": "1.7.4",
           "Xamarin.Forms": "5.0.0.2545",
-          "Xamarin.Forms.Maps": "5.0.0.2545"
+          "Xamarin.Forms.Maps": "5.0.0.2545",
+          "XamlAnimatedGif": "2.1.0"
         },
         "compile": {
           "bin/placeholder/test map.dll": {}
@@ -3636,6 +3640,24 @@
         "xamarin.googleplayservices.tasks.nuspec"
       ]
     },
+    "XamlAnimatedGif/2.1.0": {
+      "sha512": "c+zwpc3pD6kuT9EuiMzRWX5TFhb1o0ln+wZ5/ovtmw3wtL58G16xJA1fboGXSzBICgPshCES43eGsO5ZlzN8Og==",
+      "type": "package",
+      "path": "xamlanimatedgif/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "assets/xamlanimatedgif.png",
+        "lib/net45/XamlAnimatedGif.dll",
+        "lib/net45/XamlAnimatedGif.pdb",
+        "lib/net5.0-windows7.0/XamlAnimatedGif.dll",
+        "lib/net5.0-windows7.0/XamlAnimatedGif.pdb",
+        "lib/netcoreapp3.1/XamlAnimatedGif.dll",
+        "lib/netcoreapp3.1/XamlAnimatedGif.pdb",
+        "xamlanimatedgif.2.1.0.nupkg.sha512",
+        "xamlanimatedgif.nuspec"
+      ]
+    },
     "test map/1.0.0": {
       "type": "project",
       "path": "../test map/test map.csproj",
@@ -3657,11 +3679,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map.Android\\test map.Android.csproj",
+      "projectUniqueName": "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map.Android\\test map.Android.csproj",
       "projectName": "test map.Android",
-      "projectPath": "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map.Android\\test map.Android.csproj",
+      "projectPath": "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map.Android\\test map.Android.csproj",
       "packagesPath": "C:\\Users\\piete\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map.Android\\obj\\",
+      "outputPath": "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -3682,8 +3704,8 @@
       "frameworks": {
         "monoandroid12.0": {
           "projectReferences": {
-            "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map\\test map.csproj": {
-              "projectPath": "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map\\test map.csproj"
+            "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map\\test map.csproj": {
+              "projectPath": "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map\\test map.csproj"
             }
           }
         }
@@ -3707,5 +3729,16 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1202",
+      "level": "Error",
+      "message": "Package XamlAnimatedGif 2.1.0 is not compatible with monoandroid12.0 (MonoAndroid,Version=v12.0). Package XamlAnimatedGif 2.1.0 supports:\r\n  - net45 (.NETFramework,Version=v4.5)\r\n  - net5.0-windows7.0 (.NETCoreApp,Version=v5.0)\r\n  - netcoreapp3.1 (.NETCoreApp,Version=v3.1)",
+      "libraryId": "XamlAnimatedGif",
+      "targetGraphs": [
+        "MonoAndroid,Version=v12.0"
+      ]
+    }
+  ]
 }

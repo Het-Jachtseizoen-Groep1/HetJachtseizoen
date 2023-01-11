@@ -19,3 +19,18 @@ C:\Users\piete\source\repos\test map\test map\test map\obj\Debug\netstandard2.0\
 C:\Users\piete\source\repos\test map\test map\test map\obj\Debug\netstandard2.0\test map.pdb
 C:\Users\piete\source\repos\test map\test map\test map\obj\Debug\netstandard2.0\ref\test map.dll
 C:\Users\piete\source\repos\test map\test map\test map\obj\Debug\netstandard2.0\Views\testmap.xaml.g.cs
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\bin\Debug\netstandard2.0\test map.deps.json
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\bin\Debug\netstandard2.0\test map.dll
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\bin\Debug\netstandard2.0\test map.pdb
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\obj\Debug\netstandard2.0\test map.csproj.AssemblyReference.cache
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\obj\Debug\netstandard2.0\test map.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\obj\Debug\netstandard2.0\Views\testmap.xaml.g.cs
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\obj\Debug\netstandard2.0\test map.AssemblyInfoInputs.cache
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\obj\Debug\netstandard2.0\test map.AssemblyInfo.cs
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\obj\Debug\netstandard2.0\test map.csproj.CoreCompileInputs.cache
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\obj\Debug\netstandard2.0\test map.dll
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\obj\Debug\netstandard2.0\refint\test map.dll
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\obj\Debug\netstandard2.0\test map.pdb
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\obj\Debug\netstandard2.0\ref\test map.dll

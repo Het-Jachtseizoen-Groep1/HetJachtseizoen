@@ -1,15 +1,27 @@
 {
   "version": 2,
-  "dgSpecHash": "Qra+2LQ8QDPikNeaxfAHgXpipyEIiUaWmXsITi0+JVSThky+LDs9fUAQh+AkSJdzXdvGuuFP+P7Eq0Es6Z/yRA==",
+  "dgSpecHash": "tsJUfyVQWcVhw13rXB2g6s+DeZGzWWn2cwFMedpaEAB4i47rMGFFwArA6rdlqjvtCN6QOUQ9g2EBT7kDRoC1kg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\piete\\source\\repos\\test map\\test map\\test map\\test map.csproj",
+  "projectFilePath": "C:\\Users\\piete\\OneDrive\\Bureaublad\\MCT\\Jachtseizoen\\HetJachtseizoen\\test map\\test map\\test map.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\piete\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\piete\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
     "C:\\Users\\piete\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\piete\\.nuget\\packages\\xamarin.essentials\\1.7.4\\xamarin.essentials.1.7.4.nupkg.sha512",
     "C:\\Users\\piete\\.nuget\\packages\\xamarin.forms\\5.0.0.2545\\xamarin.forms.5.0.0.2545.nupkg.sha512",
-    "C:\\Users\\piete\\.nuget\\packages\\xamarin.forms.maps\\5.0.0.2545\\xamarin.forms.maps.5.0.0.2545.nupkg.sha512"
+    "C:\\Users\\piete\\.nuget\\packages\\xamarin.forms.maps\\5.0.0.2545\\xamarin.forms.maps.5.0.0.2545.nupkg.sha512",
+    "C:\\Users\\piete\\.nuget\\packages\\xamlanimatedgif\\2.1.0\\xamlanimatedgif.2.1.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'XamlAnimatedGif 2.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "XamlAnimatedGif",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    }
+  ]
 }

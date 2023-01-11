@@ -31,8 +31,7 @@ namespace test_map.Views
             {
             Type = PinType.Place,
             Position = position,
-            Label = "Current Location",
-            Address = "Current Location"
+            Label = "Boeven"
             };
             MyMap.Pins.Add(pin);
             MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromMiles(1)));
