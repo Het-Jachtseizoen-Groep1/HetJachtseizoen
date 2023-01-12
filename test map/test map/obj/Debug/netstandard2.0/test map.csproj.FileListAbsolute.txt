@@ -35,3 +35,4 @@ C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\tes
 C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\obj\Debug\netstandard2.0\test map.pdb
 C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\obj\Debug\netstandard2.0\ref\test map.dll
 C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\obj\Debug\netstandard2.0\Views\Beginscherm.xaml.g.cs
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map\obj\Debug\netstandard2.0\Views\Boefscherm1.xaml.g.cs
