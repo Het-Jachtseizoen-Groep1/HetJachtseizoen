@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using test_map.ViewModels;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace test_map.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class Beginscherm : ContentPage
     {
-        public LoginPage()
+        public Beginscherm()
         {
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
         }
     }
 }

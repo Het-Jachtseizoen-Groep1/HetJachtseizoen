@@ -1432,3 +1432,7 @@ C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\tes
 C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map.Android\obj\Debug\120\stamp\_GenerateJavaStubs.stamp
 C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map.Android\obj\Debug\120\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map.Android\obj\Debug\120\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map.Android\obj\Debug\120\res\drawable\logo.png
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map.Android\obj\Debug\120\res\drawable\jagerbutton.png
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map.Android\obj\Debug\120\res\drawable\boefbutton.png
+C:\Users\piete\OneDrive\Bureaublad\MCT\Jachtseizoen\HetJachtseizoen\test map\test map.Android\obj\Debug\120\res\drawable\leaderboardbutton.png

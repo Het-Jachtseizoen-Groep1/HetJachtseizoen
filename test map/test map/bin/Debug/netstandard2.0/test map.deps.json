@@ -12,7 +12,8 @@
           "NETStandard.Library": "2.0.3",
           "Xamarin.Essentials": "1.7.4",
           "Xamarin.Forms": "5.0.0.2545",
-          "Xamarin.Forms.Maps": "5.0.0.2545"
+          "Xamarin.Forms.Maps": "5.0.0.2545",
+          "XamlAnimatedGif": "2.1.0"
         },
         "runtime": {
           "test map.dll": {}
@@ -69,6 +70,14 @@
             "fileVersion": "5.0.0.960"
           }
         }
+      },
+      "XamlAnimatedGif/2.1.0": {
+        "runtime": {
+          "lib/net45/XamlAnimatedGif.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.1.0.0"
+          }
+        }
       }
     }
   },
@@ -119,6 +128,13 @@
       "sha512": "sha512-+C7lyiyKGBVqVodoqU/x1pZujsWSdCtOnU0q3VM1oJflV7/iOeecu2Srt96s2xPlo7LlgluhCubrkaJ33m53Hg==",
       "path": "xamarin.forms.maps/5.0.0.2545",
       "hashPath": "xamarin.forms.maps.5.0.0.2545.nupkg.sha512"
+    },
+    "XamlAnimatedGif/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-c+zwpc3pD6kuT9EuiMzRWX5TFhb1o0ln+wZ5/ovtmw3wtL58G16xJA1fboGXSzBICgPshCES43eGsO5ZlzN8Og==",
+      "path": "xamlanimatedgif/2.1.0",
+      "hashPath": "xamlanimatedgif.2.1.0.nupkg.sha512"
     }
   }
 }

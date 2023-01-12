@@ -14,7 +14,7 @@ namespace test_map
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new testmap();
+            MainPage = new Beginscherm();
         }
 
         protected override void OnStart()

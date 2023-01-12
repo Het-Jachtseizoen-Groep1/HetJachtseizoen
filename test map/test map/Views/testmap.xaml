@@ -6,7 +6,6 @@
              x:Class="test_map.Views.testmap">
     <ContentPage.Content>
         <StackLayout>
-            <Image IsAnimationPlaying="True" Source="https://media.tenor.com/PEDzvMlrdi0AAAAM/fire.gif"></Image>
             <Label Text="Locatie Boeven" HorizontalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" TextColor="White" BackgroundColor="Gray"></Label>
             <maps:Map IsShowingUser="True" x:Name="MyMap">
             </maps:Map>

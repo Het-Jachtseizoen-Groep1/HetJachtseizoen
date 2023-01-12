@@ -8,17 +8,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("test_map.AppShell.xaml", "AppShell.xaml", typeof(global::test_map.AppShell))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("test_map.Views.Beginscherm.xaml", "Views/Beginscherm.xaml", typeof(global::test_map.Views.Beginscherm))]
 
-namespace test_map {
+namespace test_map.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("AppShell.xaml")]
-    public partial class AppShell : global::Xamarin.Forms.Shell {
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\Beginscherm.xaml")]
+    public partial class Beginscherm : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(AppShell));
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(Beginscherm));
         }
     }
 }
