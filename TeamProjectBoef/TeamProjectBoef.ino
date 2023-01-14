@@ -22,7 +22,7 @@ MFRC522::MIFARE_Key key;
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
 WiFiClient wifi;
-MQTTClient mqttClient;
+MQTTClient client;
 
 // pwm settings
 int freq = 2000;
@@ -30,15 +30,17 @@ int channel = 0;
 int resolution = 8;
 
 int melody[] = {
-    NOTE_D6, NOTE_CS6, NOTE_C6, NOTE_B5};
-int duration[] = {750, 750, 750, 1500};
+    NOTE_E4, NOTE_E4, NOTE_D4, NOTE_CS4};
+
+int klap = 200;
+int duration[] = {3.1*klap, 3.1*klap, 2*klap, 5*klap};
 
 void setup()
 {
   Serial.begin(9600);
 
   WiFi.begin(ssid, pass);
-  mqttClient.begin("brokerURL", wifi);
+  client.begin("brokerURL", wifi);
 
 //  Wire.begin();
   FastLED.addLeds<NEOPIXEL, 4>(leds, numLeds);
@@ -55,21 +57,22 @@ void setup()
         leds[i] = CRGB(0, 0, 0);
       }
       FastLED.show();
+  StartConnection();
 }
 
 void loop()
 {
   // mqtt code
-  /*
-  if (!mqttClient.connected())
-  {
-   starConnection();
-  }
+//
+//  if (!client.connected())
+//  {
+//   StartConnection();
+//  }
 
-  mqttClient.loop();
+  //client.loop();
 
-   client.publish("/{key}", value);
-  */
+   //client.publish("/{key}", value);
+
   
   
   RFIDTagged();
@@ -84,12 +87,13 @@ void loop()
   //
 }
 
-void startConnection()
+void StartConnection()
 {
   Serial.println("connecting to WiFi");
   // verbind met wifi
   while (WiFi.status() != WL_CONNECTED)
   {
+    LedLoad();
     Serial.print('.');
     delay(500);
   }
@@ -98,11 +102,11 @@ void startConnection()
   // connect to MQTT
   Serial.println("connecting to MQTT Broker");
   // get client, user and pass from your broker
-  while (!mqttClient.connect("client", "user", "pass"))
-  {
-    Serial.print('.');
-    delay(500);
-  }
+//  while (!client.connect("client", "user", "pass"))
+//  {
+//    Serial.print('.');
+//    delay(500);
+//  }
   Serial.println("connected");
 }
 
@@ -128,7 +132,6 @@ void LedLoad()
     FastLED.show();
   }
 }
-
 
 void RFIDTagged()
 {
@@ -181,6 +184,6 @@ void PlayerTagged()
       leds[i] = CRGB(0, 0, 0);
     }
     FastLED.show();
-    delay(150);
+    delay(50);
   }
 }
