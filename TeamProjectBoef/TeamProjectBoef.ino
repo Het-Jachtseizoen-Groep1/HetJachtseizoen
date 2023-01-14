@@ -1,31 +1,25 @@
-#include <MFRC522.h>
-#include <SPI.h>
-#include <FastLED.h>
-#include <ArduinoJson.h>
-#include <Wire.h>
-#include <WiFi.h>
-#include <MQTT.h>
-#include "pitches.h"
-#include "CustomWiFiAuth.h"
+#include "libraries.h"
 /*"CustomWiFiAuth.h"
 const char ssid[] = "xxx";
 const char pass[] = "xxx";
 */
 
 #define numLeds 12
-#define SS_PIN 5
-#define RST_PIN 0
-#define BUZZER_PIN 18
+//
+#define SS_PIN 21
+#define RST_PIN 22
+#define SIZE_BUFFER 18
+#define MAX_SIZE_BLOCK 16
+//
+#define BUZZER_PIN 15
 
 bool ledStatus = 0;
 byte ledOff[] = {10, 11, 12};
 
-byte nuidPICC[4] = {0, 0, 0, 0};
-
 CRGB leds[numLeds];
 
 MFRC522::MIFARE_Key key;
-MFRC522 rfid = MFRC522(SS_PIN, RST_PIN);
+MFRC522 mfrc522(SS_PIN, RST_PIN);
 
 WiFiClient wifi;
 MQTTClient mqttClient;
@@ -41,17 +35,26 @@ int duration[] = {750, 750, 750, 1500};
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
 
   WiFi.begin(ssid, pass);
   mqttClient.begin("brokerURL", wifi);
 
-  Wire.begin();
-  FastLED.addLeds<NEOPIXEL, 13>(leds, numLeds);
+//  Wire.begin();
+  FastLED.addLeds<NEOPIXEL, 4>(leds, numLeds);
 
   // pwm for buzzer
   ledcSetup(channel, freq, resolution);
-  ledcAttachPin(18, channel);
+  ledcAttachPin(BUZZER_PIN, channel);
+  //LedLoad();
+  SPI.begin();
+  mfrc522.PCD_Init();
+
+   for (byte i = 0; i <= numLeds; i++)
+      {
+        leds[i] = CRGB(0, 0, 0);
+      }
+      FastLED.show();
 }
 
 void loop()
@@ -67,8 +70,11 @@ void loop()
 
    client.publish("/{key}", value);
   */
-  PlayerTagged();
-
+  
+  
+  RFIDTagged();
+  mfrc522.PICC_HaltA();
+  mfrc522.PCD_StopCrypto1();
   //  ReadRFID();
   //  LedLoad();
   //  if (RFIDTagged())
@@ -100,38 +106,6 @@ void startConnection()
   Serial.println("connected");
 }
 
-void ReadRFID()
-{
-  // Read RFID card
-
-  for (byte i = 0; i < 6; i++)
-  {
-    key.keyByte[i] = 0xFF;
-  }
-  // Look for new 1 cards
-  if (!rfid.PICC_IsNewCardPresent())
-    return;
-
-  // Verify if the NUID has been readed
-  if (!rfid.PICC_ReadCardSerial())
-    return;
-
-  // Store NUID into nuidPICC array
-  for (byte i = 0; i < 4; i++)
-  {
-    nuidPICC[i] = rfid.uid.uidByte[i];
-  }
-
-  Serial.print(F("RFID In dec: "));
-  // printDec(rfid.uid.uidByte, rfid.uid.size);
-  Serial.println();
-
-  // Halt PICC
-  rfid.PICC_HaltA();
-
-  // Stop encryption on PCD
-  rfid.PCD_StopCrypto1();
-}
 
 void LedLoad()
 {
@@ -155,22 +129,41 @@ void LedLoad()
   }
 }
 
-void Buzzer()
-{
-}
 
-bool RFIDTagged()
+void RFIDTagged()
 {
-  // code here
-  bool tagged = 1;
-  return tagged;
+
+    if (!gameOver)
+  {
+      if (mfrc522.PICC_IsNewCardPresent() )
+  {
+    
+       PlayerTagged();
+    
+    gameOver = 1;
+  }
+  else
+  {
+    {
+       for (byte i = 0; i <= numLeds; i++)
+      {
+        leds[i] = CRGB(0, 255, 0);
+      }
+      FastLED.show();
+    }
+}
+}
+else{
+  delay(2500);
+  gameOver=0;
+}
 }
 
 void PlayerTagged()
 {
   // publishData
   //  client.publish("/gameEnd", 1);
-  // LED Flash red
+  
   ledcWrite(channel, 255);
   for (int thisNote = 0; thisNote < 4; thisNote++)
   {

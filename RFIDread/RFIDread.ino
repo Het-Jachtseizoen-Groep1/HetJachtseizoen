@@ -9,7 +9,7 @@
 // used in authentication
 MFRC522::MIFARE_Key key;
 // authentication return status code
-MFRC522::StatusCode status;
+//MFRC522::StatusCode status;
 // Defined pins to module RC522
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
