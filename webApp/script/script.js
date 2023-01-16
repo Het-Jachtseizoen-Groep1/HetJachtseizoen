@@ -33,6 +33,9 @@ function showMap() {
 
                 iconSize: [25, 25], // size of the icon
             });
+            if (OwnLocation) {
+                map.removeLayer(OwnLocation);
+            }
 
             var OwnLocation = L.marker([lat, lon], { icon: ownIcon }).addTo(map);
         });
