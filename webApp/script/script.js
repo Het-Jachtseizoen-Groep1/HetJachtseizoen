@@ -2,7 +2,7 @@
 var map;
 
 function getlocation() {
-    navigator.geolocation.getCurrentPosition(function (position) {
+    navigator.geolocation.watchPosition(function (position) {
         console.log(position.coords.latitude);
         console.log(position.coords.longitude);
 
