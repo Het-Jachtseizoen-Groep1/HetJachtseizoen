@@ -1,15 +1,9 @@
 
 var map;
 
-function getlocation() {
-    navigator.geolocation.watchPosition(function (position) {
-        console.log(position.coords.latitude);
-        console.log(position.coords.longitude);
-
-        var lat = position.coords.latitude;
-        var lon = position.coords.longitude;
-
-        var map = L.map('map').setView([lat, lon], 15);
+function showMap() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var map = L.map('map').setView([position.coords.latitude, position.coords.longitude], 15);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
         }).addTo(map);
@@ -25,12 +19,29 @@ function getlocation() {
         var marker = L.marker([50.83080623727818, 3.2633155115745267], { icon: greenIcon }).addTo(map);
         marker.bindPopup("Locatie Boeven").openPopup();
 
-        var OwnLocation = L.marker([lat, lon],).addTo(map);
+
+
+        navigator.geolocation.watchPosition(function (position) {
+            console.log(position.coords.latitude);
+            console.log(position.coords.longitude);
+
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+
+            var ownIcon = L.icon({
+                iconUrl: '../assets/live_location.png',
+
+                iconSize: [25, 25], // size of the icon
+            });
+
+            var OwnLocation = L.marker([lat, lon], { icon: ownIcon }).addTo(map);
+        });
     });
 }
 
 
+
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOM fully loaded and parsed');
-    getlocation();
+    showMap();
 })
