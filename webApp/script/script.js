@@ -19,11 +19,13 @@ function getlocation() {
 
             iconSize: [35, 47], // size of the icon
             //iconAnchor: [0, 0], // point of the icon which will correspond to marker's location
-            // popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+            popupAnchor: [20, 0] // point from which the popup should open relative to the iconAnchor
         });
 
-        var marker = L.marker([lat, lon], { icon: greenIcon }).addTo(map);
+        var marker = L.marker([50.83080623727818, 3.2633155115745267], { icon: greenIcon }).addTo(map);
         marker.bindPopup("Locatie Boeven").openPopup();
+
+        var OwnLocation = L.marker([lat, lon],).addTo(map);
     });
 }
 
