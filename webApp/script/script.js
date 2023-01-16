@@ -18,31 +18,27 @@ function showMap() {
         var marker = L.marker([50.83080623727818, 3.2633155115745267], { icon: greenIcon }).addTo(map);
         marker.bindPopup("Locatie Boeven").openPopup();
 
+        var ownIcon = L.icon({
+            iconUrl: '../assets/live_location.png',
+
+            iconSize: [25, 25], // size of the icon
+        });
+
+
+        var OwnLocation = L.marker([position.coords.latitude, position.coords.longitude], { icon: ownIcon }).addTo(map);
+
 
 
         navigator.geolocation.watchPosition(function (position) {
             console.log(position.coords.latitude);
             console.log(position.coords.longitude);
 
-            var OwnLocation;
-
             var lat = position.coords.latitude;
             var lon = position.coords.longitude;
 
-            console.log(OwnLocation);
+            var newLatLng = new L.LatLng(lat, lon);
+            OwnLocation.setLatLng(newLatLng);
 
-            var ownIcon = L.icon({
-                iconUrl: '../assets/live_location.png',
-
-                iconSize: [25, 25], // size of the icon
-            });
-
-            if (typeof (OwnLocation) === 'undefined') {
-                var OwnLocation = L.marker([lat, lon], { icon: ownIcon }).addTo(map);
-            }
-            else {
-                OwnLocation.setLatLng([lat, lon]);
-            }
         });
     });
 }
