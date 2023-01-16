@@ -15,7 +15,7 @@ function getlocation() {
         }).addTo(map);
 
         var greenIcon = L.icon({
-            iconUrl: '/webApp/assets/map_marker.png',
+            iconUrl: '../assets/map_marker.png',
 
             iconSize: [35, 47], // size of the icon
             //iconAnchor: [0, 0], // point of the icon which will correspond to marker's location
