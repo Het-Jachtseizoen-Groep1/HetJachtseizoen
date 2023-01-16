@@ -1,4 +1,3 @@
-
 var map;
 
 function showMap() {
@@ -25,8 +24,12 @@ function showMap() {
             console.log(position.coords.latitude);
             console.log(position.coords.longitude);
 
+            var OwnLocation;
+
             var lat = position.coords.latitude;
             var lon = position.coords.longitude;
+
+            console.log(OwnLocation);
 
             var ownIcon = L.icon({
                 iconUrl: '../assets/live_location.png',
@@ -34,7 +37,7 @@ function showMap() {
                 iconSize: [25, 25], // size of the icon
             });
 
-            if (!OwnLocation) {
+            if (typeof (OwnLocation) === 'undefined') {
                 var OwnLocation = L.marker([lat, lon], { icon: ownIcon }).addTo(map);
             }
             else {
