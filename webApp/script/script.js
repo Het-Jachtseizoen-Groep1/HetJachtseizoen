@@ -2,7 +2,7 @@ var map;
 
 function showMap(lat, long) {
     navigator.geolocation.getCurrentPosition(function (position) {
-        var map = L.map('map').setView([position.coords.latitude, position.coords.longitude], 15);
+        var map = L.map('map', { zoomControl: false }).setView([position.coords.latitude, position.coords.longitude], 15);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
         }).addTo(map);
