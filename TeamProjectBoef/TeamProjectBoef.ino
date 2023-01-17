@@ -1,5 +1,5 @@
 #include "libraries.h"
-/*"CustomWiFiAuth.h"
+/*
 const char ssid[] = "xxx";
 const char pass[] = "xxx";
 */
