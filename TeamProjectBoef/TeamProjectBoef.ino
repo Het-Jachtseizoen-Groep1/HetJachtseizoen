@@ -167,6 +167,7 @@ void RFIDTagged()
       FastLED.show();
     }
   }
+  
   else
   {
     if (winner) // jagers winnen
@@ -180,6 +181,11 @@ void RFIDTagged()
       LosingSequence();
     }
   }
+}
+
+void WinSequence()
+{
+  Serial.println("AAAAAAAAAAAAAAA");
 }
 
 void LosingSequence()
@@ -218,15 +224,12 @@ void ProcessMessage(byte index, String &payload)
   {
   case 0:
     deserializeJson(gameInfo, payload);
-    if (gameInfo["inProgress"] == true)
+    gameInProgress = gameInfo["inProgress"];
+    if (gameInProgress)
     {
       timeLimit = gameInfo["timeLimit"];
       currDuration = gameInfo["runTime"];
       Serial.println("Game started");
-    }
-    else
-    {
-      // we'll see what we do here
     }
     break;
 
