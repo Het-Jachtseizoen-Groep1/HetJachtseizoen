@@ -151,12 +151,12 @@ void LedLoad()
 
 void RFIDTagged()
 {
-  if (!gameOver)
+  if (gameInProgress)
   {
     if (mfrc522.PICC_IsNewCardPresent())
     {
-      PlayerTagged();
-      gameOver = 1;
+      gameInProgress = 0;
+      winner = 1;
     }
     else
     {
@@ -169,12 +169,20 @@ void RFIDTagged()
   }
   else
   {
-    delay(2500);
-    gameOver = 0;
+    if (winner) // jagers winnen
+    {
+      publishGameResults(1);
+      WinSequence();
+    }
+    else // jagers verliezen
+    {
+      publishGameResults(0);
+      LosingSequence();
+    }
   }
 }
 
-void PlayerTagged()
+void LosingSequence()
 {
   ledcWrite(channel, 255);
   for (int thisNote = 0; thisNote < 4; thisNote++)
@@ -195,6 +203,13 @@ void PlayerTagged()
     FastLED.show();
     delay(50);
   }
+}
+
+void publishGameResults(bool winner)
+{
+  UpdateGameResults(millis(), winner);
+  serializeJson(gameResults, jsonGameResultsSer);
+  client.publish("gameResults", jsonGameResultsSer);
 }
 
 void ProcessMessage(byte index, String &payload)
@@ -234,3 +249,5 @@ void ProcessMessage(byte index, String &payload)
     break;
   }
 }
+
+// remeber to write code to force win and loss for demo

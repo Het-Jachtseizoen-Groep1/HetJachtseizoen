@@ -2,7 +2,8 @@
 bool deviceAvailable = false;
 
 // booleans
-bool gameOver = 0;
+bool gameInProgress = 0;
+bool winner = 0;
 
 // longs
 long startTime = 0;

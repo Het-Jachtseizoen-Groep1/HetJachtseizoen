@@ -61,7 +61,7 @@ void UpdateGameInfo(bool p_inProgress, long p_currDuration, long p_timeLimit)
 	serializeJson(gameInfo, jsonGameInfoSer);
 }
 
-void UpdateGameResults(long p_duration, int p_winner)
+void UpdateGameResults(long p_duration, bool p_winner)
 {
 	// update gameResults
 	gameResults["duration"] = p_duration;
