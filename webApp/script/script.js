@@ -1,6 +1,6 @@
 var map;
 
-function showMap() {
+function showMap(lat, long) {
     navigator.geolocation.getCurrentPosition(function (position) {
         var map = L.map('map').setView([position.coords.latitude, position.coords.longitude], 15);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -15,7 +15,7 @@ function showMap() {
             popupAnchor: [0, -40] // point from which the popup should open relative to the iconAnchor
         });
 
-        var marker = L.marker([50.83080623727818, 3.2633155115745267], { icon: greenIcon }).addTo(map);
+        var marker = L.marker([lat, long], { icon: greenIcon }).addTo(map);
         marker.bindPopup("Locatie Boeven").openPopup();
 
         var ownIcon = L.icon({
@@ -41,33 +41,25 @@ function showMap() {
     });
 }
 
-// function GetGames() {
-//     fetch('https://registratie.azurewebsites.net/api/games?', {
-//         mode: 'no-cors',
-//         headers: {
-//             'Accept': 'application/json'
-//         }
-//     })
-//         .then(response => response.json())
-//         .then(data => console.log(data))
-//         .catch(error => console.log(error))
-// }
 
 let getAPI = async () => {
     // Eerst bouwen we onze url op
-    const ENDPOINT = `https://registratie.azurewebsites.net/api/games?`
+    const ENDPOINT = `https://registratie.azurewebsites.net/api/games/groep1?`
 
     // Met de fetch API proberen we de data op te halen.
     const request = await fetch(`${ENDPOINT}`)
     const data = await request.json()
     console.log(data)
+
+    console.log(data[0].BoefLatitude)
+    console.log(data[0].BoefLongtitude)
+
+    showMap(data[0].BoefLatitude, data[0].BoefLongtitude);
 }
 
 
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOM fully loaded and parsed');
-    showMap();
-    // GetGames();
     getAPI();
 })
