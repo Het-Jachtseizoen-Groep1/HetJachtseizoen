@@ -1,8 +1,4 @@
 #include "libraries.h"
-/*
-const char ssid[] = "xxx";
-const char pass[] = "xxx";
-*/
 
 #define numLeds 12
 //
@@ -21,7 +17,7 @@ CRGB leds[numLeds];
 MFRC522::MIFARE_Key key;
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
-WiFiClient wifi;
+WiFiClient net;
 MQTTClient client;
 
 // pwm settings
@@ -29,71 +25,18 @@ int freq = 2000;
 int channel = 0;
 int resolution = 8;
 
-int melody[] = {
-    NOTE_E4, NOTE_E4, NOTE_D4, NOTE_CS4};
+int melody[] = {NOTE_E4, NOTE_E4, NOTE_D4, NOTE_CS4};
 
-int klap = 200;
-int duration[] = {3.1*klap, 3.1*klap, 2*klap, 5*klap};
+int beat = 200;
+int duration[] = {3.1 * beat, 3.1 * beat, 2 * beat, 5 * beat};
 
-void setup()
-{
-  Serial.begin(9600);
-
-  WiFi.begin(ssid, pass);
-  client.begin("brokerURL", wifi);
-
-//  Wire.begin();
-  FastLED.addLeds<NEOPIXEL, 4>(leds, numLeds);
-
-  // pwm for buzzer
-  ledcSetup(channel, freq, resolution);
-  ledcAttachPin(BUZZER_PIN, channel);
-  //LedLoad();
-  SPI.begin();
-  mfrc522.PCD_Init();
-
-   for (byte i = 0; i <= numLeds; i++)
-      {
-        leds[i] = CRGB(0, 0, 0);
-      }
-      FastLED.show();
-  StartConnection();
-}
-
-void loop()
-{
-  // mqtt code
-//
-//  if (!client.connected())
-//  {
-//   StartConnection();
-//  }
-
-  //client.loop();
-
-   //client.publish("/{key}", value);
-
-  
-  
-  RFIDTagged();
-  mfrc522.PICC_HaltA();
-  mfrc522.PCD_StopCrypto1();
-  //  ReadRFID();
-  //  LedLoad();
-  //  if (RFIDTagged())
-  //  {
-  //    PlayerTagged();
-  //  }
-  //
-}
-
-void StartConnection()
+// general operations
+void connect()
 {
   Serial.println("connecting to WiFi");
   // verbind met wifi
   while (WiFi.status() != WL_CONNECTED)
   {
-    LedLoad();
     Serial.print('.');
     delay(500);
   }
@@ -102,15 +45,88 @@ void StartConnection()
   // connect to MQTT
   Serial.println("connecting to MQTT Broker");
   // get client, user and pass from your broker
-//  while (!client.connect("client", "user", "pass"))
-//  {
-//    Serial.print('.');
-//    delay(500);
-//  }
+  while (!client.connect("esp", "", ""))
+  {
+    Serial.print('.');
+    delay(500);
+  }
+
+  for (byte i = 0; i < topicCount; i++) // loop through all topics (< topicCount because start counting at 0)
+  {
+    client.subscribe(topics[i]);
+  }
+
   Serial.println("connected");
 }
 
+void MessageReceived(String &topic, String &payload)
+{
+  Serial.println(payload);
 
+  for (byte i = 0; i < topicCount; i++) // loop through all topics (< topicCount because start counting at 0)
+  {
+    if (topic == topics[i])
+    {
+      ProcessMessage(i, payload);
+    }
+  }
+}
+
+void initLEDs()
+{
+  FastLED.addLeds<NEOPIXEL, 4>(leds, numLeds);
+  // turnoff all leds
+  for (byte i = 0; i <= numLeds; i++)
+  {
+    leds[i] = CRGB(0, 0, 0);
+  }
+  FastLED.show();
+}
+
+void initBuzzer()
+{
+  ledcSetup(channel, freq, resolution);
+  ledcAttachPin(BUZZER_PIN, channel);
+}
+
+void initRFID()
+{
+  SPI.begin();
+  mfrc522.PCD_Init();
+}
+
+// Main part
+void setup()
+{
+  // beging Serial
+  Serial.begin(115200);
+  WiFi.begin(ssid, pass);
+  client.begin(IP, net);
+  client.onMessage(MessageReceived);
+  initLEDs();
+  initBuzzer();
+  initRFID();
+  connect();
+  client.publish("connect", "1");
+}
+
+void loop()
+{
+  if (client.connected())
+  {
+    client.loop();
+    RFIDTagged();
+    mfrc522.PICC_HaltA();
+    mfrc522.PCD_StopCrypto1();
+  }
+  else
+  {
+    UpdateDeviceAvailability(client.connected());
+    connect();
+  }
+}
+
+// functions
 void LedLoad()
 {
   int pBright = 255;
@@ -135,38 +151,31 @@ void LedLoad()
 
 void RFIDTagged()
 {
-
-    if (!gameOver)
+  if (!gameOver)
   {
-      if (mfrc522.PICC_IsNewCardPresent() )
-  {
-    
-       PlayerTagged();
-    
-    gameOver = 1;
-  }
-  else
-  {
+    if (mfrc522.PICC_IsNewCardPresent())
     {
-       for (byte i = 0; i <= numLeds; i++)
+      PlayerTagged();
+      gameOver = 1;
+    }
+    else
+    {
+      for (byte i = 0; i <= numLeds; i++)
       {
         leds[i] = CRGB(0, 255, 0);
       }
       FastLED.show();
     }
-}
-}
-else{
-  delay(2500);
-  gameOver=0;
-}
+  }
+  else
+  {
+    delay(2500);
+    gameOver = 0;
+  }
 }
 
 void PlayerTagged()
 {
-  // publishData
-  //  client.publish("/gameEnd", 1);
-  
   ledcWrite(channel, 255);
   for (int thisNote = 0; thisNote < 4; thisNote++)
   {
@@ -185,5 +194,43 @@ void PlayerTagged()
     }
     FastLED.show();
     delay(50);
+  }
+}
+
+void ProcessMessage(byte index, String &payload)
+{
+  switch (index)
+  {
+  case 0:
+    deserializeJson(gameInfo, payload);
+    if (gameInfo["inProgress"] == true)
+    {
+      timeLimit = gameInfo["timeLimit"];
+      currDuration = gameInfo["runTime"];
+      Serial.println("Game started");
+    }
+    else
+    {
+      // we'll see what we do here
+    }
+    break;
+
+  case 1:
+    // shouldn't do anything as far as i know
+    break;
+
+  case 2:
+    deserializeJson(deviceAvailability, payload);
+    const char *msgType = deviceAvailability["type"];
+
+    Serial.println("Device availability requested");
+    Serial.println(payload);
+    UpdateDeviceAvailability(client.connected());
+    if (String(msgType) == "request")
+    {
+      Serial.print("passed");
+      client.publish(topics[index], jsonDeviceAvailabilitySer);
+    }
+    break;
   }
 }
