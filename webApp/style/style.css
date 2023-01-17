@@ -26,3 +26,8 @@ html, body, #map {
     font-weight: bold;
     padding-bottom: 15px;
 }
+
+.logo {
+    max-height: 30px;
+    padding-top: 5px;
+}
