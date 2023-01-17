@@ -41,9 +41,33 @@ function showMap() {
     });
 }
 
+// function GetGames() {
+//     fetch('https://registratie.azurewebsites.net/api/games?', {
+//         mode: 'no-cors',
+//         headers: {
+//             'Accept': 'application/json'
+//         }
+//     })
+//         .then(response => response.json())
+//         .then(data => console.log(data))
+//         .catch(error => console.log(error))
+// }
+
+let getAPI = async () => {
+    // Eerst bouwen we onze url op
+    const ENDPOINT = `https://registratie.azurewebsites.net/api/games?`
+
+    // Met de fetch API proberen we de data op te halen.
+    const request = await fetch(`${ENDPOINT}`)
+    const data = await request.json()
+    console.log(data)
+}
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOM fully loaded and parsed');
     showMap();
+    // GetGames();
+    getAPI();
 })
