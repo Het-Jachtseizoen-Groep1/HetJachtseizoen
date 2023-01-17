@@ -18,6 +18,19 @@ function showMap(lat, long) {
         var marker = L.marker([lat, long], { icon: greenIcon }).addTo(map);
         marker.bindPopup("Locatie Boeven").openPopup();
 
+        setInterval(function () {
+            fetch('https://registratie.azurewebsites.net/api/games/groep1?')
+                .then(response => response.json())
+                .then(data => {
+                    var newLatLng = new L.LatLng(data[0].BoefLatitude, data[0].BoefLongtitude);
+                    marker.setLatLng(newLatLng);
+                })
+                .catch(error => {
+                    // handle any errors that occur
+                });
+
+        }, 10000);
+
         var ownIcon = L.icon({
             iconUrl: '../assets/live_location.png',
 
