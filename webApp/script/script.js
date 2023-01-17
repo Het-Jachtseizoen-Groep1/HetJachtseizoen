@@ -11,8 +11,8 @@ function showMap() {
             iconUrl: '../assets/map_marker.png',
 
             iconSize: [35, 47], // size of the icon
-            //iconAnchor: [0, 0], // point of the icon which will correspond to marker's location
-            popupAnchor: [0, -15] // point from which the popup should open relative to the iconAnchor
+            iconAnchor: [18, 50], // point of the icon which will correspond to marker's location
+            popupAnchor: [0, -40] // point from which the popup should open relative to the iconAnchor
         });
 
         var marker = L.marker([50.83080623727818, 3.2633155115745267], { icon: greenIcon }).addTo(map);
@@ -24,9 +24,7 @@ function showMap() {
             iconSize: [25, 25], // size of the icon
         });
 
-
         var OwnLocation = L.marker([position.coords.latitude, position.coords.longitude], { icon: ownIcon }).addTo(map);
-
 
 
         navigator.geolocation.watchPosition(function (position) {
