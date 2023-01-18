@@ -142,11 +142,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //kijken welke pagina geladen is
     const startenSpelDataPage = document.getElementById('startenSpelData');
-
-
     console.log('SpelStartenData page loaded');
     showSpelData();
-
 
     getAPI("groep1");
     updateBoefLocatie();
