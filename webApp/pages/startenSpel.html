@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spel starten | Jachtseizoen</title>
+    <script src="../script/script.js"></script>
+</head>
+
+<body>
+    <a href="../../index.html">Go back</a>
+
+    <img class="c-logo" src="/webApp/pages/startenSpelData.html" alt="Logo Jachtseizoen">
+
+    <form action="../pages/startenSpelData.html" method="post" id="js-createGame">
+
+            <label for="groepsnaam">Kies een groepsnaam</label>
+            <input type="text" id="groepsnaam" placeholder="Groepsnaam..." name="groepsnaam" required><br>
+              
+            <input type="button" onclick="createNewGame()" value="Deelnemen">
+
+    </form>
+</body>
+
+</html>
