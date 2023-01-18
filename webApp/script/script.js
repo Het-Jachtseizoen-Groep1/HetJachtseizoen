@@ -76,7 +76,7 @@ let getAPI = async (groepsnaam) => {
 
 
 //***__________ LOCATIE VAN DE BOEF UPDATEN __________***//
-function updateBoefLocatie (){
+function updateBoefLocatie() {
 
     const requestOptions = {
         method: 'PUT',
@@ -94,12 +94,12 @@ function updateBoefLocatie (){
 
 
 //***__________ NIEUWE GAME MAKEN __________***//
-function createNewGame(){
+function createNewGame() {
 
     //groepsnaam opslaan
     var form = document.getElementById("js-createGame");
     var groepsnaam = form.groepsnaam.value;
-    
+
     //spel code genereren
     var val1 = Math.floor(1000 + Math.random() * 9000);
     var val2 = Math.floor(1000 + Math.random() * 9000);
@@ -108,9 +108,9 @@ function createNewGame(){
     localStorage.setItem('groepsnaam', groepsnaam);
     localStorage.setItem('spelCode', code);
 
-    
 
-    
+
+
     //data naar azure db sturen
     const requestOptions = {
         method: 'POST',
@@ -127,7 +127,7 @@ function createNewGame(){
 }
 
 
-function showSpelData(){
+function showSpelData() {
     const groepsnaam = localStorage.getItem('groepsnaam');
     const spelCode = localStorage.getItem('spelCode');
     document.querySelector('.js-groepsnaam').innerHTML = groepsnaam;
@@ -142,12 +142,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //kijken welke pagina geladen is
     const startenSpelDataPage = document.getElementById('startenSpelData');
-    
+
 
     console.log('SpelStartenData page loaded');
     showSpelData();
 
-    
+
     getAPI("groep1");
     updateBoefLocatie();
     // createNewGame();
