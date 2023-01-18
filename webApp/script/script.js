@@ -84,7 +84,7 @@ function updateBoefLocatie() {
         body: JSON.stringify({
             groep: "groep1",
             BoefLatitude: 50.82426422796548,
-            BoefLongtitude: 3.3716387847274545,
+            BoefLongtitude: 3.2716387847274545,
             id: "3545be40-b248-499a-a3e0-c4b5e9ecded8"
         })
     };
@@ -149,6 +149,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getAPI("groep1");
-    updateBoefLocatie();
+    // updateBoefLocatie();
     // createNewGame();
 })
