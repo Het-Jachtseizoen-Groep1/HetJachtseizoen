@@ -3,6 +3,7 @@ bool deviceAvailable = false;
 
 // booleans
 bool gameInProgress = 1;
+bool gameOver = 0;
 bool winner = 0;
 
 // longs

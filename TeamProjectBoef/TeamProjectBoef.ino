@@ -115,7 +115,7 @@ void loop()
   if (client.connected())
   {
     client.loop();
-    RFIDTagged();
+    RunGame();
     mfrc522.PICC_HaltA();
     mfrc522.PCD_StopCrypto1();
   }
@@ -149,13 +149,13 @@ void LedLoad()
   }
 }
 
-void RFIDTagged()
+void RunGame()
 {
   if (gameInProgress)
   {
+    gameOver = 0;
     if (mfrc522.PICC_IsNewCardPresent())
     {
-      gameInProgress = 0;
       winner = 1;
     }
     else
@@ -168,8 +168,9 @@ void RFIDTagged()
     }
   }
   
-  else
+  else if (!gameOver)
   {
+    gameOver = 1;
     if (winner) // jagers winnen
     {
       publishGameResults(1);
@@ -177,7 +178,7 @@ void RFIDTagged()
     }
     else // jagers verliezen
     {
-      publishGameResults(0);
+      //publishGameResults(0);
       LosingSequence();
     }
   }
@@ -225,6 +226,7 @@ void ProcessMessage(byte index, String &payload)
   case 0:
     deserializeJson(gameInfo, payload);
     gameInProgress = gameInfo["inProgress"];
+    Serial.println(gameInProgress);
     if (gameInProgress)
     {
       timeLimit = gameInfo["timeLimit"];
@@ -234,7 +236,8 @@ void ProcessMessage(byte index, String &payload)
     break;
 
   case 1:
-    // shouldn't do anything as far as i know
+    deserializeJson(gameResults, payload);
+    winner = gameResults["winner"];
     break;
 
   case 2:
