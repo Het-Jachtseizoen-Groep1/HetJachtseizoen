@@ -7,20 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spel starten | Jachtseizoen</title>
     <script src="../script/script.js"></script>
+    <link rel="stylesheet" href="/webApp/style/normalize.css">
+    <link rel="stylesheet" href="/webApp/style/style.css">
 </head>
 
 <body>
     <a href="../../index.html">Go back</a>
 
-    <img class="c-logo" src="/webApp/pages/startenSpelData.html" alt="Logo Jachtseizoen">
+    <img class="c-logo" src="../assets/Logo.png" alt="Logo Jachtseizoen">
 
     <form action="../pages/startenSpelData.html" method="post" id="js-createGame">
 
-            <label for="groepsnaam">Kies een groepsnaam</label>
-            <input type="text" id="groepsnaam" placeholder="Groepsnaam..." name="groepsnaam" required><br>
-              
-            <input type="button" onclick="createNewGame()" value="Deelnemen">
-
+        <div class="c-form__items">
+            <label class="c-form__label" for="groepsnaam">Kies een groepsnaam</label>
+            <input class="c-form__input" type="text" id="groepsnaam" placeholder="Groepsnaam..." name="groepsnaam" required><br>
+        </div>
+        <span class="c-button"><input class="c-button__form" type="button" onclick="createNewGame()" value="Verder"></span>
+        
     </form>
 </body>
 

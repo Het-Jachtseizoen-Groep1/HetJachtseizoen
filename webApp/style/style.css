@@ -566,6 +566,169 @@ input::placeholder {
     ---
     Website main logo
 */
+.c-logo{
+    width: 288px;
+    display: block;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/*
+    Component: Button
+    ---
+    Website main index
+*/
+.c-button{
+    font-size: 1.37rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #14213D !important;
+    background-color: var(--global-color-alpha);
+    width: 270px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: none;
+    margin: auto;
+}
+.c-button::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    right: -7px;
+    bottom: -7px;
+    border: 2px solid var(--global-color-alpha);
+    z-index: -1;
+    display: block;
+}
+
+.c-buttons__flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+    gap: 30px;
+}
+
+.c-buttons-beta__flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 180px;
+    gap: 42px;
+}
+
+.c-button-beta{
+    font-size: .9rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: #14213D !important;
+    background-color: var(--global-color-alpha);
+    width: 108px;
+    height: 73px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding-bottom: 5px;
+}
+
+.c-button__form{
+    font-size: 1.37rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #14213D !important;
+    background-color: var(--global-color-alpha);
+    border: none;
+    width: 270px;
+    height: 50px;
+}
+.c-button__form:hover {
+    cursor: pointer;
+}
+
+
+
+/*
+    Component: forms
+    ---
+    Website main forms
+*/
+.c-form__items{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 160px;
+    margin-bottom: 211px;
+}
+
+.c-form__label{
+    color: var(--global-color-text);
+    font-size: 1.5rem;
+}
+.c-form__input{
+    margin-top: 16px;
+    width: 250px;
+    padding: .5rem .7rem .5rem .7rem;
+    border-radius: 4px;
+    border: none;
+    font-size: 1.37rem;
+    background-color: var(--global-color-text);
+    opacity: .5;
+}
+
+
+/*
+    Component: spel aanmaken
+    ---
+
+*/
+
+.c-groepsnaam__info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    font-size: 1.5rem;
+}
+.c-spelCode__info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 42px;
+    font-size: 1.5rem;
+}
+
+.c-spelInfo__title{
+    color: var(--global-color-alpha);
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+
+.c-spelInfo__deelnemers{
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 100px;
+    margin-bottom: 81px;
+}
+
+.c-spelInfo__deelnemers--bold{
+    font-weight: 600;
+    color: var(--global-color-alpha);
+}
+
+
+
+
 
 #map {
     position: relative;
