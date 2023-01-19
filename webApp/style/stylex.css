@@ -1,0 +1,36 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+html, body, #map {
+    height: 100%;
+    width: 100vw;
+}
+
+:root{}
+
+
+#map {
+    position: relative;
+    z-index: 0;
+}
+
+.xx {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 30px;
+    background-color: #14213D;
+    opacity: .8;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+
+.logo {
+    max-height: 30px;
+    padding-top: 5px;
+}
