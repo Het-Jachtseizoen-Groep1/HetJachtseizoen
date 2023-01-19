@@ -134,6 +134,30 @@ function showSpelData() {
     document.querySelector('.js-spelCode').innerHTML = spelCode;
 }
 
+function timeButton() {
+    var timeButton = document.querySelector('.js-time_button');
+    var timeShow = document.querySelector('.js-time_button_back');
+    timeButton.addEventListener('click', function () {
+        console.log('click');
+        timeButton.classList.remove('u-showing');
+        timeButton.classList.add('u-hidden');
+        timeShow.classList.remove('u-hidden');
+        timeShow.classList.add('u-showing');
+    })
+}
+
+function timeButtonBack() {
+    var timeButton = document.querySelector('.js-time_button');
+    var timeShow = document.querySelector('.js-time_button_back');
+    timeShow.addEventListener('click', function () {
+        console.log('click');
+        timeShow.classList.remove('u-showing');
+        timeShow.classList.add('u-hidden');
+        timeButton.classList.remove('u-hidden');
+        timeButton.classList.add('u-showing');
+    })
+}
+
 
 
 
@@ -151,4 +175,6 @@ document.addEventListener('DOMContentLoaded', function () {
     getAPI("groep1");
     // updateBoefLocatie();
     // createNewGame();
+    timeButton();
+    timeButtonBack();
 })
