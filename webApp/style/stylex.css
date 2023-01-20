@@ -8,9 +8,6 @@ html, body, #map {
     width: 100vw;
 }
 
-:root{}
-
-
 #map {
     position: relative;
     z-index: 0;
@@ -33,6 +30,39 @@ html, body, #map {
     align-items: center;
     justify-content: center;
     gap: 65px;
+}
+
+.c-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: #14213D;
+    opacity: .8;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: top;
+    justify-content: space-between;
+    gap: 65px;
+    padding-top: 15px;
+}
+
+.c-overlay_countdown{
+    padding-top: 260px;
+}
+
+.c-overlay_topbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    gap: 65px;
+    padding-top: 10px;
 }
 
 .c-logo {

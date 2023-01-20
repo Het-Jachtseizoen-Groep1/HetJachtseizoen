@@ -158,6 +158,23 @@ function timeButtonBack() {
     })
 }
 
+function startTimer(durationSeconds, display) {
+    var timer = durationSeconds, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = durationSeconds;
+        }
+    }, 1000);
+}
+
 
 
 
@@ -166,10 +183,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //kijken welke pagina geladen is
     const startenSpelDataPage = document.getElementById('startenSpelData');
+    const startCountdown = document.getElementById('startCountdown');
 
     if (startenSpelDataPage) {
         console.log('SpelStartenData page loaded');
         showSpelData();
+    }
+
+    if (startCountdown) {
+        console.log('Countdown page loaded');
+        var durationSeconds = 60 * 1.5,
+            display = document.querySelector('.js-start_countdown');
+        startTimer(durationSeconds, display);
     }
 
     getAPI("groep1");
