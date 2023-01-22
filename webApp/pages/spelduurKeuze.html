@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spel keuze | Jachtseizoen</title>
+    <script src="../script/script.js"></script>
+    <link rel="stylesheet" href="/webApp/style/normalize.css">
+    <link rel="stylesheet" href="/webApp/style/style.css">
+</head>
+
+<body>
+    <a href="../../index.html">Go back</a>
+
+    <img class="c-logo" src="../assets/Logo.png" alt="Logo Jachtseizoen">
+
+    <form action="../pages/startenSpelData.html" method="post" id="js-createGame">
+
+        <div class="c-form__items">
+            <p>Please select your favorite Web language:</p>
+
+              <input type="radio" id="makkelijk" name="spelDuur" value="makkelijk">
+              <label for="makkelijk">Makkelijk (15 min)</label>
+              <input type="radio" id="gemiddeld" name="spelDuur" value="gemiddeld">
+              <label for="gemiddeld">Gemiddeld (1 uur)</label>
+              <input type="radio" id="moeilijk" name="spelDuur" value="moeilijk">
+              <label for="moeilijk">Moeilijk (2 uur)</label>
+              <input type="radio" id="jachtseizoen" name="spelDuur" value="jachtseizoen">
+              <label for="jachtseizoen">Jachtseizoen (4 uur)</label>
+        </div>
+        <span class="c-button"><input class="c-button__form" type="button" onclick="createNewGame()" value="Verder"></span>
+        
+    </form>
+</body>
+
+</html>
