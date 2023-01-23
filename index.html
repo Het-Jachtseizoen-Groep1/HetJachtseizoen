@@ -8,6 +8,7 @@
     <title>Home | Jachtseizoen</title>
     <link rel="stylesheet" href="/webApp/style/normalize.css">
     <link rel="stylesheet" href="/webApp/style/style.css">
+    <script src="/webApp/script/script.js"></script>
 </head>
 
 <body>
@@ -22,8 +23,11 @@
     </div>
 
     <div class="c-buttons-beta__flex">
-        <a class="c-button-beta" href="/webApp/pages/leaderboard.html">Leaderboard</a>
-        <a class="c-button-beta" href="/webApp/pages/spelregels.html">Spelregels</a>
+        <button onclick="goToLeaderboard()" class="c-button-beta"><img src="/webApp/assets/icons/trophy.svg" alt="icon leaderboard"> Leaderboard</button>
+        <button onclick="goToSpelregels()" class="c-button-beta"><img src="/webApp/assets/icons/question.svg" alt="icon leaderboard"> Spelregels</button>
+        
+        <!-- <a class="c-button-beta" href="/webApp/pages/leaderboard.html">Leaderboard</a>
+        <a class="c-button-beta" href="/webApp/pages/spelregels.html">Spelregels</a> -->
     </div>
 
 </body>

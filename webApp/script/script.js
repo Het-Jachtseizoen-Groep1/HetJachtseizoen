@@ -1,4 +1,3 @@
-
 //***__________ CODE VOOR DE MAP __________***//
 var map;
 function showMap(lat, long) {
@@ -56,6 +55,9 @@ function showMap(lat, long) {
 }
 
 
+
+
+
 //***__________ API OPROEPEN VAN AZURE EN MAP TONEN__________***//
 let getAPI = async (groepsnaam) => {
     // Eerst bouwen we onze url op
@@ -71,6 +73,7 @@ let getAPI = async (groepsnaam) => {
 
     showMap(data[0].BoefLatitude, data[0].BoefLongtitude);
 }
+
 
 
 
@@ -93,6 +96,9 @@ function updateBoefLocatie() {
 }
 
 
+
+
+
 //***__________ NIEUWE GAME MAKEN __________***//
 function createNewGame() {
 
@@ -105,28 +111,83 @@ function createNewGame() {
     var val2 = Math.floor(1000 + Math.random() * 9000);
     var code = `${val1}-${val2}`;
 
-    localStorage.setItem('groepsnaam', groepsnaam);
-    localStorage.setItem('spelCode', code);
+    //check als groepsnaam niet leeg is
+    if (!groepsnaam) {
+        document.querySelector('.js-form-error').innerHTML = "Vul een groepsnaam in";
+    } else {
+        localStorage.setItem('groepsnaam', groepsnaam);
+        localStorage.setItem('spelCode', code);
 
+        //data naar azure db sturen
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                groep: groepsnaam,
+                spelcode: code
+            })
+        };
+        fetch('https://registratie.azurewebsites.net/api/games', requestOptions)
+            .then(response => response.json())
 
+        window.location.href = "../pages/startenSpelData.html";
+    }
 
-
-    //data naar azure db sturen
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            groep: groepsnaam,
-            spelcode: code
-        })
-    };
-    fetch('https://registratie.azurewebsites.net/api/games', requestOptions)
-        .then(response => response.json())
-
-    window.location.href = "../pages/startenSpelData.html";
+    //hide de error als ze terug typen
+    const inputField = document.querySelector('.js-input');
+    inputField.addEventListener('focus', (event) => {
+        document.querySelector('.js-form-error').innerHTML = "";
+    });
 }
 
 
+
+
+//***__________ NIEUWE GAME JOINEN __________***//
+function participateGame() {
+    const pattern = /^\d{4}-\d{4}$/;
+
+    //spel code opslaan
+    var form = document.getElementById("js-participateGame");
+    var code = form.spelCode.value;
+
+    //spel code controleren + als het ingevuld is
+    const result = pattern.test(code);
+    if (!code) {
+        document.querySelector('.js-form-error').innerHTML = "Vul een code in";
+    } else {
+        if (!result) {
+            document.querySelector('.js-form-error').innerHTML = "De spel code is niet correct";
+        } else {
+            document.querySelector('.js-form-error').innerHTML = "";
+            //verder gaan
+        } 
+    }
+
+    //error message weghalen als ze opnieuw typen
+    const inputField = document.querySelector('.js-input');
+    inputField.addEventListener('focus', (event) => {
+        document.querySelector('.js-form-error').innerHTML = "";
+    });
+
+
+    //auto "-" toevoegen
+    document.querySelector('.js-input-spelCode').addEventListener('input', function(e) {
+        var foo = this.value.split("-").join("");
+        if (foo.length > 0) {
+            foo = foo.match(new RegExp('.{1,4}', 'g')).join("-");
+        }
+        this.value = foo;
+        });
+
+}
+
+
+
+
+
+
+//***__________ CODE EN GROEPSNAAM TONEN __________***//
 function showSpelData() {
     const groepsnaam = localStorage.getItem('groepsnaam');
     const spelCode = localStorage.getItem('spelCode');
@@ -134,6 +195,10 @@ function showSpelData() {
     document.querySelector('.js-spelCode').innerHTML = spelCode;
 }
 
+
+
+
+//***__________ TIMER AND BUTTON __________***//
 function timeButton() {
     var timeButton = document.querySelector('.js-time_button');
     var timeShow = document.querySelector('.js-time_button_back');
@@ -178,6 +243,19 @@ function startTimer(durationSeconds, display) {
 
 
 
+//***__________ BUTTONS SPELREGELS & LEADERBOARD __________***//
+function goToLeaderboard() {
+    window.location.href = "webApp/pages/leaderboard.html";
+}
+function goToSpelregels() {
+    window.location.href = "webApp/pages/spelregels.html";
+}
+
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOM fully loaded and parsed');
 
@@ -202,4 +280,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // createNewGame();
     timeButton();
     timeButtonBack();
+
+
 })

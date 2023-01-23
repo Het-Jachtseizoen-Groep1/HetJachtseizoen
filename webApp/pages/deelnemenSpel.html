@@ -6,20 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deelnemen | Jachtseizoen</title>
+    <link rel="stylesheet" href="../style/normalize.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <script src="../script/script.js"></script>
 </head>
 
 <body>
-    <a href="../../index.html">Go back</a>
+    <a href="../../index.html"><img class="c-icon_arrow-back" src="../assets/icons/arrow_back.svg" alt="Go back"></a>
 
-    <img class="c-logo" src="x" alt="Logo Jachtseizoen">
+    <img class="c-logo" src="../assets/Logo.png" alt="Logo Jachtseizoen">
 
     <div>
-        <form action="x" method="post">
+        <form action="x" method="post" id="js-participateGame">
 
-            <label for="spelCode">Vul de code van het spel in:</label>
-            <input type="text" id="spelCode" placeholder="spel code..." name="spelCode"><br>
-
-              <input type="submit" value="Deelnemen">
+        <div class="c-form__items">
+            <label class="c-form__label" for="spelCode">Vul de code van het spel in</label>
+            <input class="c-form__input js-input js-input-spelCode" type="text" id="spelCode" placeholder="spel code..." name="spelCode"><br>
+            <p class="js-form-error c-form-error"></p>
+        </div>
+        <span class="c-button"><input class="c-button__form" type="button" onclick="participateGame()" value="Deelnemen"></span>
 
         </form>
 
