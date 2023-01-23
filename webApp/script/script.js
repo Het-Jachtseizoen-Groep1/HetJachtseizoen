@@ -58,7 +58,7 @@ function showMap(lat, long) {
 
 
 
-//***__________ API OPROEPEN VAN AZURE EN MAP TONEN__________***//
+//***__________ API OPROEPEN VAN AZURE EN MAP TONEN __________***//
 let getAPI = async (groepsnaam) => {
     // Eerst bouwen we onze url op
     const ENDPOINT = `https://registratie.azurewebsites.net/api/games/${groepsnaam}?`
@@ -73,6 +73,23 @@ let getAPI = async (groepsnaam) => {
 
     showMap(data[0].BoefLatitude, data[0].BoefLongtitude);
 }
+
+
+
+//***__________ API OPROEPEN VAN AZURE VOOR SPELCODE __________***//
+let getSpelCode = async (spelcode) => {
+    // Eerst bouwen we onze url op
+    const ENDPOINT = `https://jachtseizoenapi.azurewebsites.net/api/games/code/${spelcode}?`
+
+    // Met de fetch API proberen we de data op te halen.
+    const request = await fetch(`${ENDPOINT}`)
+    const data = await request.json()
+
+    return data
+}
+
+
+//   const spelCodeJoinen = localStorage.getItem('spelCodeJoinen');
 
 
 
@@ -91,7 +108,7 @@ function updateBoefLocatie() {
             id: "3545be40-b248-499a-a3e0-c4b5e9ecded8"
         })
     };
-    fetch('https://registratie.azurewebsites.net/api/games', requestOptions)
+    fetch('https://jachtseizoenapi.azurewebsites.net/api/games', requestOptions)
         .then(response => response.json())
 }
 
@@ -127,7 +144,8 @@ function createNewGame() {
                 spelcode: code
             })
         };
-        fetch('https://registratie.azurewebsites.net/api/games', requestOptions)
+        console.log('naar database')
+        fetch('https://jachtseizoenapi.azurewebsites.net/api/games?', requestOptions)
             .then(response => response.json())
 
         window.location.href = "../pages/startenSpelData.html";
@@ -141,15 +159,39 @@ function createNewGame() {
 }
 
 
+//***__________ Deelnemers omhoog doen __________***//
+let updateDeelnemers = async (spelcode, spelId) => {
+
+    var data = await getSpelCode(spelcode)
+    spelers = data[0].aantalSpelers
+    nieuweSpelers = spelers + 1
+
+    const requestOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            id: spelId,
+            aantalSpelers: nieuweSpelers,
+            spelcode: spelcode
+        })
+    };
+    fetch('https://jachtseizoenapi.azurewebsites.net/api/games', requestOptions)
+        .then(response => response.json())
+}
+
+
 
 
 //***__________ NIEUWE GAME JOINEN __________***//
-function participateGame() {
+let participateGame = async () => {
     const pattern = /^\d{4}-\d{4}$/;
 
     //spel code opslaan
     var form = document.getElementById("js-participateGame");
     var code = form.spelCode.value;
+
+
+    localStorage.setItem('spelCodeJoinen', code);
 
     //spel code controleren + als het ingevuld is
     const result = pattern.test(code);
@@ -161,6 +203,12 @@ function participateGame() {
         } else {
             document.querySelector('.js-form-error').innerHTML = "";
             //verder gaan
+
+            speldata = await getSpelCode(code)
+            console.log(speldata)
+            console.log(speldata[0].id)
+            updateDeelnemers(code, speldata[0].id)
+
         } 
     }
 
@@ -178,7 +226,8 @@ function participateGame() {
             foo = foo.match(new RegExp('.{1,4}', 'g')).join("-");
         }
         this.value = foo;
-        });
+    });
+    
 
 }
 
