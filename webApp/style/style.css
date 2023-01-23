@@ -576,6 +576,23 @@ input::placeholder {
 #COMPONENTS
 \*------------------------------------*/
 /*
+    Component: difficulty-form
+    ---
+    a radiobutton form
+*/
+.c-difficulty{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.c-difficulty__option{
+    outline: none;
+    border: 5px solid hotpink;
+}
+
+/*
     Component: Back-button
     ---
     a back button

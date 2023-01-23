@@ -72,6 +72,8 @@ let getAPI = async (groepsnaam) => {
     console.log(data[0].BoefLongtitude)
 
     showMap(data[0].BoefLatitude, data[0].BoefLongtitude);
+
+    return data
 }
 
 
@@ -237,13 +239,29 @@ let participateGame = async () => {
 
 
 //***__________ CODE EN GROEPSNAAM TONEN __________***//
-function showSpelData() {
+let showSpelData = async() => {
     const groepsnaam = localStorage.getItem('groepsnaam');
     const spelCode = localStorage.getItem('spelCode');
     document.querySelector('.js-groepsnaam').innerHTML = groepsnaam;
     document.querySelector('.js-spelCode').innerHTML = spelCode;
-}
 
+    // console.log(data)
+
+        setInterval(function () {
+            fetch(`https://jachtseizoenapi.azurewebsites.net/api/games/${groepsnaam}?`)
+                .then(response => response.json())
+                .then(data => {
+                    document.querySelector('.js-aantalDeelnemers').innerHTML = data[0].aantalSpelers
+                    console.log(groepsnaam)
+                })
+                .catch(error => {
+                    // handle any errors that occur
+                    console.log(error)
+                });
+
+        }, 1000);
+
+}
 
 
 
@@ -311,6 +329,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //kijken welke pagina geladen is
     const startenSpelDataPage = document.getElementById('startenSpelData');
     const startCountdown = document.getElementById('startCountdown');
+    const map = document.getElementById('map')
 
     if (startenSpelDataPage) {
         console.log('SpelStartenData page loaded');
@@ -324,11 +343,14 @@ document.addEventListener('DOMContentLoaded', function () {
         startTimer(durationSeconds, display);
     }
 
-    getAPI("groep1");
-    // updateBoefLocatie();
-    // createNewGame();
-    timeButton();
-    timeButtonBack();
+    if (map){
+        getAPI("groep1");
+        // updateBoefLocatie();
+        // createNewGame();
+        timeButton();
+        timeButtonBack();
+    }
 
+    // showSpelData();
 
 })

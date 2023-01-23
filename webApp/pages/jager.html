@@ -6,35 +6,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boef | Jachtseizoen</title>
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 
 <body>
-    <a href="../index.html">Go back</a>
+    <a class="c-back" href="../index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25.726" viewBox="0 0 30 25.726">
+            <path id="arrow-left-solid" d="M.653,75.274a2.146,2.146,0,0,0,0,3.034L11.368,89.023A2.145,2.145,0,0,0,14.4,85.989L7.336,78.931H27.882a2.143,2.143,0,0,0,0-4.286H7.343l7.052-7.058a2.145,2.145,0,0,0-3.034-3.034L.646,75.268Z" transform="translate(-0.025 -63.925)" fill="#ededed"/>
+        </svg>          
+    </a>
 
     <img class="c-logo" src="xx" alt="Logo Jachtseizoen">
 
-    <form action="xx" method="post">
-        <label for="groepsnaam">Kies een groepsnaam</label>
-        <input type="text" name="groepsnaam" id="groepsnaam" placeholder="groepsnaam..." required>
-
-
-        <div>
+    <form  class="c-difficulty" action="xx" method="post">
+        <div >
             <p>Kies een spel</p>
 
-            <input type="radio" id="makkelijk" name="spel" value="15">
+            <input class="o-hide-accessible c-difficulty__option" type="radio" id="makkelijk" name="spel" value="15">
             <label for="makkelijk">Makkelijk (15 min)</label><br>
 
-            <input type="radio" id="gemiddeld" name="spel" value="15">
+            <input class="o-hide-accessible c-difficulty__option" type="radio" id="gemiddeld" name="spel" value="15">
             <label for="gemiddeld">Gemiddeld (1 uur)</label><br>
 
-            <input type="radio" id="moeilijk" name="spel" value="15">
+            <input class="o-hide-accessible c-difficulty__option" type="radio" id="moeilijk" name="spel" value="15">
             <label for="moeilijk">Moeilijk (2 uur)</label><br>
 
-            <input type="radio" id="jachtseizoen" name="spel" value="15">
+            <input class="o-hide-accessible c-difficulty__option" type="radio" id="jachtseizoen" name="spel" value="15">
             <label for="jachtseizoen">Jachtseizoen (4 uur)</label><br>
         </div>
-
-
 
         <input type="submit" value="start">
     </form>
