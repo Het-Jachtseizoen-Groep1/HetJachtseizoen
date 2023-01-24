@@ -28,11 +28,17 @@
             <div class="c-overlay_topbar">
                 <p></p>
                 <img class="c-logo" src="../assets/Logo.png" alt="Logo">
-                <button class="c-button_close">X</button>
+                <button class="c-button_close" onclick="goToindex()">X</button>
             </div>
 
             <div class="c-overlay_countdown">
                 <p class="c-countdown_text">Start binnen</p>
+
+                <div class="c-dubbelText-container">
+                    <p class="c-dubbelText__border-text js-start_countdown"></p>
+                    <p class="c-dubbelText__regular-text js-start_countdown2"></p>
+                </div>
+
                 <p class="js-start_countdown c-countdown"></p>
             </div>
         </div>

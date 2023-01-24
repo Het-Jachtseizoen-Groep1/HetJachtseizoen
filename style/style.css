@@ -22,7 +22,7 @@
     --global-selection-backgroundColor: var(--global-color-alpha);
 
     /* border radius */
- 
+
     /* transitions */
     --global-transitionEasing-out: ease-out;
     --global-transitionEasing-out-cubic: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -580,60 +580,90 @@ input::placeholder {
     ---
     A leaderboard component
 */
-.c-groepsnaam{
+.c-groepsnaam--first-losers{
+    margin-top: 1rem;
+}
+.c-groepsnaam {
     font-size: var(--global-fontsize-xs);
     font-weight: var(--global-fontweight-bold);
+    max-width: 90px;
+    margin: 0;
+    padding: 0;
 }
-.c-topthree{
+
+.c-topthree {
     display: flex;
     margin: auto;
+    justify-content: center;
     width: 400px;
     color: #202020;
 }
-.c-topthree--item{
+
+.c-topthree--item {
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    width: 125px;
+    align-items: center;
 }
-.c-topthree__first{
+
+.c-topthree__first {
     background-color: var(--global-color-alpha);
     position: relative;
     border-radius: 4px 4px 0 0;
     height: 174px;
 }
-.c-topthree__second{
+
+.c-topthree__second {
     background-color: #C9820D;
     position: relative;
     border-radius: 4px 0 0 4px;
     height: 100px;
     margin-top: 74px;
 }
-.c-topthree__third{
+
+.c-topthree__third {
     background-color: #C9820D;
     position: relative;
     border-radius: 0 4px 4px 0;
     height: 100px;
     margin-top: 74px;
 }
-.c-topthree__crown-first{
+
+.c-topthree__crown-first {
     position: absolute;
     top: -45px;
+    align-self: center;
 }
+
+.c-topthree__crown-second {
+    position: absolute;
+    top: -45px;
+    align-self: center;
+}
+
+.c-topthree__crown-third {
+    position: absolute;
+    top: -45px;
+    align-self: center;
+}
+
 /*
     Component: WaitForHostAnimation
     ---
     An animation that waits for the host to be ready
 */
-.c-wachten-host__animation{
+.c-wachten-host__animation {
     width: 150px;
 }
+
 /*
     Component: dropdown
     ---
     A dropdown menu
 */
-.c-dropdown{
+.c-dropdown {
     display: flex;
     width: 286px;
     margin: auto;
@@ -642,20 +672,26 @@ input::placeholder {
     border-radius: 4px;
     color: var(--global-color-text);
     font-weight: var(--global-fontweight-medium);
+    margin-bottom: 95px;
 }
-.c-dropdown__title{
+
+.c-dropdown__title {
     font-size: var(--global-fontsize-s);
     color: var(--global-color-text);
 }
-.c-dropdown__menu{
+
+.c-dropdown__menu {
     background: none;
     border: none;
     font-size: var(--global-fontsize-s);
+    color: var(--global-color-text);
 }
-.c-dropdown__menu:focus{
+
+.c-dropdown__menu:focus {
     outline: none;
 }
-.c-dropdown__option{
+
+.c-dropdown__option {
     color: var(--global-color-text);
     background-color: #434D63;
     border: none;
@@ -663,39 +699,44 @@ input::placeholder {
     font-weight: var(--global-fontweight-medium);
     text-align: center;
 }
+
 /*
     Component: LeaderboardLogo
     ---
     Leaderboard logo
 */
-.c-leaderboard-header{
+.c-leaderboard-header {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 2.5rem;
 }
+
 /*
     Component: difficulty-form
     ---
     a radiobutton form
 */
-.c-difficulty{
+.c-difficulty {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.c-difficulty__radiobuttons{
+
+.c-difficulty__radiobuttons {
     margin-bottom: 143px;
 }
-.c-difficulty__option--label{
+
+.c-difficulty__option--label {
     font-weight: var(--global-fontweight-medium);
     text-align: center;
     padding: .5rem 1rem .5rem 1rem;
     border: 2px solid var(--global-color-text);
     border-radius: 4px;
 }
-.c-difficulty__option:checked + .c-difficulty__option--label{
+
+.c-difficulty__option:checked+.c-difficulty__option--label {
     border-color: var(--global-color-alpha);
     background-color: var(--global-color-alpha);
     color: var(--global-color-beta);
@@ -707,13 +748,14 @@ input::placeholder {
     ---
     a back button
 */
-.c-back{
+.c-back {
     position: absolute;
     top: 1rem;
     left: 1rem;
     background-color: transparent;
     border: none;
 }
+
 .c-back:hover {
     cursor: pointer;
 }
@@ -723,7 +765,7 @@ input::placeholder {
     ---
     a text instruction
 */
-.c-instructions{
+.c-instructions {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -731,11 +773,13 @@ input::placeholder {
     min-height: 100vh;
     gap: 3rem;
 }
-.c-info__kies-spel--primary{
+
+.c-info__kies-spel--primary {
     font-size: var(--global-fontsize-xl);
     font-weight: var(--global-fontweight-semibold);
 }
-.c-instructions--secondary{
+
+.c-instructions--secondary {
     opacity: 50%;
 }
 
@@ -744,7 +788,7 @@ input::placeholder {
     ---
     Website main logo
 */
-.c-logo{
+.c-logo {
     width: 288px;
     display: block;
     margin-top: 100px;
@@ -758,7 +802,7 @@ input::placeholder {
     ---
     Website main index
 */
-.c-button{
+.c-button {
     font-size: 1.37rem;
     font-weight: 600;
     text-decoration: none;
@@ -773,6 +817,7 @@ input::placeholder {
     border: none;
     margin: auto;
 }
+
 .c-button::after {
     content: '';
     position: absolute;
@@ -784,11 +829,12 @@ input::placeholder {
     z-index: -1;
     display: block;
 }
-.c-button:hover{
+
+.c-button:hover {
     cursor: pointer;
 }
 
-.c-buttons__flex{
+.c-buttons__flex {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -797,7 +843,7 @@ input::placeholder {
     gap: 30px;
 }
 
-.c-buttons-beta__flex{
+.c-buttons-beta__flex {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -820,7 +866,7 @@ input::placeholder {
     padding-bottom: 5px;
 } */
 
-.c-button__form{
+.c-button__form {
     font-size: 1.37rem;
     font-weight: 600;
     text-decoration: none;
@@ -830,11 +876,12 @@ input::placeholder {
     width: 270px;
     height: 50px;
 }
+
 .c-button__form:hover {
     cursor: pointer;
 }
 
-.c-button-beta{
+.c-button-beta {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -850,6 +897,7 @@ input::placeholder {
     border: none;
     gap: 8px;
 }
+
 .c-button-beta:hover {
     cursor: pointer;
 }
@@ -862,10 +910,11 @@ input::placeholder {
     ---
     Website main Icons
 */
-.c-icon__trophy{
+.c-icon__trophy {
     display: block;
 }
-.c-icon_arrow-back{
+
+.c-icon_arrow-back {
     margin-left: 20px;
     position: absolute;
     margin-top: -75px;
@@ -877,7 +926,7 @@ input::placeholder {
     ---
     Website main forms
 */
-.c-form__items{
+.c-form__items {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -886,11 +935,12 @@ input::placeholder {
     margin-bottom: 211px;
 }
 
-.c-form__label{
+.c-form__label {
     color: var(--global-color-text);
     font-size: 1.5rem;
 }
-.c-form__input{
+
+.c-form__input {
     margin-top: 16px;
     width: 250px;
     padding: .5rem .7rem .5rem .7rem;
@@ -900,7 +950,8 @@ input::placeholder {
     background-color: var(--global-color-text);
     opacity: .5;
 }
-.c-form-error{
+
+.c-form-error {
     color: #ff0033;
     font-size: .9rem;
     margin-top: -10px;
@@ -913,7 +964,7 @@ input::placeholder {
 
 */
 
-.c-groepsnaam__info{
+.c-groepsnaam__info {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -921,7 +972,8 @@ input::placeholder {
     margin-top: 100px;
     font-size: 1.5rem;
 }
-.c-spelCode__info{
+
+.c-spelCode__info {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -930,20 +982,20 @@ input::placeholder {
     font-size: 1.5rem;
 }
 
-.c-spelInfo__title{
+.c-spelInfo__title {
     color: var(--global-color-alpha);
     font-weight: 600;
     margin-bottom: 9px;
 }
 
-.c-spelInfo__deelnemers{
+.c-spelInfo__deelnemers {
     text-align: center;
     font-size: 1.5rem;
     margin-top: 100px;
     margin-bottom: 81px;
 }
 
-.c-spelInfo__deelnemers--bold{
+.c-spelInfo__deelnemers--bold {
     font-weight: 600;
     color: var(--global-color-alpha);
 }
@@ -953,10 +1005,11 @@ input::placeholder {
     Component: wachten op host
     ---
 */
-.c-spelCode-wachten{
+.c-spelCode-wachten {
     padding-top: 60px;
 }
-.c-waiting-host{
+
+.c-waiting-host {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -971,7 +1024,7 @@ input::placeholder {
     ---
 */
 
-.c-home__spelen-als{
+.c-home__spelen-als {
     text-align: center;
     font-size: 1.2rem;
     margin-bottom: -120px;
@@ -984,7 +1037,7 @@ input::placeholder {
     Component: Kies pel
     ---
 */
-.c-info__kies-spel{
+.c-info__kies-spel {
     margin-top: 120px;
     font-size: 1.2rem;
 }
@@ -993,7 +1046,7 @@ input::placeholder {
     Component: CountDown page
     ---
 */
-.c-countDown{
+.c-countDown {
     width: 350px;
     margin: auto;
 }

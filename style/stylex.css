@@ -175,3 +175,35 @@ body,
 .u-showing {
     visibility: visible;
 }
+
+
+
+
+
+
+
+
+.c-dubbelText-container {
+    position: absolute;
+        left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            width: 198px;
+}
+
+.c-dubbelText__border-text {
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    color: #14213D;
+    -webkit-text-stroke: 3px #FCA311;
+    font-size: 80px;
+    z-index: -1;
+}
+
+.c-dubbelText__regular-text {
+    z-index: 1;
+    font-size: 80px;
+    color: white;
+}

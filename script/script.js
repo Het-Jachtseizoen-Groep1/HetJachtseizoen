@@ -504,29 +504,34 @@ function setDuration(){
             break;
         }
     }
-    console.log(selectedValue);
-
-    if (selectedValue == "15") {
-        localStorage.setItem('durationGame', 900);
-        localStorage.setItem('waitTimeJager', 90);
-        localStorage.setItem('durationLocation', 90);
-    } else if (selectedValue == "60") {
-        localStorage.setItem('durationGame', 3600);
-        localStorage.setItem('waitTimeJager', 300);
-        localStorage.setItem('durationLocation', 300);
-    } else if (selectedValue == "120") {
-        localStorage.setItem('durationGame', 7200);
-        localStorage.setItem('waitTimeJager', 600);
-        localStorage.setItem('durationLocation', 600);
-    } else if (selectedValue == "240") {
-        localStorage.setItem('durationGame', 14400);
-        localStorage.setItem('waitTimeJager', 1200);
-        localStorage.setItem('durationLocation', 600);
-    }
 
     const code = localStorage.getItem('spelCode');
 
-    axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
+    if (!selectedValue) {
+        document.querySelector('.js-form-error').innerHTML = "Kies een spel";
+    } else {
+        document.querySelector('.js-form-error').innerHTML = "";
+
+        if (selectedValue == "15") {
+            localStorage.setItem('durationGame', 900);
+            localStorage.setItem('waitTimeJager', 90);
+            localStorage.setItem('durationLocation', 90);
+        } else if (selectedValue == "60") {
+            localStorage.setItem('durationGame', 3600);
+            localStorage.setItem('waitTimeJager', 300);
+            localStorage.setItem('durationLocation', 300);
+        } else if (selectedValue == "120") {
+            localStorage.setItem('durationGame', 7200);
+            localStorage.setItem('waitTimeJager', 600);
+            localStorage.setItem('durationLocation', 600);
+        } else if (selectedValue == "240") {
+            localStorage.setItem('durationGame', 14400);
+            localStorage.setItem('waitTimeJager', 1200);
+            localStorage.setItem('durationLocation', 600);
+        }
+
+
+        axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
         .then(response => {
 
             const requestOptions = {
@@ -559,6 +564,8 @@ function setDuration(){
         .catch(error => {
             console.log(error)
         });
+
+    }
 }
 
 
@@ -573,11 +580,20 @@ function mapForBoefOrJager() {
     }
 }
 
+function showTimesMap() {
+    var gameDuration = localStorage.getItem('durationGame');
+    var locationDuration = localStorage.getItem('durationLocation');
 
+    const gameDurationplace = document.getElementById("js-durationTime");
+    const locationDurationPlace = document.getElementById("js-locationTime");
 
+    startTimer(gameDuration, gameDurationplace);
+    startTimer(locationDuration, locationDurationPlace);
+}
 
-
-
+function goToindex() {
+    window.location.href = "../index.html";
+}
 
 
 
@@ -589,6 +605,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const startenSpelDataPage = document.getElementById('startenSpelData');
     const startCountdown = document.getElementById('startCountdown');
     const map = document.getElementById('mapPage');
+    const mapJager = document.getElementById('mapPageJager');
     const wachtenHost = document.getElementById('wachtHostPage');
     const countDown = document.getElementById('countDownPage');
     const boef = document.getElementById('boef');
@@ -602,7 +619,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (startCountdown) {
         console.log('Countdown page loaded');
         var durationSeconds = localStorage.getItem('waitTimeJager'), display = document.querySelector('.js-start_countdown');
+        display2 = document.querySelector('.js-start_countdown2')
         startTimer(durationSeconds, display);
+        startTimer(durationSeconds, display2);
+        setTimeout(()=>{window.location.href = "../pages/mapJager.html";}, durationSeconds*1000)
     }
     if (map){
         getAPI("groep1");
@@ -610,6 +630,13 @@ document.addEventListener('DOMContentLoaded', function () {
         // createNewGame();
         timeButton();
         timeButtonBack();
+        showTimesMap();
+    }
+    if (mapJager){
+        getAPI("groep1");
+        timeButton();
+        timeButtonBack();
+        showTimesMap();
     }
     if (wachtenHost) {
         const code = localStorage.getItem('spelCodeJoinen');

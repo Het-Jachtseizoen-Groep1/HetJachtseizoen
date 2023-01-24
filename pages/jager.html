@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boef | Jachtseizoen</title>
     <link rel="stylesheet" href="../style/style.css">
-    <script src="/script/script.js"></script>
+    <script src="../script/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
@@ -24,17 +24,18 @@
         <div class="c-difficulty__radiobuttons">
             <p class="c-info__kies-spel">Kies een spel</p>
 
-            <input class="o-hide-accessible c-difficulty__option" type="radio" id="makkelijk" name="spel" value="15">
+            <input class="o-hide-accessible c-difficulty__option js-input" type="radio" id="makkelijk" name="spel" value="15">
             <label class="c-difficulty__option--label" for="makkelijk">Makkelijk (15 min)</label><br>
 
-            <input class="o-hide-accessible c-difficulty__option" type="radio" id="gemiddeld" name="spel" value="60">
+            <input class="o-hide-accessible c-difficulty__option js-input" type="radio" id="gemiddeld" name="spel" value="60">
             <label class="c-difficulty__option--label" for="gemiddeld">Gemiddeld (1 uur)</label><br>
 
-            <input class="o-hide-accessible c-difficulty__option" type="radio" id="moeilijk" name="spel" value="120">
+            <input class="o-hide-accessible c-difficulty__option js-input" type="radio" id="moeilijk" name="spel" value="120">
             <label class="c-difficulty__option--label" for="moeilijk">Moeilijk (2 uur)</label><br>
 
-            <input class="o-hide-accessible c-difficulty__option" type="radio" id="jachtseizoen" name="spel" value="240">
+            <input class="o-hide-accessible c-difficulty__option js-input" type="radio" id="jachtseizoen" name="spel" value="240">
             <label class="c-difficulty__option--label" for="jachtseizoen">Jachtseizoen (4 uur)</label><br>
+            <p class="js-form-error c-form-error"></p>
         </div>
 
         <span class="c-button"><input class="c-button__form" type="button" onclick="setDuration()"  value="Starten"></span>

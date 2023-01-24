@@ -24,9 +24,9 @@
 <body>
 
     <div class="c-topbar">
-        <p class="c-map_time">15:00</p>
+        <p class="c-map_time" id="js-durationTime">15:00</p>
         <img class="c-logo" src="../assets/Logo.png" alt="Logo">
-        <button class="c-button_close">X</button>
+        <button class="c-button_close" onclick="goToindex()">X</button>
     </div>
 
     <div class="js-time_button u-showing">
@@ -35,7 +35,7 @@
 
     <div class="c-map_location_time js-time_button_back u-hidden">
         <p class="c-map_location_time__text">Nieuwe locatie</p>
-        <p class="c-map_location_time__time">1:45</p>
+        <p class="c-map_location_time__time" id="js-locationTime">1:45</p>
         <img src="../assets/icons8-sport-stopwatch-64.png" alt="icon">
     </div>
 
