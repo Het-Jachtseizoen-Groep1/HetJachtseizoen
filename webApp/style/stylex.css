@@ -75,12 +75,12 @@ body,
 
 .c-yellowtext {
     margin-top: 0;
-        opacity: 100%;
-        color: white;
-        font-weight: normal;
-        font-size: 38px;
-        text-shadow:
-            2px 4px 0px #FCA311;
+    opacity: 100%;
+    color: white;
+    font-weight: normal;
+    font-size: 38px;
+    text-shadow:
+        2px 4px 0px #FCA311;
 }
 
 .c-countdown_text {

@@ -6,25 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard | Jachtseizoen</title>
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 
 <body>
-    <a href="../../index.html">Go back</a>
+    <div class="c-leaderboard-header">
+        <a class="c-back" href="../index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25.726" viewBox="0 0 30 25.726">
+                <path id="arrow-left-solid" d="M.653,75.274a2.146,2.146,0,0,0,0,3.034L11.368,89.023A2.145,2.145,0,0,0,14.4,85.989L7.336,78.931H27.882a2.143,2.143,0,0,0,0-4.286H7.343l7.052-7.058a2.145,2.145,0,0,0-3.034-3.034L.646,75.268Z" transform="translate(-0.025 -63.925)" fill="#ededed"/>
+            </svg>          
+        </a>
+    
+        <div class="c-leaderboard-logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="199" height="46" viewBox="0 0 199 46">
+                <g id="Group_101" data-name="Group 101" transform="translate(-79 -358.547)">
+                  <text id="Leaderboard" transform="translate(179 392.547)" fill="none" stroke="#fca311" stroke-width="1" font-size="30" font-family="Poppins-Medium, Poppins" font-weight="500"><tspan x="-97.11" y="0">Leaderboard</tspan></text>
+                  <text id="Leaderboard-2" data-name="Leaderboard" transform="translate(177 390.547)" fill="#e2e2e2" font-size="30" font-family="Poppins-Medium, Poppins" font-weight="500"><tspan x="-97.11" y="0">Leaderboard</tspan></text>
+                </g>
+              </svg>
+              
+        </div>
+    </div>
 
-    <img class="c-logo" src="xx" alt="Logo Jachtseizoen">
 
-
-    <form action="/action_page.php">
-        <label for="cars">Spel:</label>
-        <select name="cars" id="cars">
-            <option value="makkelijk">Makkelijk</option>
-            <option value="moeilijk">Gemiddeld</option>
-            <option value="gemiddeld">Moeilijk</option>
-            <option value="jachtseizoen">Jachtseizoen</option>
+    <form class="c-dropdown" action="/action_page.php">
+        <label class="c-dropdown__title" for="cars">Spel:</label>
+        <select class="c-dropdown__menu" name="cars" id="cars">
+            <option class="c-dropdown__option" value="makkelijk">Makkelijk</option>
+            <option class="c-dropdown__option" value="moeilijk">Gemiddeld</option>
+            <option class="c-dropdown__option" value="gemiddeld">Moeilijk</option>
+            <option class="c-dropdown__option" value="jachtseizoen">Jachtseizoen</option>
         </select>
-        <br><br>
-        <input type="submit" value="Submit">
     </form>
+
+    <div class="c-topthree">
+
+    </div>
 
 
 </body>

@@ -576,6 +576,59 @@ input::placeholder {
 #COMPONENTS
 \*------------------------------------*/
 /*
+    Component: WaitForHostAnimation
+    ---
+    An animation that waits for the host to be ready
+*/
+.c-wachten-host__animation{
+    width: 150px;
+}
+*/
+/*
+    Component: dropdown
+    ---
+    A dropdown menu
+*/
+.c-dropdown{
+    display: flex;
+    background-color: #434D63;
+    color: var(--global-color-text);
+    padding: .5rem 1rem .5rem 1rem;
+    border-radius: 4px;
+    width: 284px;
+    margin: auto;
+}
+.c-dropdown__title{
+    font-size: var(--global-fontsize-s);
+}
+.c-dropdown__menu{
+    background: none;
+    border: none;
+    font-size: var(--global-fontsize-s);
+}
+.c-dropdown__menu:focus{
+    outline: none;
+}
+.c-dropdown__option{
+    color: var(--global-color-text);
+    background-color: #434D63;
+    border: none;
+    padding: 1rem;
+    font-weight: var(--global-fontweight-medium);
+    text-align: center;
+}
+/*
+    Component: LeaderboardLogo
+    ---
+    Leaderboard logo
+*/
+.c-leaderboard-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+/*
     Component: difficulty-form
     ---
     a radiobutton form
@@ -585,11 +638,22 @@ input::placeholder {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
 }
-.c-difficulty__option{
-    outline: none;
-    border: 5px solid hotpink;
+.c-difficulty__radiobuttons{
+    margin-bottom: 143px;
+}
+.c-difficulty__option--label{
+    font-weight: var(--global-fontweight-medium);
+    text-align: center;
+    padding: .5rem 1rem .5rem 1rem;
+    border: 2px solid var(--global-color-text);
+    border-radius: 4px;
+}
+.c-difficulty__option:checked + .c-difficulty__option--label{
+    border-color: var(--global-color-alpha);
+    background-color: var(--global-color-alpha);
+    color: var(--global-color-beta);
+    font-weight: var(--global-fontweight-medium);
 }
 
 /*
@@ -668,6 +732,9 @@ input::placeholder {
     border: 2px solid var(--global-color-alpha);
     z-index: -1;
     display: block;
+}
+.c-button:hover{
+    cursor: pointer;
 }
 
 .c-buttons__flex{
@@ -828,6 +895,23 @@ input::placeholder {
 .c-spelInfo__deelnemers--bold{
     font-weight: 600;
     color: var(--global-color-alpha);
+}
+
+
+/*
+    Component: wachten op host
+    ---
+*/
+.c-spelCode-wachten{
+    padding-top: 60px;
+}
+.c-waiting-host{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 120px;
+    font-size: 1.3rem;
 }
 
 
