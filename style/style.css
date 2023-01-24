@@ -576,6 +576,51 @@ input::placeholder {
 #COMPONENTS
 \*------------------------------------*/
 /*
+    Component: first three leaderboard
+    ---
+    A leaderboard component
+*/
+.c-groepsnaam{
+    font-size: var(--global-fontsize-xs);
+    font-weight: var(--global-fontweight-bold);
+}
+.c-topthree{
+    display: flex;
+    margin: auto;
+    width: 400px;
+    color: #202020;
+}
+.c-topthree--item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.c-topthree__first{
+    background-color: var(--global-color-alpha);
+    position: relative;
+    border-radius: 4px 4px 0 0;
+    height: 174px;
+}
+.c-topthree__second{
+    background-color: #C9820D;
+    position: relative;
+    border-radius: 4px 0 0 4px;
+    height: 100px;
+    margin-top: 74px;
+}
+.c-topthree__third{
+    background-color: #C9820D;
+    position: relative;
+    border-radius: 0 4px 4px 0;
+    height: 100px;
+    margin-top: 74px;
+}
+.c-topthree__crown-first{
+    position: absolute;
+    top: -45px;
+}
+/*
     Component: WaitForHostAnimation
     ---
     An animation that waits for the host to be ready
@@ -583,7 +628,6 @@ input::placeholder {
 .c-wachten-host__animation{
     width: 150px;
 }
-*/
 /*
     Component: dropdown
     ---
@@ -591,15 +635,17 @@ input::placeholder {
 */
 .c-dropdown{
     display: flex;
+    width: 286px;
+    margin: auto;
     background-color: #434D63;
-    color: var(--global-color-text);
     padding: .5rem 1rem .5rem 1rem;
     border-radius: 4px;
-    width: 284px;
-    margin: auto;
+    color: var(--global-color-text);
+    font-weight: var(--global-fontweight-medium);
 }
 .c-dropdown__title{
     font-size: var(--global-fontsize-s);
+    color: var(--global-color-text);
 }
 .c-dropdown__menu{
     background: none;
@@ -665,6 +711,11 @@ input::placeholder {
     position: absolute;
     top: 1rem;
     left: 1rem;
+    background-color: transparent;
+    border: none;
+}
+.c-back:hover {
+    cursor: pointer;
 }
 
 /*
@@ -680,7 +731,7 @@ input::placeholder {
     min-height: 100vh;
     gap: 3rem;
 }
-.c-instructions--primary{
+.c-info__kies-spel--primary{
     font-size: var(--global-fontsize-xl);
     font-weight: var(--global-fontweight-semibold);
 }
@@ -927,6 +978,25 @@ input::placeholder {
     margin-top: 150px;
 }
 
+
+
+/*
+    Component: Kies pel
+    ---
+*/
+.c-info__kies-spel{
+    margin-top: 120px;
+    font-size: 1.2rem;
+}
+
+/*
+    Component: CountDown page
+    ---
+*/
+.c-countDown{
+    width: 350px;
+    margin: auto;
+}
 
 
 

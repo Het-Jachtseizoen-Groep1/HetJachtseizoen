@@ -7,35 +7,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boef | Jachtseizoen</title>
     <link rel="stylesheet" href="../style/style.css">
+    <script src="/script/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
-    <a class="c-back" href="../index.html">
+    <button class="c-back" onclick="goBackToRoles()">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25.726" viewBox="0 0 30 25.726">
             <path id="arrow-left-solid" d="M.653,75.274a2.146,2.146,0,0,0,0,3.034L11.368,89.023A2.145,2.145,0,0,0,14.4,85.989L7.336,78.931H27.882a2.143,2.143,0,0,0,0-4.286H7.343l7.052-7.058a2.145,2.145,0,0,0-3.034-3.034L.646,75.268Z" transform="translate(-0.025 -63.925)" fill="#ededed"/>
         </svg>          
-    </a>
+    </button>
 
     <img class="c-logo" src="../assets/Logo.png" alt="Logo Jachtseizoen">
 
-    <form  class="c-difficulty" action="xx" method="post">
+    <form  class="c-difficulty" action="x" method="post" id="js-spelDuur">
         <div class="c-difficulty__radiobuttons">
-            <p>Kies een spel</p>
+            <p class="c-info__kies-spel">Kies een spel</p>
 
             <input class="o-hide-accessible c-difficulty__option" type="radio" id="makkelijk" name="spel" value="15">
             <label class="c-difficulty__option--label" for="makkelijk">Makkelijk (15 min)</label><br>
 
-            <input class="o-hide-accessible c-difficulty__option" type="radio" id="gemiddeld" name="spel" value="15">
+            <input class="o-hide-accessible c-difficulty__option" type="radio" id="gemiddeld" name="spel" value="60">
             <label class="c-difficulty__option--label" for="gemiddeld">Gemiddeld (1 uur)</label><br>
 
-            <input class="o-hide-accessible c-difficulty__option" type="radio" id="moeilijk" name="spel" value="15">
+            <input class="o-hide-accessible c-difficulty__option" type="radio" id="moeilijk" name="spel" value="120">
             <label class="c-difficulty__option--label" for="moeilijk">Moeilijk (2 uur)</label><br>
 
-            <input class="o-hide-accessible c-difficulty__option" type="radio" id="jachtseizoen" name="spel" value="15">
+            <input class="o-hide-accessible c-difficulty__option" type="radio" id="jachtseizoen" name="spel" value="240">
             <label class="c-difficulty__option--label" for="jachtseizoen">Jachtseizoen (4 uur)</label><br>
         </div>
 
-        <span class="c-button"><input class="c-button__form" type="submit" value="Starten"></span>
+        <span class="c-button"><input class="c-button__form" type="button" onclick="setDuration()"  value="Starten"></span>
     </form>
 
 </body>
