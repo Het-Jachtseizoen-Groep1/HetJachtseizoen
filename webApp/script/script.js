@@ -161,6 +161,7 @@ function createNewGame() {
 }
 
 
+
 //***__________ Deelnemers omhoog doen __________***//
 let updateDeelnemers = async (spelcode, spelId) => {
 
