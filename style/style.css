@@ -915,6 +915,18 @@ input::placeholder {
 }
 
 
+/*
+    Component: Home
+    ---
+*/
+
+.c-home__spelen-als{
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: -120px;
+    margin-top: 150px;
+}
+
 
 
 

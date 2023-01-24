@@ -1,7 +1,7 @@
 // //***__________ lOTTIE ANIMATION __________***//
 function lottieWaiting() {
     var animation = bodymovin.loadAnimation({
-        container: document.getElementById('lottie'),
+        container: document.getElementById('wachtende'),
         renderer: 'svg',
         loop: true,
         autoplay: true,
@@ -333,10 +333,10 @@ function startTimer(durationSeconds, display) {
 
 //***__________ BUTTONS SPELREGELS & LEADERBOARD __________***//
 function goToLeaderboard() {
-    window.location.href = "webApp/pages/leaderboard.html";
+    window.location.href = "/pages/leaderboard.html";
 }
 function goToSpelregels() {
-    window.location.href = "webApp/pages/spelregels.html";
+    window.location.href = "/pages/spelregels.html";
 }
 
 
@@ -349,7 +349,7 @@ function SynchronizedStart(code){
             console.log(response.data);
 
             if(response.data[0].startSpelkeuze == 1){
-                window.location.href = "/spelKeuze.html";
+                window.location.href = "/pages/spelKeuze.html";
             }
         })
         .catch(error => {
@@ -394,7 +394,7 @@ function spelStarten(){
     };
                 fetch('https://jachtseizoenapi.azurewebsites.net/api/games', requestOptions)
 
-                setTimeout(()=>{window.location.href = "/spelKeuze.html";}, 800)
+                setTimeout(()=>{window.location.href = "/pages/spelKeuze.html";}, 800)
         .then(response => response.json())
         })
         .catch(error => {
