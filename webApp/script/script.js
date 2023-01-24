@@ -150,7 +150,7 @@ function createNewGame() {
         fetch('https://jachtseizoenapi.azurewebsites.net/api/games?', requestOptions)
             .then(response => response.json())
 
-        window.location.href = "../pages/startenSpelData.html";
+        setTimeout(()=>{window.location.href = "../pages/startenSpelData.html";}, 200);      
     }
 
     //hide de error als ze terug typen
@@ -206,11 +206,15 @@ let participateGame = async () => {
         } else {
             document.querySelector('.js-form-error').innerHTML = "";
             //verder gaan
-
-            speldata = await getSpelCode(code)
-            console.log(speldata)
-            console.log(speldata[0].id)
-            updateDeelnemers(code, speldata[0].id)
+            try {
+                speldata = await getSpelCode(code)
+                console.log(speldata)
+                console.log(speldata[0].id)
+                updateDeelnemers(code, speldata[0].id)
+            } catch (error) {
+                console.log("bestaat niet")
+                document.querySelector('.js-form-error').innerHTML = "Spel code bestaat niet";
+            }
 
         } 
     }
@@ -248,19 +252,22 @@ let showSpelData = async() => {
 
     // console.log(data)
 
-        setInterval(function () {
-            fetch(`https://jachtseizoenapi.azurewebsites.net/api/games/${groepsnaam}?`)
-                .then(response => response.json())
-                .then(data => {
-                    document.querySelector('.js-aantalDeelnemers').innerHTML = data[0].aantalSpelers
-                    console.log(groepsnaam)
-                })
-                .catch(error => {
-                    // handle any errors that occur
-                    console.log(error)
-                });
+        setInterval(() => {
+        axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/${groepsnaam}?`)
+        .then(response => {
+            console.log(response.data);
+            document.querySelector('.js-aantalDeelnemers').innerHTML = response.data[0].aantalSpelers
+        })
+        .catch(error => {
+            axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${spelCode}?`)
+            .then(response => {
+            if(response.data && response.data[0]){
+            document.querySelector('.js-aantalDeelnemers').innerHTML = response.data[0].aantalSpelers
+            }
+        })
+        });
+        },1000);
 
-        }, 1000);
 
 }
 
