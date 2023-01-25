@@ -585,6 +585,7 @@ input::placeholder {
 }
 .c-instructions__animation{
     width: 400px;
+    border: 2px solid hotpink;
 }
 /*
     Component: class that disables button from Gamerules
