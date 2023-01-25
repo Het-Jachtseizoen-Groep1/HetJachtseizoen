@@ -392,7 +392,7 @@ function goToLeaderboard() {
     window.location.href = "/pages/leaderboard.html";
 }
 function goToSpelregels() {
-    window.location.href = "/pages/spelregels.html";
+    window.location.href = "/pages/spelregelsBoef.html";
 }
 function goToBoefPage() {
     window.location.href = "/pages/boef.html";
@@ -773,9 +773,9 @@ function sendCoordinates() {
                 console.log(error)
             });
 
-    });
+    })
 
-    setTimeout(() => {
+    setInterval(() => {
 
         navigator.geolocation.getCurrentPosition(function (position) {
 
@@ -820,7 +820,7 @@ function sendCoordinates() {
 
         });
 
-    }, (locationDuration - 5) * 1000);
+    }, 2000);
 }
 
 

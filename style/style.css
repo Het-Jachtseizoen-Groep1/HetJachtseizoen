@@ -575,6 +575,9 @@ input::placeholder {
 /*------------------------------------*\
 #COMPONENTS
 \*------------------------------------*/
+.c-instructions__animation{
+    width: 400px;
+}
 /*
     Component: class that disables button from Gamerules
     ---
@@ -610,6 +613,9 @@ input::placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.c-rules-role{
+    color: var(--global-color-alpha);
 }
 /*
     Component: Rule text
