@@ -20,9 +20,13 @@ function lottieCountDown() {
 }
 
 
-//***__________ CODE VOOR DE MAP __________***//
+//***__________ CODE VOOR DE MAP JAGER__________***//
 var map;
 function showMap(lat, long) {
+
+    const code = localStorage.getItem('spelCode');
+    const durationLocation = localStorage.getItem('durationLocation');
+
     navigator.geolocation.getCurrentPosition(function (position) {
         var map = L.map('map', { zoomControl: false }).setView([position.coords.latitude, position.coords.longitude], 15);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -41,7 +45,7 @@ function showMap(lat, long) {
         marker.bindPopup("Locatie Boeven").openPopup();
 
         setInterval(function () {
-            fetch('https://registratie.azurewebsites.net/api/games/groep1?')
+            fetch(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
                 .then(response => response.json())
                 .then(data => {
                     var newLatLng = new L.LatLng(data[0].BoefLatitude, data[0].BoefLongtitude);
@@ -52,7 +56,44 @@ function showMap(lat, long) {
                     console.log(error);
                 });
 
-        }, 10000);
+        }, durationLocation);
+
+        var ownIcon = L.icon({
+            iconUrl: '../assets/live_location.png',
+
+            iconSize: [25, 25], // size of the icon
+        });
+
+        var OwnLocation = L.marker([position.coords.latitude, position.coords.longitude], { icon: ownIcon }).addTo(map);
+
+
+        navigator.geolocation.watchPosition(function (position) {
+            console.log(position.coords.latitude);
+            console.log(position.coords.longitude);
+
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+
+            var newLatLng = new L.LatLng(lat, lon);
+            OwnLocation.setLatLng(newLatLng);
+
+        });
+    });
+}
+
+
+//***__________ CODE VOOR DE MAP BOEF__________***//
+var map;
+function showMapBoef() {
+
+    const code = localStorage.getItem('spelCode');
+    const durationLocation = localStorage.getItem('durationLocation');
+
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var map = L.map('map', { zoomControl: false }).setView([position.coords.latitude, position.coords.longitude], 15);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
 
         var ownIcon = L.icon({
             iconUrl: '../assets/live_location.png',
@@ -94,7 +135,7 @@ let getAPI = async (groepsnaam) => {
     console.log(data[0].BoefLatitude)
     console.log(data[0].BoefLongtitude)
 
-    showMap(data[0].BoefLatitude, data[0].BoefLongtitude);
+    // showMap(data[0].BoefLatitude, data[0].BoefLongtitude);
 
     return data
 }
@@ -173,7 +214,7 @@ function createNewGame() {
         fetch('https://jachtseizoenapi.azurewebsites.net/api/games?', requestOptions)
             .then(response => response.json())
 
-        setTimeout(()=>{window.location.href = "../pages/startenSpelData.html";}, 200);      
+        setTimeout(() => { window.location.href = "../pages/startenSpelData.html"; }, 200);
     }
 
     //hide de error als ze terug typen
@@ -217,7 +258,7 @@ let participateGame = async () => {
     var code = form.spelCode.value;
 
 
-    localStorage.setItem('spelCodeJoinen', code);
+    localStorage.setItem('spelCode', code);
 
     //spel code controleren + als het ingevuld is
     const result = pattern.test(code);
@@ -234,13 +275,13 @@ let participateGame = async () => {
                 console.log(speldata)
                 console.log(speldata[0].id)
                 updateDeelnemers(code, speldata[0].id)
-                setTimeout(()=>{window.location.href = "../pages/wachtenHost.html";}, 200);
+                setTimeout(() => { window.location.href = "../pages/wachtenHost.html"; }, 200);
             } catch (error) {
                 console.log("bestaat niet")
                 document.querySelector('.js-form-error').innerHTML = "Spel code bestaat niet";
             }
 
-        } 
+        }
     }
 
     //error message weghalen als ze opnieuw typen
@@ -251,14 +292,14 @@ let participateGame = async () => {
 
 
     //auto "-" toevoegen
-    document.querySelector('.js-input-spelCode').addEventListener('input', function(e) {
+    document.querySelector('.js-input-spelCode').addEventListener('input', function (e) {
         var foo = this.value.split("-").join("");
         if (foo.length > 0) {
             foo = foo.match(new RegExp('.{1,4}', 'g')).join("-");
         }
         this.value = foo;
     });
-    
+
 
 }
 
@@ -268,7 +309,7 @@ let participateGame = async () => {
 
 
 //***__________ CODE EN GROEPSNAAM TONEN __________***//
-let showSpelData = async() => {
+let showSpelData = async () => {
     const groepsnaam = localStorage.getItem('groepsnaam');
     const spelCode = localStorage.getItem('spelCode');
     document.querySelector('.js-groepsnaam').innerHTML = groepsnaam;
@@ -276,21 +317,21 @@ let showSpelData = async() => {
 
     // console.log(data)
 
-        setInterval(() => {
+    setInterval(() => {
         axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/${groepsnaam}?`)
-        .then(response => {
-            console.log(response.data);
-            document.querySelector('.js-aantalDeelnemers').innerHTML = response.data[0].aantalSpelers
-        })
-        .catch(error => {
-            axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${spelCode}?`)
             .then(response => {
-            if(response.data && response.data[0]){
-            document.querySelector('.js-aantalDeelnemers').innerHTML = response.data[0].aantalSpelers
-            }
-        })
-        });
-        },1000);
+                console.log(response.data);
+                document.querySelector('.js-aantalDeelnemers').innerHTML = response.data[0].aantalSpelers
+            })
+            .catch(error => {
+                axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${spelCode}?`)
+                    .then(response => {
+                        if (response.data && response.data[0]) {
+                            document.querySelector('.js-aantalDeelnemers').innerHTML = response.data[0].aantalSpelers
+                        }
+                    })
+            });
+    }, 1000);
 
 
 }
@@ -301,8 +342,8 @@ let showSpelData = async() => {
 function timeButton() {
     var timeButton = document.querySelector('.js-time_button');
     var timeShow = document.querySelector('.js-time_button_back');
+
     timeButton.addEventListener('click', function () {
-        console.log('click');
         timeButton.classList.remove('u-showing');
         timeButton.classList.add('u-hidden');
         timeShow.classList.remove('u-hidden');
@@ -314,7 +355,6 @@ function timeButtonBack() {
     var timeButton = document.querySelector('.js-time_button');
     var timeShow = document.querySelector('.js-time_button_back');
     timeShow.addEventListener('click', function () {
-        console.log('click');
         timeShow.classList.remove('u-showing');
         timeShow.classList.add('u-hidden');
         timeButton.classList.remove('u-hidden');
@@ -354,10 +394,51 @@ function goToBoefPage() {
     window.location.href = "/pages/boef.html";
     localStorage.setItem('role', 'boef');
 }
+
 function goToJagerPage() {
-    window.location.href = "/pages/jager.html";
+
+    const code = localStorage.getItem('spelCode');
+
+    axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
+        .then(response => {
+            console.log("Data" + response.data);
+
+            if (response.data[0].beginJager == false) {
+                const requestOptions = {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        "id": response.data[0].id,
+                        "timeLimit": response.data[0].timeLimit,
+                        "groep": localStorage.getItem('groepsnaam'),
+                        "BoefLatitude": response.data[0].BoefLatitude,
+                        "BoefLongtitude": response.data[0].BoefLongtitude,
+                        "spelcode": code,
+                        "inProgress": response.data[0].inProgress,
+                        "startTime": response.data[0].id.startTime,
+                        "endTime": response.data[0].id.endTime,
+                        "aantalSpelers": response.data[0].id.aantalSpelers,
+                        "winner": response.data[0].id.winner,
+                        "startSpelkeuze": true,
+                        "startSpel": response.data[0].id.startSpel,
+                        "beginJager": true
+                    })
+                };
+                fetch('https://jachtseizoenapi.azurewebsites.net/api/games', requestOptions)
+
+                setTimeout(() => { window.location.href = "/pages/jager.html"; }, 200)
+
+            } else {
+                window.location.href = "/pages/jagerWaiting.html";
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        });
+
     localStorage.setItem('role', 'jager');
 }
+
 function goBackToRoles() {
     window.location.href = "../pages/spelKeuze.html";
     localStorage.removeItem('role');
@@ -365,46 +446,46 @@ function goBackToRoles() {
 
 
 //***__________ Synchronized start __________***//
-function SynchronizedStart(code){
+function SynchronizedStart(code) {
 
     setInterval(() => {
         axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
-        .then(response => {
-            console.log(response.data);
+            .then(response => {
+                console.log(response.data);
 
-            if(response.data[0].startSpelkeuze == 1){
-                window.location.href = "/pages/spelKeuze.html";
-            }
-        })
-        .catch(error => {
-            console.log(error)
-        });
-        },1000);
+                if (response.data[0].startSpelkeuze == 1) {
+                    window.location.href = "/pages/spelKeuze.html";
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    }, 1000);
 }
 
 //***__________ Synchronized start countdown __________***//
-function SynchronizedStartCountdown(code){
+function SynchronizedStartCountdown(code) {
 
     setInterval(() => {
         axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
-        .then(response => {
-            console.log(response.data);
+            .then(response => {
+                console.log(response.data);
 
-            if(response.data[0].startSpel == 1){
-                window.location.href = "/pages/countDown.html";
-            }
-        })
-        .catch(error => {
-            console.log(error)
-        });
-        },1000);
+                if (response.data[0].startSpel == 1) {
+                    window.location.href = "/pages/countDown.html";
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    }, 1000);
 }
 
 
 
 
 //***__________ SPEL STARTEN WANNEER GROEPSNAAM IS OPGEGEVEN __________***//
-function spelStarten(){
+function spelStarten() {
 
     console.log("updatefunctie")
 
@@ -433,11 +514,11 @@ function spelStarten(){
                     "startSpelkeuze": true,
                     "startSpel": response.data[0].id.startSpel
                 })
-    };
-                fetch('https://jachtseizoenapi.azurewebsites.net/api/games', requestOptions)
+            };
+            fetch('https://jachtseizoenapi.azurewebsites.net/api/games', requestOptions)
 
-                setTimeout(()=>{window.location.href = "/pages/spelKeuze.html";}, 800)
-        .then(response => response.json())
+            setTimeout(() => { window.location.href = "/pages/spelKeuze.html"; }, 800)
+                .then(response => response.json())
         })
         .catch(error => {
             console.log(error)
@@ -449,7 +530,7 @@ function spelStarten(){
 
 
 //***__________ SPEL STARTEN WANNEER DURATION IS OPGEGEVEN __________***//
-function spelStartenCountdown(){
+function spelStartenCountdown() {
 
     console.log("updatefunctie countdown")
 
@@ -478,11 +559,11 @@ function spelStartenCountdown(){
                     "startSpelkeuze": true,
                     "startSpel": true
                 })
-    };
-                fetch('https://jachtseizoenapi.azurewebsites.net/api/games', requestOptions)
+            };
+            fetch('https://jachtseizoenapi.azurewebsites.net/api/games', requestOptions)
 
-                setTimeout(()=>{window.location.href = "/pages/countDown.html";}, 800)
-        .then(response => response.json())
+            setTimeout(() => { window.location.href = "/pages/countDown.html"; }, 800)
+                .then(response => response.json())
         })
         .catch(error => {
             console.log(error)
@@ -493,7 +574,7 @@ function spelStartenCountdown(){
 
 
 
-function setDuration(){
+function setDuration() {
 
     const radioGroup = document.querySelectorAll('input[name="spel"]');
     let selectedValue;
@@ -532,38 +613,38 @@ function setDuration(){
 
 
         axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
-        .then(response => {
+            .then(response => {
 
-            const requestOptions = {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    "id": response.data[0].id,
-                    "timeLimit": response.data[0].timeLimit,
-                    "groep": response.data[0].groep,
-                    "BoefLatitude": response.data[0].BoefLatitude,
-                    "BoefLongtitude": response.data[0].BoefLongtitude,
-                    "spelcode": code,
-                    "inProgress": response.data[0].inProgress,
-                    "startTime": response.data[0].id.startTime,
-                    "endTime": response.data[0].id.endTime,
-                    "aantalSpelers": response.data[0].id.aantalSpelers,
-                    "winner": response.data[0].id.winner,
-                    "startSpelkeuze": true,
-                    "startSpel": response.data[0].id.startSpel,
-                    "durationGame": localStorage.getItem('durationGame'),
-                    "durationLocation": localStorage.getItem('durationLocation')
-                })
-    };
+                const requestOptions = {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        "id": response.data[0].id,
+                        "timeLimit": response.data[0].timeLimit,
+                        "groep": response.data[0].groep,
+                        "BoefLatitude": response.data[0].BoefLatitude,
+                        "BoefLongtitude": response.data[0].BoefLongtitude,
+                        "spelcode": code,
+                        "inProgress": response.data[0].inProgress,
+                        "startTime": response.data[0].id.startTime,
+                        "endTime": response.data[0].id.endTime,
+                        "aantalSpelers": response.data[0].id.aantalSpelers,
+                        "winner": response.data[0].id.winner,
+                        "startSpelkeuze": true,
+                        "startSpel": response.data[0].id.startSpel,
+                        "durationGame": localStorage.getItem('durationGame'),
+                        "durationLocation": localStorage.getItem('durationLocation')
+                    })
+                };
                 fetch('https://jachtseizoenapi.azurewebsites.net/api/games', requestOptions)
 
                 spelStartenCountdown()
-                
-        .then(response => response.json())
-        })
-        .catch(error => {
-            console.log(error)
-        });
+
+                    .then(response => response.json())
+            })
+            .catch(error => {
+                console.log(error)
+            });
 
     }
 }
@@ -574,9 +655,9 @@ function setDuration(){
 //***__________ AUTOMATISCH NAAR BOEF OF JAGER MAP GAAN __________***//
 function mapForBoefOrJager() {
     if (localStorage.getItem('role') == "boef") {
-        setTimeout(()=>{window.location.href = "../pages/map_testen.html";}, 5100)
+        setTimeout(() => { window.location.href = "../pages/mapboef.html"; }, 5100)
     } else if (localStorage.getItem('role') == "jager") {
-        setTimeout(()=>{window.location.href = "../pages/CountdownJager.html";}, 5100)
+        setTimeout(() => { window.location.href = "../pages/CountdownJager.html"; }, 5100)
     }
 }
 
@@ -591,8 +672,150 @@ function showTimesMap() {
     startTimer(locationDuration, locationDurationPlace);
 }
 
-function goToindex() {
+
+
+
+//***__________ OPENS MODAL WINDOW TO CLOSE THE GAME __________***//
+function goCloseGame() {
+    var modal = document.getElementById("closeModal");
+    var btn = document.getElementById("CloseBtn");
+    var btnCloseModal = document.getElementsByClassName("c-modal__close-btn")[0];
+    var btnCloseModal2 = document.getElementById('goBackToMap');
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    btnCloseModal.onclick = function () {
+        modal.style.display = "none";
+    }
+    btnCloseModal2.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+}
+function leaveGame() {
     window.location.href = "../index.html";
+}
+
+
+
+
+function sendCoordinates() {
+
+    const code = localStorage.getItem('spelCode');
+    const locationDuration = localStorage.getItem('durationLocation');
+
+    navigator.geolocation.getCurrentPosition(function (position) {
+
+        const lat2 = position.coords.latitude;
+        const long2 = position.coords.longitude;
+
+        axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
+            .then(response => {
+
+                const requestOptions = {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        "id": response.data[0].id,
+                        "timeLimit": response.data[0].timeLimit,
+                        "groep": response.data[0].groep,
+                        "BoefLatitude": response.data[0].BoefLatitude,
+                        "BoefLongtitude": response.data[0].BoefLongtitude,
+                        "spelcode": code,
+                        "inProgress": response.data[0].inProgress,
+                        "startTime": response.data[0].id.startTime,
+                        "endTime": response.data[0].id.endTime,
+                        "aantalSpelers": response.data[0].id.aantalSpelers,
+                        "winner": response.data[0].id.winner,
+                        "startSpelkeuze": response.data[0].id.startSpelkeuze,
+                        "startSpel": response.data[0].id.startSpel,
+                        "durationGame": localStorage.getItem('durationGame'),
+                        "durationLocation": localStorage.getItem('durationLocation'),
+                        "BoefLatitude": lat2,
+                        "BoefLongtitude": long2
+                    })
+                };
+                fetch('https://jachtseizoenapi.azurewebsites.net/api/games', requestOptions)
+                console.log("coordinates sent")
+
+            })
+            .catch(error => {
+                console.log(error)
+            });
+
+    });
+
+    setTimeout(() => {
+
+        navigator.geolocation.getCurrentPosition(function (position) {
+
+            const lat = position.coords.latitude;
+            const long = position.coords.longitude;
+
+            console.log("nieuwe lat long" + lat, long);
+
+            axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
+                .then(response => {
+
+                    const requestOptions = {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            "id": response.data[0].id,
+                            "timeLimit": response.data[0].timeLimit,
+                            "groep": response.data[0].groep,
+                            "BoefLatitude": response.data[0].BoefLatitude,
+                            "BoefLongtitude": response.data[0].BoefLongtitude,
+                            "spelcode": code,
+                            "inProgress": response.data[0].inProgress,
+                            "startTime": response.data[0].id.startTime,
+                            "endTime": response.data[0].id.endTime,
+                            "aantalSpelers": response.data[0].id.aantalSpelers,
+                            "winner": response.data[0].id.winner,
+                            "startSpelkeuze": response.data[0].id.startSpelkeuze,
+                            "startSpel": response.data[0].id.startSpel,
+                            "durationGame": localStorage.getItem('durationGame'),
+                            "durationLocation": localStorage.getItem('durationLocation'),
+                            "BoefLatitude": lat,
+                            "BoefLongtitude": long
+                        })
+                    };
+                    fetch('https://jachtseizoenapi.azurewebsites.net/api/games', requestOptions)
+                    console.log("coordinates sent")
+
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+
+        });
+
+    }, (locationDuration - 5) * 1000);
+}
+
+
+
+function showMapWithCoordinates() {
+
+    const code = localStorage.getItem('spelCode');
+
+    axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
+        .then(response => {
+            showMap(response.data[0].BoefLatitude, response.data[0].BoefLongtitude);
+        })
+        .catch(error => {
+            console.log(error)
+        });
 }
 
 
@@ -609,6 +832,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const wachtenHost = document.getElementById('wachtHostPage');
     const countDown = document.getElementById('countDownPage');
     const boef = document.getElementById('boef');
+    const jagerWachten = document.getElementById('jagerWachtHostPage');
+    const mapBoef = document.getElementById('js-mapBoef');
 
     //functie voor elke pagina laden
     if (index) {
@@ -622,24 +847,33 @@ document.addEventListener('DOMContentLoaded', function () {
         display2 = document.querySelector('.js-start_countdown2')
         startTimer(durationSeconds, display);
         startTimer(durationSeconds, display2);
-        setTimeout(()=>{window.location.href = "../pages/mapJager.html";}, durationSeconds*1000)
+        setTimeout(() => { window.location.href = "../pages/mapJager.html"; }, durationSeconds * 1000)
     }
-    if (map){
-        getAPI("groep1");
+    if (map) {
         // updateBoefLocatie();
         // createNewGame();
         timeButton();
         timeButtonBack();
         showTimesMap();
+        showMapWithCoordinates();
     }
-    if (mapJager){
-        getAPI("groep1");
+    if (mapJager) {
         timeButton();
         timeButtonBack();
         showTimesMap();
+        showMapWithCoordinates();
     }
+
+    if (mapBoef) {
+        timeButton();
+        timeButtonBack();
+        showTimesMap();
+        sendCoordinates();
+        showMapBoef();
+    }
+
     if (wachtenHost) {
-        const code = localStorage.getItem('spelCodeJoinen');
+        const code = localStorage.getItem('spelCode');
         document.querySelector('.js-spelCode').innerHTML = code;
         SynchronizedStart(code);
         lottieWaiting();
@@ -648,9 +882,13 @@ document.addEventListener('DOMContentLoaded', function () {
         lottieCountDown();
         mapForBoefOrJager();
     }
-
-    if (boef){
-        const code = localStorage.getItem('spelCodeJoinen');
+    if (boef) {
+        const code = localStorage.getItem('spelCode');
+        SynchronizedStartCountdown(code);
+    }
+    if (jagerWachten) {
+        lottieWaiting();
+        const code = localStorage.getItem('spelCode');
         SynchronizedStartCountdown(code);
     }
     // showSpelData();
