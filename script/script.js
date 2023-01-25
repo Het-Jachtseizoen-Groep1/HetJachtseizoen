@@ -676,6 +676,19 @@ function showTimesMap() {
     startTimer(locationDuration, locationDurationPlace);
 }
 
+//***__________ SHOW TIMER OP MAP JAGER __________***//
+function showTimesMapJager() {
+    var gameDuration = localStorage.getItem('durationGame');
+    var locationDuration = localStorage.getItem('durationLocation');
+    var waitTimeJager = localStorage.getItem('waitTimeJager');
+
+    const gameDurationplace = document.getElementById("js-durationTime");
+    const locationDurationPlace = document.getElementById("js-locationTime");
+
+    startTimer(gameDuration - waitTimeJager, gameDurationplace);
+    startTimer(locationDuration, locationDurationPlace);
+}
+
 
 
 
@@ -866,7 +879,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (mapJager) {
         timeButton();
         timeButtonBack();
-        showTimesMap();
+        showTimesMapJager();
         showMapWithCoordinates();
     }
 
