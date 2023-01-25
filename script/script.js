@@ -26,6 +26,7 @@ var map;
 function showMap(lat, long) {
 
     const code = localStorage.getItem('spelCode');
+    console.log("code" + " " + code)
     const durationLocation = localStorage.getItem('durationLocation');
 
     console.log("duration" + " " + durationLocation)
