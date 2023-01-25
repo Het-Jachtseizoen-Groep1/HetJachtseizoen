@@ -28,6 +28,8 @@ function showMap(lat, long) {
     const code = localStorage.getItem('spelCode');
     const durationLocation = localStorage.getItem('durationLocation');
 
+    console.log("duration" + " " + durationLocation)
+
     navigator.geolocation.getCurrentPosition(function (position) {
         var map = L.map('map', { zoomControl: false }).setView([position.coords.latitude, position.coords.longitude], 15);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -51,13 +53,15 @@ function showMap(lat, long) {
                 .then(data => {
                     var newLatLng = new L.LatLng(data[0].BoefLatitude, data[0].BoefLongtitude);
                     marker.setLatLng(newLatLng);
+
+                    console.log("marker verplaatst")
                 })
                 .catch(error => {
                     // handle any errors that occur
                     console.log(error);
                 });
 
-        }, durationLocation);
+        }, durationLocation * 1000);
 
         var ownIcon = L.icon({
             iconUrl: '../assets/live_location.png',
@@ -388,7 +392,7 @@ function goToLeaderboard() {
     window.location.href = "/pages/leaderboard.html";
 }
 function goToSpelregels() {
-    window.location.href = "/pages/spelregels.html";
+    window.location.href = "/pages/spelregelsBoef.html";
 }
 function goToBoefPage() {
     window.location.href = "/pages/boef.html";
@@ -769,9 +773,9 @@ function sendCoordinates() {
                 console.log(error)
             });
 
-    });
+    })
 
-    setTimeout(() => {
+    setInterval(() => {
 
         navigator.geolocation.getCurrentPosition(function (position) {
 
@@ -816,7 +820,7 @@ function sendCoordinates() {
 
         });
 
-    }, (locationDuration - 5) * 1000);
+    }, 2000);
 }
 
 
