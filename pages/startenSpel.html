@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spel starten | Jachtseizoen</title>
+    <script src="../script/script.js"></script>
+    <link rel="stylesheet" href="/style/normalize.css">
+    <link rel="stylesheet" href="/style/style.css">
+</head>
+
+<body>
+    <a href="../index.html"><img class="c-icon_arrow-back" src="../assets/icons/arrow_back.svg" alt="Go back"></a>
+
+    <img class="c-logo" src="../assets/Logo.png" alt="Logo Jachtseizoen">
+
+    <form action="pages/startenSpelData.html" method="post" id="js-createGame">
+
+        <div class="c-form__items">
+            <label class="c-form__label" for="groepsnaam">Kies een groepsnaam</label>
+            <input class="c-form__input js-input" type="text" id="groepsnaam" placeholder="Groepsnaam..." name="groepsnaam" required><br>
+            <p class="js-form-error c-form-error"></p>
+        </div>
+        <span class="c-button"><input class="c-button__form" type="button" onclick="createNewGame()" value="Verder"></span>
+        
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" id="startCountdown">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/normalize.css">
+    <link rel="stylesheet" href="../style/stylex.css">
+    <script src="../script/script.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <link rel="icon" href="../assets/map_marker.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+    <title>Jachtseizoen</title>
+</head>
+
+<body>
+
+    <div class="c-overlay">
+        <div>
+            <div class="c-overlay_topbar">
+                <p></p>
+                <img class="c-logo" src="../assets/Logo.png" alt="Logo">
+                <button class="c-button_close">X</button>
+            </div>
+
+            <div class="c-overlay_content">
+                <p class="c-yellowtext">Gewonnen</p>
+                <div class="c-stats">
+                    <p class="c-stat_key">Gespeelde tijd:</p>
+                    <p class="c-stat_value">15 min</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="map">
+    </div>
+
+
+</body>
+
+</html>

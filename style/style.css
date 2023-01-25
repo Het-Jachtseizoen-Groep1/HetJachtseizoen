@@ -1,0 +1,1543 @@
+/*------------------------------------*\
+#FONTS
+\*------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/*------------------------------------*\
+#Variables
+\*------------------------------------*/
+
+:root {
+    /* Global colors */
+    --global-color-alpha: #FCA311;
+    --global-color-beta: #14213D;
+    --global-color-text: #FEFEFE;
+
+
+
+
+    /* global page settings */
+    --global-page-color: var(--global-color-text);
+    --global-page-backgroundColor: var(--global-color-beta);
+    --global-selection-backgroundColor: var(--global-color-alpha);
+
+    /* border radius */
+
+    /* transitions */
+    --global-transitionEasing-out: ease-out;
+    --global-transitionEasing-out-cubic: cubic-bezier(0.22, 0.61, 0.36, 1);
+    --global-transitionDuration-alpha: .1s;
+    --global-transitionDuration-beta: .2s;
+    --global-transitionDuration-gamma: .3s;
+
+
+    /* Baseline settings */
+    --global-baseline: 8px;
+    --global-whitespace: calc(var(--global-baseline) * 3);
+    /* = 24px */
+
+    --global-whitespace-xs: calc(var(--global-baseline) * .5);
+    /* = 4px */
+    --global-whitespace-sm: calc(var(--global-baseline) * 1);
+    /*  = 8px */
+    --global-whitespace-md: calc(var(--global-baseline) * 2);
+    /*  = 16px */
+    --global-whitespace-lg: calc(var(--global-baseline) * 4);
+    /*  = 32px */
+    --global-whitespace-xl: calc(var(--global-whitespace) * 2);
+    /*  = 48px */
+    --global-whitespace-xxl: calc(var(--global-whitespace) * 3);
+    /*  = 72px */
+
+    /* forms */
+
+    /* Font-sizes */
+    --global-fontsize-xs: 16px;
+    --global-fontsize-s: 20px;
+    --global-fontsize-m: 22px;
+    --global-fontsize-l: 24px;
+    --global-fontsize-xl: 28px;
+    --global-fontsize-xxl: 50px;
+
+    /* font-weights */
+    --global-fontweight-light: 300;
+    --global-fontweight-regular: 400;
+    --global-fontweight-medium: 500;
+    --global-fontweight-semibold: 600;
+    --global-fontweight-bold: 700;
+    --global-fontweight-black: 800;
+}
+
+
+/*------------------------------------*\
+#GENERIC
+\*------------------------------------*/
+
+/*
+    Generic: Page
+    ---
+    Global page styles + universal box-sizing:
+*/
+
+html {
+    background-color: var(--global-page-backgroundColor);
+    color: var(--global-page-color);
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+/*
+* Remove text-shadow in selection highlight:
+* https://twitter.com/miketaylr/status/12228805301
+*
+* Customize the background color to match your design.
+*/
+
+::-moz-selection {
+    background: var(--global-selection-backgroundColor);
+    color: white;
+    text-shadow: none;
+}
+
+::selection {
+    background: var(--global-selection-backgroundColor);
+    color: white;
+    text-shadow: none;
+}
+
+/*------------------------------------*\
+#Elements
+\*------------------------------------*/
+
+/*
+Elements: Images
+---
+Default markup for images to make them responsive
+*/
+
+img {
+    max-width: 100%;
+    vertical-align: top;
+}
+
+/*
+    Elements: typography
+    ---
+    Default markup for typographic elements
+*/
+
+h1,
+h2,
+h3 {
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 36px;
+    line-height: calc(var(--global-baseline) * 6);
+    margin: 0 0 var(--global-whitespace);
+}
+
+h2 {
+    font-size: 32px;
+    line-height: calc(var(--global-baseline) * 5);
+    margin: 0 0 var(--global-whitespace);
+}
+
+h3 {
+    font-size: 26px;
+    line-height: calc(var(--global-baseline) * 4);
+    margin: 0 0 var(--global-whitespace);
+}
+
+h4,
+h5,
+h6 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: calc(var(--global-baseline) * 3);
+    margin: 0 0 var(--global-whitespace);
+}
+
+p,
+ol,
+ul,
+dl,
+table,
+address,
+figure {
+    margin: 0 0 var(--global-whitespace);
+}
+
+ul,
+ol {
+    padding-left: var(--global-whitespace);
+}
+
+li ul,
+li ol {
+    margin-bottom: 0;
+}
+
+blockquote {
+    font-style: normal;
+    font-size: 23px;
+    line-height: calc(var(--global-baseline) * 6);
+    margin: 0 0 var(--global-whitespace);
+}
+
+blockquote * {
+    font-size: inherit;
+    line-height: inherit;
+}
+
+figcaption {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: calc(var(--global-baseline) * 2);
+    margin-top: var(--global-whitespace-xxs);
+}
+
+hr {
+    border: 0;
+    height: var(--global-borderWidth);
+    background: LightGrey;
+    margin: 0 0 var(--global-whitespace);
+}
+
+a {
+    --link-transition: all var(--global-transitionDuration-alpha) var(--global-transitionEasing-out);
+    transition: var(--link-transition);
+    color: var(--link-color, var(--global-color-alpha));
+    outline-color: var(--link-boxShadowColor);
+    outline-width: medium;
+    outline-offset: 2px;
+}
+
+a:visited {
+    color: var(--link-visited-color, var(--global-color-alpha));
+}
+
+a:hover {
+    color: var(--link-hover-color, var(--global-color-alpha-light));
+}
+
+a:active {
+    color: var(--link-active-color, var(--global-color-alpha-dark));
+}
+
+a:focus {
+    color: var(--link-focus-color, var(--global-color-alpha));
+}
+
+label,
+input {
+    display: block;
+}
+
+select {
+    width: 100%;
+}
+
+input::placeholder {
+    color: var(--input-placeholder-color, var(--global-placeholder-color));
+}
+
+/*------------------------------------*\
+#OBJECTS
+\*------------------------------------*/
+
+/*
+    Objects: Row
+    ---
+    Creates a horizontal row that stretches the viewport and adds padding around children
+*/
+
+.o-row {
+    position: relative;
+    padding: 24px 24px 0;
+}
+
+.o-row--login {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* size modifiers */
+
+.o-row--lg {
+    padding-top: 48px;
+    padding-bottom: 24px;
+}
+
+.o-row--xl {
+    padding-top: 72px;
+    padding-bottom: 48px;
+}
+
+@media (min-width: 768px) {
+    .o-row {
+        padding-left: 48px;
+        padding-right: 48px;
+    }
+}
+
+@media (min-width: 992px) {
+    .o-row--xl {
+        padding-top: 96px;
+        padding-bottom: 72px;
+    }
+}
+
+/*
+    Objects: Container
+    ---
+    Creates a horizontal container that sets de global max-width
+*/
+
+.o-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 79.5em;
+    /* 79.5 * 16px = 1272 */
+    width: 100%;
+}
+
+/*
+    Objects: Row
+    ---
+    Creates a horizontal row that stretches the viewport and adds padding around children
+*/
+
+.o-row {
+    position: relative;
+    padding: var(--global-whitespace) var(--global-whitespace) 0;
+}
+
+.o-row--login {
+    min-height: 100vh;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -ms-align-items: center;
+    align-items: center;
+}
+
+/* size modifiers */
+
+.o-row--lg {
+    padding-top: var(--global-whitespace-lg);
+    padding-bottom: var(--global-whitespace);
+}
+
+@media (min-width: 768px) {
+    .o-row {
+        padding-left: var(--global-whitespace-lg);
+        padding-right: var(--global-whitespace-lg);
+    }
+}
+
+/*
+    Objects: Container
+    ---
+    Creates a horizontal container that sets de global max-width
+*/
+
+.o-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 79.5em;
+    /* 79.5 * 16px = 1272 */
+    width: 100%;
+}
+
+/*
+    Objects: section
+    ---
+    Creates vertical whitespace between adjacent sections inside a row
+*/
+
+.o-section {
+    position: relative;
+}
+
+.o-section+.o-section {
+    padding-top: var(--global-whitespace);
+}
+
+@media (min-width: 768px) {
+
+    .o-section--lg+.o-section--lg,
+    .o-section--xl+.o-section--xl {
+        padding-top: var(--global-whitespace-lg);
+    }
+}
+
+@media (min-width: 992px) {
+    .o-section--xl+.o-section--xl {
+        padding-top: var(--global-whitespace-xxl);
+    }
+}
+
+/*
+    Objects: Layout
+    ---
+    The layout object provides us with a column-style layout system. This object
+    contains the basic structural elements, but classes should be complemented
+    with width utilities
+*/
+
+.o-layout {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.o-layout__item {
+    width: 100%;
+}
+
+/* gutter modifiers, these affect o-layout__item too */
+
+.o-layout--gutter {
+    margin: 0 -12px;
+}
+
+.o-layout--gutter>.o-layout__item {
+    padding: 0 12px;
+}
+
+.o-layout--gutter-sm {
+    margin: 0 -6px;
+}
+
+.o-layout--gutter-sm>.o-layout__item {
+    padding: 0 6px;
+}
+
+.o-layout--gutter-lg {
+    margin: 0 calc(var(--global-whitespace) * -1);
+}
+
+.o-layout--gutter-lg>.o-layout__item {
+    padding: 0 var(--global-whitespace);
+}
+
+.o-layout--gutter-xl {
+    margin: 0 calc(var(--global-whitespace-lg) * -1);
+}
+
+.o-layout--gutter-xl>.o-layout__item {
+    padding: 0 var(--global-whitespace-lg);
+}
+
+/* reverse horizontal row modifier */
+
+.o-layout--row-reverse {
+    flex-direction: row-reverse;
+}
+
+/* Horizontal alignment modifiers*/
+
+.o-layout--justify-start {
+    justify-content: flex-start;
+}
+
+.o-layout--justify-end {
+    justify-content: flex-end;
+}
+
+.o-layout--justify-center {
+    justify-content: center;
+}
+
+.o-layout--justify-space-around {
+    justify-content: space-around;
+}
+
+.o-layout--justify-space-evenly {
+    justify-content: space-evenly;
+}
+
+.o-layout--justify-space-between {
+    justify-content: space-between;
+}
+
+/* Vertical alignment modifiers */
+
+.o-layout--align-start {
+    align-items: flex-start;
+}
+
+.o-layout--align-end {
+    align-items: flex-end;
+}
+
+.o-layout--align-center {
+    align-items: center;
+}
+
+.o-layout--align-baseline {
+    align-items: baseline;
+}
+
+/* Vertical alignment modifiers that only work if there is one than one flex item */
+
+.o-layout--align-content-start {
+    align-content: start;
+}
+
+.o-layout--align-content-end {
+    align-content: end;
+}
+
+.o-layout--align-content-center {
+    align-content: center;
+}
+
+.o-layout--align-content-space-around {
+    align-content: space-around;
+}
+
+.o-layout--align-content-space-between {
+    align-content: space-between;
+}
+
+/*
+    Objects: List
+    ---
+    Small reusable object to remove default list styling from lists
+*/
+
+.o-list {
+    list-style: none;
+    padding: 0;
+}
+
+/*
+    Object: Button reset
+    ---
+    Small button reset object
+*/
+
+.o-button-reset {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+
+    /* Corrects font smoothing for webkit */
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+
+    /* Corrects inability to style clickable `input` types in iOS */
+    -webkit-appearance: none;
+}
+
+/*
+    Object: Hide accessible
+    ---
+    Accessibly hide any element
+*/
+
+.o-hide-accessible {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/*------------------------------------*\
+#COMPONENTS
+\*------------------------------------*/
+/*
+    Component: first three leaderboard
+    ---
+    A leaderboard component
+*/
+.c-groepsnaam--first-losers{
+    margin-top: 1rem;
+}
+.c-groepsnaam {
+    font-size: var(--global-fontsize-xs);
+    font-weight: var(--global-fontweight-bold);
+    max-width: 90px;
+    margin: 0;
+    padding: 0;
+}
+
+.c-topthree {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    width: 400px;
+    color: #202020;
+}
+
+.c-topthree--item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 125px;
+    align-items: center;
+}
+
+.c-topthree__first {
+    background-color: var(--global-color-alpha);
+    position: relative;
+    border-radius: 4px 4px 0 0;
+    height: 174px;
+}
+
+.c-topthree__second {
+    background-color: #C9820D;
+    position: relative;
+    border-radius: 4px 0 0 4px;
+    height: 100px;
+    margin-top: 74px;
+}
+
+.c-topthree__third {
+    background-color: #C9820D;
+    position: relative;
+    border-radius: 0 4px 4px 0;
+    height: 100px;
+    margin-top: 74px;
+}
+
+.c-topthree__crown-first {
+    position: absolute;
+    top: -45px;
+    align-self: center;
+}
+
+.c-topthree__crown-second {
+    position: absolute;
+    top: -45px;
+    align-self: center;
+}
+
+.c-topthree__crown-third {
+    position: absolute;
+    top: -45px;
+    align-self: center;
+}
+
+/*
+    Component: WaitForHostAnimation
+    ---
+    An animation that waits for the host to be ready
+*/
+.c-wachten-host__animation {
+    width: 150px;
+}
+
+/*
+    Component: dropdown
+    ---
+    A dropdown menu
+*/
+.c-dropdown {
+    display: flex;
+    width: 286px;
+    margin: auto;
+    background-color: #434D63;
+    padding: .5rem 1rem .5rem 1rem;
+    border-radius: 4px;
+    color: var(--global-color-text);
+    font-weight: var(--global-fontweight-medium);
+    margin-bottom: 95px;
+}
+
+.c-dropdown__title {
+    font-size: var(--global-fontsize-s);
+    color: var(--global-color-text);
+}
+
+.c-dropdown__menu {
+    background: none;
+    border: none;
+    font-size: var(--global-fontsize-s);
+    color: var(--global-color-text);
+}
+
+.c-dropdown__menu:focus {
+    outline: none;
+}
+
+.c-dropdown__option {
+    color: var(--global-color-text);
+    background-color: #434D63;
+    border: none;
+    padding: 1rem;
+    font-weight: var(--global-fontweight-medium);
+    text-align: center;
+}
+
+/*
+    Component: LeaderboardLogo
+    ---
+    Leaderboard logo
+*/
+.c-leaderboard-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+/*
+    Component: difficulty-form
+    ---
+    a radiobutton form
+*/
+.c-difficulty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-difficulty__radiobuttons {
+    margin-bottom: 143px;
+}
+
+.c-difficulty__option--label {
+    font-weight: var(--global-fontweight-medium);
+    text-align: center;
+    padding: .5rem 1rem .5rem 1rem;
+    border: 2px solid var(--global-color-text);
+    border-radius: 4px;
+}
+
+.c-difficulty__option:checked+.c-difficulty__option--label {
+    border-color: var(--global-color-alpha);
+    background-color: var(--global-color-alpha);
+    color: var(--global-color-beta);
+    font-weight: var(--global-fontweight-medium);
+}
+
+/*
+    Component: Back-button
+    ---
+    a back button
+*/
+.c-back {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: transparent;
+    border: none;
+}
+
+.c-back:hover {
+    cursor: pointer;
+}
+
+/*
+    Component: Instructions
+    ---
+    a text instruction
+*/
+.c-instructions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    gap: 3rem;
+}
+
+.c-info__kies-spel--primary {
+    font-size: var(--global-fontsize-xl);
+    font-weight: var(--global-fontweight-semibold);
+}
+
+.c-instructions--secondary {
+    opacity: 50%;
+}
+
+/*
+    Component: Logo
+    ---
+    Website main logo
+*/
+.c-logo {
+    width: 288px;
+    display: block;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/*
+    Component: Button
+    ---
+    Website main index
+*/
+.c-button {
+    font-size: 1.37rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #14213D !important;
+    background-color: var(--global-color-alpha);
+    width: 270px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: none;
+    margin: auto;
+}
+
+.c-button::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    right: -7px;
+    bottom: -7px;
+    border: 2px solid var(--global-color-alpha);
+    z-index: -1;
+    display: block;
+}
+
+.c-button:hover {
+    cursor: pointer;
+}
+
+.c-buttons__flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+    gap: 30px;
+}
+
+.c-buttons-beta__flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 180px;
+    gap: 42px;
+}
+
+/* .c-button-beta{
+    font-size: .9rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: #14213D !important;
+    background-color: var(--global-color-alpha);
+    width: 108px;
+    height: 73px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding-bottom: 5px;
+} */
+
+.c-button__form {
+    font-size: 1.37rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #14213D !important;
+    background-color: var(--global-color-alpha);
+    border: none;
+    width: 270px;
+    height: 50px;
+}
+
+.c-button__form:hover {
+    cursor: pointer;
+}
+
+.c-button-beta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: .9rem;
+    font-weight: 600;
+    color: #14213D !important;
+    background-color: var(--global-color-alpha);
+    width: 108px;
+    height: 73px;
+    border-radius: 4px;
+    border: none;
+    gap: 8px;
+}
+
+.c-button-beta:hover {
+    cursor: pointer;
+}
+
+
+
+
+/*
+    Component: Icons
+    ---
+    Website main Icons
+*/
+.c-icon__trophy {
+    display: block;
+}
+
+.c-icon_arrow-back {
+    margin-left: 20px;
+    position: absolute;
+    margin-top: -75px;
+}
+
+
+/*
+    Component: forms
+    ---
+    Website main forms
+*/
+.c-form__items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 160px;
+    margin-bottom: 211px;
+}
+
+.c-form__label {
+    color: var(--global-color-text);
+    font-size: 1.5rem;
+}
+
+.c-form__input {
+    margin-top: 16px;
+    width: 250px;
+    padding: .5rem .7rem .5rem .7rem;
+    border-radius: 4px;
+    border: none;
+    font-size: 1.37rem;
+    background-color: var(--global-color-text);
+    opacity: .5;
+}
+
+.c-form-error {
+    color: #ff0033;
+    font-size: .9rem;
+    margin-top: -10px;
+}
+
+
+/*
+    Component: spel aanmaken
+    ---
+
+*/
+
+.c-groepsnaam__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    font-size: 1.5rem;
+}
+
+.c-spelCode__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 42px;
+    font-size: 1.5rem;
+}
+
+.c-spelInfo__title {
+    color: var(--global-color-alpha);
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+
+.c-spelInfo__deelnemers {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 100px;
+    margin-bottom: 81px;
+}
+
+.c-spelInfo__deelnemers--bold {
+    font-weight: 600;
+    color: var(--global-color-alpha);
+}
+
+
+/*
+    Component: wachten op host
+    ---
+*/
+.c-spelCode-wachten {
+    padding-top: 60px;
+}
+
+.c-waiting-host {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 120px;
+    font-size: 1.3rem;
+}
+
+.c-waiting-host__jager{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 160px;
+    font-size: 1.3rem;
+}
+
+
+/*
+    Component: Home
+    ---
+*/
+
+.c-home__spelen-als {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: -120px;
+    margin-top: 150px;
+}
+
+
+
+/*
+    Component: Kies pel
+    ---
+*/
+.c-info__kies-spel {
+    margin-top: 120px;
+    font-size: 1.2rem;
+}
+
+/*
+    Component: CountDown page
+    ---
+*/
+.c-countDown {
+    width: 350px;
+    margin: auto;
+}
+
+
+
+#map {
+    position: relative;
+    z-index: 0;
+    height: 100%;
+    width: 100vw;
+}
+
+.xx {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 30px;
+    background-color: #14213D;
+    opacity: .8;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+
+.logo {
+    max-height: 30px;
+    padding-top: 5px;
+}
+
+
+
+/*------------------------------------*\
+#UTILITIES
+\*------------------------------------*/
+
+/*
+    Utilities: color
+    ---
+    Utility classes to put specific colors onto elements
+*/
+
+.u-color-neutral {
+    color: var(--global-color-neutral);
+}
+
+.u-color-neutral-dark {
+    color: var(--global-color-neutral-dark);
+}
+
+/*
+    Utilities: spacing
+    ---
+    Utility classes to put specific margins and paddings onto elements
+*/
+
+.u-pt-clear {
+    padding-top: 0 !important;
+}
+
+.u-mb-clear {
+    margin-bottom: 0 !important;
+}
+
+.u-mb-xs {
+    margin-bottom: 4px !important;
+}
+
+.u-mb-sm {
+    margin-bottom: 8px !important;
+}
+
+.u-mb-md {
+    margin-bottom: 16px !important;
+}
+
+.u-mb-lg {
+    margin-bottom: 32px !important;
+}
+
+.u-mb-xl {
+    margin-bottom: 48px !important;
+}
+
+/*
+    Utilities: max-width
+    ---
+    Utility classes to put specific max widths onto elements
+*/
+
+.u-max-width-xs {
+    max-width: 27em !important;
+}
+
+.u-max-width-sm {
+    max-width: 39em !important;
+}
+
+.u-max-width-md {
+    max-width: 50em !important;
+}
+
+.u-max-width-lg {
+    max-width: 63.5em !important;
+}
+
+.u-max-width-none {
+    max-width: none !important;
+}
+
+
+/*
+    Utilities: align
+    ---
+    Utility classes align text or components
+*/
+
+.u-align-text-center {
+    text-align: center;
+}
+
+.u-align-center {
+    margin: 0 auto;
+}
+
+/*
+    Utilities: text
+    Utility classes to create smaller or bigger test
+*/
+
+.u-text-sm {
+    font-size: 14px;
+}
+
+/*
+    Utility: Widths
+    ---
+    Utility classes to put specific widths onto elements
+    Will be mostly used on o-layout__item
+*/
+
+.u-width-auto {
+    width: auto !important;
+}
+
+.u-1-of-2 {
+    width: 50% !important;
+}
+
+.u-1-of-3 {
+    width: 33.3333333333% !important;
+}
+
+.u-2-of-3 {
+    width: 66.6666666667% !important;
+}
+
+.u-1-of-4 {
+    width: 25% !important;
+}
+
+.u-3-of-4 {
+    width: 75% !important;
+}
+
+.u-1-of-5 {
+    width: 20% !important;
+}
+
+.u-2-of-5 {
+    width: 40% !important;
+}
+
+.u-3-of-5 {
+    width: 60% !important;
+}
+
+.u-4-of-5 {
+    width: 80% !important;
+}
+
+.u-1-of-6 {
+    width: 16.6666666667% !important;
+}
+
+.u-5-of-6 {
+    width: 83.3333333333% !important;
+}
+
+@media (min-width: 576px) {
+    .u-1-of-2-bp1 {
+        width: 50% !important;
+    }
+
+    .u-1-of-3-bp1 {
+        width: 33.3333333333% !important;
+    }
+
+    .u-2-of-3-bp1 {
+        width: 66.6666666667% !important;
+    }
+
+    .u-1-of-4-bp1 {
+        width: 25% !important;
+    }
+
+    .u-3-of-4-bp1 {
+        width: 75% !important;
+    }
+
+    .u-1-of-5-bp1 {
+        width: 20% !important;
+    }
+
+    .u-2-of-5-bp1 {
+        width: 40% !important;
+    }
+
+    .u-3-of-5-bp1 {
+        width: 60% !important;
+    }
+
+    .u-4-of-5-bp1 {
+        width: 80% !important;
+    }
+
+    .u-1-of-6-bp1 {
+        width: 16.6666666667% !important;
+    }
+
+    .u-5-of-6-bp1 {
+        width: 83.3333333333% !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .u-1-of-2-bp2 {
+        width: 50% !important;
+    }
+
+    .u-1-of-3-bp2 {
+        width: 33.3333333333% !important;
+    }
+
+    .u-2-of-3-bp2 {
+        width: 66.6666666667% !important;
+    }
+
+    .u-1-of-4-bp2 {
+        width: 25% !important;
+    }
+
+    .u-3-of-4-bp2 {
+        width: 75% !important;
+    }
+
+    .u-1-of-5-bp2 {
+        width: 20% !important;
+    }
+
+    .u-2-of-5-bp2 {
+        width: 40% !important;
+    }
+
+    .u-3-of-5-bp2 {
+        width: 60% !important;
+    }
+
+    .u-4-of-5-bp2 {
+        width: 80% !important;
+    }
+
+    .u-1-of-6-bp2 {
+        width: 16.6666666667% !important;
+    }
+
+    .u-5-of-6-bp2 {
+        width: 83.3333333333% !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .u-1-of-2-bp3 {
+        width: 50% !important;
+    }
+
+    .u-1-of-3-bp3 {
+        width: 33.3333333333% !important;
+    }
+
+    .u-2-of-3-bp3 {
+        width: 66.6666666667% !important;
+    }
+
+    .u-1-of-4-bp3 {
+        width: 25% !important;
+    }
+
+    .u-3-of-4-bp3 {
+        width: 75% !important;
+    }
+
+    .u-1-of-5-bp3 {
+        width: 20% !important;
+    }
+
+    .u-2-of-5-bp3 {
+        width: 40% !important;
+    }
+
+    .u-3-of-5-bp3 {
+        width: 60% !important;
+    }
+
+    .u-4-of-5-bp3 {
+        width: 80% !important;
+    }
+
+    .u-1-of-6-bp3 {
+        width: 16.6666666667% !important;
+    }
+
+    .u-5-of-6-bp3 {
+        width: 83.3333333333% !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .u-1-of-2-bp4 {
+        width: 50% !important;
+    }
+
+    .u-1-of-3-bp4 {
+        width: 33.3333333333% !important;
+    }
+
+    .u-2-of-3-bp4 {
+        width: 66.6666666667% !important;
+    }
+
+    .u-1-of-4-bp4 {
+        width: 25% !important;
+    }
+
+    .u-3-of-4-bp4 {
+        width: 75% !important;
+    }
+
+    .u-1-of-5-bp4 {
+        width: 20% !important;
+    }
+
+    .u-2-of-5-bp4 {
+        width: 40% !important;
+    }
+
+    .u-3-of-5-bp4 {
+        width: 60% !important;
+    }
+
+    .u-4-of-5-bp4 {
+        width: 80% !important;
+    }
+
+    .u-1-of-6-bp4 {
+        width: 16.6666666667% !important;
+    }
+
+    .u-5-of-6-bp4 {
+        width: 83.3333333333% !important;
+    }
+}
+
+/*------------------------------------*\
+#MEDIA
+\*------------------------------------*/
+
+/*
+    Media Queries
+    ---
+    EXAMPLE Media Queries for Responsive Design.
+    These examples override the primary ('mobile first') styles.
+    USE THEM INLINE!
+*/
+
+/* Extra small devices (portrait phones, less than 576px)
+No media query since this is the default in mobile first design
+*/
+
+/* Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {}
+*/
+
+/* Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {}
+*/
+
+/* Large devices (landscape tablets, desktops, 992px and up)
+@media (min-width: 992px) {}
+*/
+
+/* Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}
+*/
+
+/*
+    Print styles.
+    ---
+    Inlined to avoid the additional HTTP request:
+    http://www.phpied.com/delay-loading-your-print-css/
+*/
+
+@media print {
+
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important;
+        /* Black prints faster:
+        http://www.sanbeiji.com/archives/953 */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+    * Don't show links that are fragment identifiers,
+    * or use the `javascript:` pseudo protocol
+    */
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre {
+        white-space: pre-wrap !important;
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /*
+    * Printing Tables:
+    * http://css-discuss.incutio.com/wiki/Printing_Tables
+    */
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
