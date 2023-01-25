@@ -357,9 +357,15 @@ function timeButtonBack() {
         timeButton.classList.add('u-showing');
     })
 }
+
+
 function startTimer(durationSeconds, display) {
-    var timer = durationSeconds, minutes, seconds;
+    var seconds = new Date().getTime() + durationSeconds * 1000;
+    const secondsCount = Math.ceil((seconds - new Date().getTime()) / 1000);
+
+    var timer = secondsCount, minutes, seconds;
     setInterval(function () {
+
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
@@ -650,7 +656,7 @@ function setDuration() {
 //***__________ AUTOMATISCH NAAR BOEF OF JAGER MAP GAAN __________***//
 function mapForBoefOrJager() {
     if (localStorage.getItem('role') == "boef") {
-        setTimeout(() => { window.location.href = "../pages/mapboef.html"; }, 5100)
+        setTimeout(() => { window.location.href = "../pages/mapBoef.html"; }, 5100)
     } else if (localStorage.getItem('role') == "jager") {
         setTimeout(() => { window.location.href = "../pages/CountdownJager.html"; }, 5100)
     }
@@ -667,6 +673,19 @@ function showTimesMap() {
     const locationDurationPlace = document.getElementById("js-locationTime");
 
     startTimer(gameDuration, gameDurationplace);
+    startTimer(locationDuration, locationDurationPlace);
+}
+
+//***__________ SHOW TIMER OP MAP JAGER __________***//
+function showTimesMapJager() {
+    var gameDuration = localStorage.getItem('durationGame');
+    var locationDuration = localStorage.getItem('durationLocation');
+    var waitTimeJager = localStorage.getItem('waitTimeJager');
+
+    const gameDurationplace = document.getElementById("js-durationTime");
+    const locationDurationPlace = document.getElementById("js-locationTime");
+
+    startTimer(gameDuration - waitTimeJager, gameDurationplace);
     startTimer(locationDuration, locationDurationPlace);
 }
 
@@ -860,7 +879,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (mapJager) {
         timeButton();
         timeButtonBack();
-        showTimesMap();
+        showTimesMapJager();
         showMapWithCoordinates();
     }
 
