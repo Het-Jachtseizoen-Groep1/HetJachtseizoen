@@ -357,9 +357,15 @@ function timeButtonBack() {
         timeButton.classList.add('u-showing');
     })
 }
+
+
 function startTimer(durationSeconds, display) {
-    var timer = durationSeconds, minutes, seconds;
+    var seconds = new Date().getTime() + durationSeconds * 1000;
+    const secondsCount = Math.ceil((seconds - new Date().getTime()) / 1000);
+
+    var timer = secondsCount, minutes, seconds;
     setInterval(function () {
+
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
