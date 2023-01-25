@@ -576,6 +576,42 @@ input::placeholder {
 #COMPONENTS
 \*------------------------------------*/
 /*
+    Component: class that disables button from Gamerules
+    ---
+    class that disables button from Gamerules
+*/
+.c-opacity{
+    opacity: 50%;
+}
+/*
+    Component: GameRule buttons
+    ---
+    Buttons to imply rules to wich role you chose
+*/
+.c-toggle-buttons{
+    width: 300px;
+    margin: auto;
+    /* position: fixed;
+    bottom: 0;  */
+    display: flex;
+    justify-content: space-between;
+    
+}
+.c-toggle-buttons__option{
+    width: 145px;
+    height: 45px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--global-color-beta) !important;
+    background-color: var(--global-color-alpha);
+    border-radius: 4px;
+    font-size: var(--global-fontsize-m);
+    font-weight: var(--global-fontweight-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/*
     Component: Rule text
     ---
     A text Component for game rules
