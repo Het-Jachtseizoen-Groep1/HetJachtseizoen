@@ -650,7 +650,7 @@ function setDuration() {
 //***__________ AUTOMATISCH NAAR BOEF OF JAGER MAP GAAN __________***//
 function mapForBoefOrJager() {
     if (localStorage.getItem('role') == "boef") {
-        setTimeout(() => { window.location.href = "../pages/mapboef.html"; }, 5100)
+        setTimeout(() => { window.location.href = "../pages/mapBoef.html"; }, 5100)
     } else if (localStorage.getItem('role') == "jager") {
         setTimeout(() => { window.location.href = "../pages/CountdownJager.html"; }, 5100)
     }
