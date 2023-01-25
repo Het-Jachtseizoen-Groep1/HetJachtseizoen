@@ -576,6 +576,21 @@ input::placeholder {
 #COMPONENTS
 \*------------------------------------*/
 /*
+    Component: Rule text
+    ---
+    A text Component for game rules
+*/
+.c-JagerHandleiding{
+    width: 300px;
+    margin: auto;
+    margin-top: 40px;
+}
+.c-JagerHandleiding--titel{
+    font-size: var(--global-fontsize-l);
+    font-weight: var(--global-fontweight-medium);
+}
+
+/*
     Component: first three leaderboard
     ---
     A leaderboard component
