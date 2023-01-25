@@ -20,6 +20,7 @@ function lottieCountDown() {
 }
 
 
+
 //***__________ CODE VOOR DE MAP JAGER__________***//
 var map;
 function showMap(lat, long) {
@@ -121,7 +122,6 @@ function showMapBoef() {
 
 
 
-
 //***__________ API OPROEPEN VAN AZURE EN MAP TONEN __________***//
 let getAPI = async (groepsnaam) => {
     // Eerst bouwen we onze url op
@@ -142,6 +142,7 @@ let getAPI = async (groepsnaam) => {
 
 
 
+
 //***__________ API OPROEPEN VAN AZURE VOOR SPELCODE __________***//
 let getSpelCode = async (spelcode) => {
     // Eerst bouwen we onze url op
@@ -156,10 +157,6 @@ let getSpelCode = async (spelcode) => {
 
 
 //   const spelCodeJoinen = localStorage.getItem('spelCodeJoinen');
-
-
-
-
 
 //***__________ LOCATIE VAN DE BOEF UPDATEN __________***//
 function updateBoefLocatie() {
@@ -350,7 +347,6 @@ function timeButton() {
         timeShow.classList.add('u-showing');
     })
 }
-
 function timeButtonBack() {
     var timeButton = document.querySelector('.js-time_button');
     var timeShow = document.querySelector('.js-time_button_back');
@@ -361,7 +357,6 @@ function timeButtonBack() {
         timeButton.classList.add('u-showing');
     })
 }
-
 function startTimer(durationSeconds, display) {
     var timer = durationSeconds, minutes, seconds;
     setInterval(function () {
@@ -389,12 +384,10 @@ function goToLeaderboard() {
 function goToSpelregels() {
     window.location.href = "/pages/spelregels.html";
 }
-
 function goToBoefPage() {
     window.location.href = "/pages/boef.html";
     localStorage.setItem('role', 'boef');
 }
-
 function goToJagerPage() {
 
     const code = localStorage.getItem('spelCode');
@@ -438,11 +431,11 @@ function goToJagerPage() {
 
     localStorage.setItem('role', 'jager');
 }
-
 function goBackToRoles() {
     window.location.href = "../pages/spelKeuze.html";
     localStorage.removeItem('role');
 }
+
 
 
 //***__________ Synchronized start __________***//
@@ -462,6 +455,8 @@ function SynchronizedStart(code) {
             });
     }, 1000);
 }
+
+
 
 //***__________ Synchronized start countdown __________***//
 function SynchronizedStartCountdown(code) {
@@ -573,7 +568,7 @@ function spelStartenCountdown() {
 
 
 
-
+//***__________ SAVES ALL DATA FOR THE GAME THAT IS SELECTED __________***//
 function setDuration() {
 
     const radioGroup = document.querySelectorAll('input[name="spel"]');
@@ -661,6 +656,9 @@ function mapForBoefOrJager() {
     }
 }
 
+
+
+//***__________ SHOW TIMER OP MAP __________***//
 function showTimesMap() {
     var gameDuration = localStorage.getItem('durationGame');
     var locationDuration = localStorage.getItem('durationLocation');
@@ -708,9 +706,8 @@ function leaveGame() {
 
 
 
-
+//***__________ STUURT CURRENT LOCATION VAN DE BOEF NAAR DB __________***//
 function sendCoordinates() {
-
     const code = localStorage.getItem('spelCode');
     const locationDuration = localStorage.getItem('durationLocation');
 
@@ -805,6 +802,7 @@ function sendCoordinates() {
 
 
 
+//***__________ HAALT COORDINATEN UIT DB EN TOONT MAP __________***//
 function showMapWithCoordinates() {
 
     const code = localStorage.getItem('spelCode');
@@ -820,6 +818,8 @@ function showMapWithCoordinates() {
 
 
 
+
+//***__________ DOM CONTENT __________***//
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOM fully loaded and parsed');
 
