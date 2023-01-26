@@ -396,13 +396,11 @@ function startTimer(durationSeconds, display) {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
-        console.log(secondsCount, minutes, seconds)
-
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
         timeFull = minutes + ":" + seconds;
-
+        
         console.log(timeFull)
         
         display.textContent = timeFull;
