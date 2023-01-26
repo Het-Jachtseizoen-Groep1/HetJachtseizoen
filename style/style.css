@@ -647,9 +647,9 @@ input::placeholder {
     align-items: center;
     justify-content: center;
 }
+
 .c-instructions__animation{
     width: 400px;
-    border: 2px solid hotpink;
 }
 /*
     Component: class that disables button from Gamerules
@@ -855,7 +855,7 @@ input::placeholder {
 }
 
 .c-difficulty__radiobuttons {
-    margin-bottom: 143px;
+    margin-bottom: 120px;
 }
 
 .c-difficulty__option--label {
@@ -909,8 +909,14 @@ input::placeholder {
     font-weight: var(--global-fontweight-semibold);
 }
 
+.c-instructions--primary{
+    font-size: var(--global-fontsize-m);
+    font-weight: var(--global-fontweight-medium);
+}
+
 .c-instructions--secondary {
-    opacity: 50%;
+    opacity: 70%;
+    margin-top: -8px;
 }
 
 /*
@@ -1205,6 +1211,258 @@ input::placeholder {
         border-radius: 0px 4px 4px 0px;
         height: 30px;
 }
+
+
+
+/*
+    Component: Code bert
+    ---
+*/
+
+
+
+.c-meerdereJagers-animatie {
+    width: 300px;
+}
+
+.c-meerdereJagers__text {
+    font-size: var(--global-fontsize-xl);
+    font-weight: var(--global-fontweight-medium);
+    color: var(--global-color-text);
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+.c-meerdereJagers {
+    width: 300px;
+    margin: auto;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/*
+    Component: Leaderboard-list
+    ---
+    A list wich contains the contestants
+*/
+.lab-modal-body {
+    position: relative;
+    margin: 150px auto 0;
+    padding: 40px;
+    max-width: 100%;
+    height: fit-content;
+    background-color: rgba(226, 226, 226, .25);
+    border: none;
+    border-radius: 4px 4px 0 0;
+}
+
+.close {
+    margin-top: -20px;
+    margin-right: -20px;
+    text-shadow: 0 1px 0 #ffffff;
+}
+
+.c-leaderboard-list__item {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    font-weight: var(--global-fontweight-medium);
+    font-size: var(--global-fontsize-s);
+}
+
+.c-leaderboard-line {
+    height: 2px;
+    border: none;
+    background-color: #FCA311;
+    opacity: 50%;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.c-apple-line {
+    height: 3px;
+    width: 58px;
+    border: none;
+    border-radius: 3px;
+    background-color: white;
+    z-index: +1;
+    margin: auto;
+    margin-bottom: 3rem;
+    margin-top: -1.5rem;
+}
+
+.c-leaderboard-list__line {
+    list-style: none;
+}
+
+.hidden {
+    display: none;
+}
+
+/*
+    Component: When escapists join
+    ---
+    A page wich escapist go to when they join
+*/
+
+.c-instructions__animation {
+    width: 400px;
+}
+
+/*
+    Component: class that disables button from Gamerules
+    ---
+    class that disables button from Gamerules
+*/
+.c-opacity {
+    opacity: 50%;
+}
+
+/*
+    Component: GameRule buttons
+    ---
+    Buttons to imply rules to wich role you chose
+*/
+.c-toggle-buttons {
+    width: 300px;
+    margin: auto;
+    /* position: fixed;
+    bottom: 0;  */
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.c-toggle-buttons__option {
+    width: 145px;
+    height: 45px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--global-color-beta) !important;
+    background-color: var(--global-color-alpha);
+    border-radius: 4px;
+    font-size: var(--global-fontsize-m);
+    font-weight: var(--global-fontweight-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.c-rules-role {
+    color: var(--global-color-alpha);
+}
+
+.c-rules__subtitle{
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+/*
+    Component: Rule text
+    ---
+    A text Component for game rules
+*/
+.c-JagerHandleiding {
+    width: 300px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.c-JagerHandleiding--titel {
+    font-size: var(--global-fontsize-l);
+    font-weight: var(--global-fontweight-medium);
+}
+
+/*
+    Component: first three leaderboard
+    ---
+    A leaderboard component
+*/
+.c-groepsnaam--first-losers {
+    margin-top: 1rem;
+}
+
+.c-groepsnaam {
+    font-size: var(--global-fontsize-xs);
+    font-weight: var(--global-fontweight-bold);
+    max-width: 90px;
+    margin: 0;
+    padding: 0;
+}
+
+.c-topthree {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    width: 400px;
+    color: #202020;
+}
+
+.c-topthree--item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 125px;
+    align-items: center;
+}
+
+.c-topthree__first {
+    background-color: var(--global-color-alpha);
+    position: relative;
+    border-radius: 4px 4px 0 0;
+    height: 174px;
+}
+
+.c-topthree__second {
+    background-color: #C9820D;
+    position: relative;
+    border-radius: 4px 0 0 4px;
+    height: 100px;
+    margin-top: 74px;
+}
+
+.c-topthree__third {
+    background-color: #C9820D;
+    position: relative;
+    border-radius: 0 4px 4px 0;
+    height: 100px;
+    margin-top: 74px;
+}
+
+.c-topthree__crown-first {
+    position: absolute;
+    top: -45px;
+    align-self: center;
+}
+
+.c-topthree__crown-second {
+    position: absolute;
+    top: -45px;
+    align-self: center;
+    opacity: .7;
+}
+
+.c-topthree__crown-third {
+    position: absolute;
+    top: -45px;
+    align-self: center;
+}
+
+/*
+    Component: WaitForHostAnimation
+    ---
+    An animation that waits for the host to be ready
+*/
+.c-wachten-host__animation {
+    width: 150px;
+}
+
 
 
 

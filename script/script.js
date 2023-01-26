@@ -1,12 +1,10 @@
 //***__________ MODAL WINDOW LEADERBOARD __________***//
 function modalWindow(){
-    jQuery(document).ready(function($) {
-        // auto timer
-        setTimeout(function() {
-          $('#lab-slide-bottom-popup').modal('show');
-        }, 200); // optional - automatically opens in xxxx milliseconds
-    });
+    setTimeout(function(){
+        document.querySelector('.modal').classList.remove("hidden");
+    }, 2000);
 }
+
 //***__________ lOTTIE ANIMATION __________***//
 function lottieWaiting() {
     var animation = bodymovin.loadAnimation({
@@ -1024,6 +1022,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const leaderboard = document.getElementById('leaderboard');
     const gewonnen = document.getElementById('gewonnenOverlay');
     const verloren = document.getElementById('verlorenOverlay');
+
+
+    /** Modal hier want anders 2 keer klikken **/
+    var modal = document.getElementById("closeModal");
+    var btn = document.getElementById("CloseBtn");
+    var btnCloseModal = document.getElementsByClassName("c-modal__close-btn")[0];
+    var btnCloseModal2 = document.getElementById('goBackToMap');
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+      // When the user clicks on <span> (x), close the modal
+    btnCloseModal.onclick = function () {
+        modal.style.display = "none";
+    }
+    btnCloseModal2.onclick = function () {
+        modal.style.display = "none";
+    }
 
     //functie voor elke pagina laden
     if (index) {
