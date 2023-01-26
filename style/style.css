@@ -575,6 +575,70 @@ input::placeholder {
 /*------------------------------------*\
 #COMPONENTS
 \*------------------------------------*/
+/*
+    Component: Leaderboard-list
+    ---
+    A list wich contains the contestants
+*/
+.modal.fade.in .lab-modal-body {
+    bottom: 0;
+    opacity: 1;
+  }
+  
+  
+  .lab-modal-body {
+    position: relative;
+    bottom: -250px;
+    margin: 150px auto 0;
+    padding: 40px;
+    max-width: 60%;
+    height: content-fit;
+    background-color: rgba(226, 226, 226, .25);
+    border: none;
+    border-radius: 4px 4px 0 0;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+    -moz-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+    -o-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+    transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+  }
+  
+  .close {
+    margin-top: -20px;
+    margin-right: -20px;
+    text-shadow: 0 1px 0 #ffffff;
+  }
+  
+  .popup-button {
+    margin-top: 70px;
+  }
+  .c-leaderboard-list__item{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 1.5rem 0 ;
+  }
+  .c-leaderboard-line{
+    height:2px;
+    border: none;
+    background-color: #FCA311;
+    opacity: 50%;
+  }
+  .c-apple-line{
+    height: 3px;
+    border: none;
+    border-radius: 3px;
+    background-color: white;
+    z-index: +1;
+    width: 58px;
+    margin-top: -2.5rem;
+    margin-bottom: 3rem;
+  }
+
+/*
+    Component: When more hunters join
+    ---
+    A page wich other hunters go to
+*/
 .c-meerdereJagers{
     width: 300px;
     margin: auto;
@@ -1125,6 +1189,25 @@ input::placeholder {
     width: 350px;
     margin: auto;
 }
+
+
+
+
+
+.c-map__getikt{
+    margin-right: 10px;
+    position: absolute;
+    top: 72px;
+    left: 0;
+        z-index: 1;
+        background-color: #14213D;
+        padding: 12px;
+        border-radius: 0px 4px 4px 0px;
+        height: 30px;
+}
+
+
+
 
 
 

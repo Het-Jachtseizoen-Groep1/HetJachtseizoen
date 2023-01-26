@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" id="startCountdown">
+<html lang="en" id="gewonnenOverlay">
 
 <head>
     <meta charset="UTF-8">
@@ -16,26 +16,39 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 
     <title>Jachtseizoen</title>
 </head>
 
 <body>
+    <!-- The Modal -->
+    <div id="closeModal" class="c-modal">
+        <div class="c-modal__content">
+            <span class="c-modal__close-btn">&times;</span>
+            <p class="c-modal__text">Weet je zeker dat je het spel wilt verlaten?</p>
+            <div class="c-modal__buttons-flex">
+                <button class="c-modal__button c-modal__button-beta" onclick="leaveGame()">Spel verlaten</button>
+                <button id="goBackToMap" class="c-modal__button">Sluit venster</button>
+            </div>
+        </div>
+    </div>
+
 
     <div class="c-overlay">
         <div>
             <div class="c-overlay_topbar">
                 <p></p>
                 <img class="c-logo" src="../assets/Logo.png" alt="Logo">
-                <button class="c-button_close">X</button>
+                <button class="c-button_close" id="CloseBtn" onclick="goCloseGame()">X</button>
             </div>
 
             <div class="c-overlay_content">
                 <p class="c-yellowtext">Gewonnen</p>
                 <div class="c-stats">
                     <p class="c-stat_key">Gespeelde tijd:</p>
-                    <p class="c-stat_value">15 min</p>
+                    <p class="c-stat_value js-gespeeldeTijd" id="js-gespeeldeTijd">15 min</p>
                 </div>
             </div>
         </div>
