@@ -1,4 +1,5 @@
-#include <MFRC522.h> //library responsible for communicating with the module RFID-RC522
+    delay(10);
+    LedLoad();#include <MFRC522.h> //library responsible for communicating with the module RFID-RC522
 #include <SPI.h>     //library responsible for communicating of SPI bus
 
 #define SS_PIN 21

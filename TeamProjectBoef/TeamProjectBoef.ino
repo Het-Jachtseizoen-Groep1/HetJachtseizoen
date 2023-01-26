@@ -1,6 +1,6 @@
 #include "libraries.h"
 
-#define numLeds 12
+#define numLeds 12 // on pin 4
 //
 #define SS_PIN 21
 #define RST_PIN 22
@@ -25,10 +25,15 @@ int freq = 2000;
 int channel = 0;
 int resolution = 8;
 
-int melody[] = {NOTE_E4, NOTE_E4, NOTE_D4, NOTE_CS4};
+int loseMelody[] = {NOTE_E4, NOTE_E4, NOTE_D4, NOTE_CS4};
+int winMelody[] =
+    {
+        NOTE_A5, NOTE_A5, NOTE_A5, NOTE_AS5, NOTE_B5, NOTE_CS6, NOTE_D6};
 
-int beat = 200;
-int duration[] = {3.1 * beat, 3.1 * beat, 2 * beat, 5 * beat};
+int beat = 500;
+int quarterBeat = 0.25 * beat;
+int duration[] = {4 * quarterBeat, 4 * quarterBeat, 3 * quarterBeat, 2 * beat}; // beat 200
+int winDuration[] = {quarterBeat, quarterBeat, quarterBeat, quarterBeat, quarterBeat, quarterBeat, 2 * beat};
 
 // general operations
 void connect()
@@ -37,8 +42,8 @@ void connect()
   // verbind met wifi
   while (WiFi.status() != WL_CONNECTED)
   {
-    Serial.print('.');
-    delay(500);
+    delay(10);
+    LedLoad();
   }
   Serial.println("connected");
 
@@ -47,8 +52,8 @@ void connect()
   // get client, user and pass from your broker
   while (!client.connect("esp", "", ""))
   {
-    Serial.print('.');
-    delay(500);
+    delay(10);
+    LedLoad();
   }
 
   for (byte i = 0; i < topicCount; i++) // loop through all topics (< topicCount because start counting at 0)
@@ -61,6 +66,7 @@ void connect()
 
 void MessageReceived(String &topic, String &payload)
 {
+  Serial.println(topic);
   Serial.println(payload);
 
   for (byte i = 0; i < topicCount; i++) // loop through all topics (< topicCount because start counting at 0)
@@ -107,7 +113,6 @@ void setup()
   initBuzzer();
   initRFID();
   connect();
-  client.publish("connect", "1");
 }
 
 void loop()
@@ -157,9 +162,14 @@ void RunGame()
     if (mfrc522.PICC_IsNewCardPresent())
     {
       winner = 1;
+      // gameInProgress = 0;
+      publishGameResults(winner);
+      gameOver = 1;
+      Serial.println("test lose");
     }
     else
     {
+      Serial.print('.');
       for (byte i = 0; i <= numLeds; i++)
       {
         leds[i] = CRGB(0, 255, 0);
@@ -167,26 +177,34 @@ void RunGame()
       FastLED.show();
     }
   }
-  
-  else if (!gameOver)
+
+  else if (gameOver)
   {
-    gameOver = 1;
+    gameOver = 0;
     if (winner) // jagers winnen
     {
-      publishGameResults(1);
-      WinSequence();
+      LosingSequence();
     }
     else // jagers verliezen
     {
-      //publishGameResults(0);
-      LosingSequence();
+      Serial.println("win");
+      WinSequence();
     }
   }
 }
 
 void WinSequence()
 {
-  Serial.println("AAAAAAAAAAAAAAA");
+  ledcWrite(channel, 255);
+  for (int thisNote = 0; thisNote < 7; thisNote++)
+  {
+    ledcWriteTone(channel, winMelody[thisNote]);
+    FillLedsClr(0, 255, 0);
+    delay(winDuration[thisNote]);
+    FillLedsClr(0, 0, 0);
+    ledcWriteTone(channel, 0);
+    delay(20);
+  }
 }
 
 void LosingSequence()
@@ -194,19 +212,12 @@ void LosingSequence()
   ledcWrite(channel, 255);
   for (int thisNote = 0; thisNote < 4; thisNote++)
   {
-    ledcWriteTone(channel, melody[thisNote]);
-    for (byte i = 0; i <= numLeds; i++)
-    {
-      leds[i] = CRGB(255, 0, 0);
-    }
-    FastLED.show();
+    ledcWriteTone(channel, loseMelody[thisNote]);
+    FillLedsClr(255, 0, 0);
     delay(duration[thisNote]);
 
     ledcWriteTone(channel, 0);
-    for (byte i = 0; i <= numLeds; i++)
-    {
-      leds[i] = CRGB(0, 0, 0);
-    }
+    FillLedsClr(0, 0, 0);
     FastLED.show();
     delay(50);
   }
@@ -214,33 +225,45 @@ void LosingSequence()
 
 void publishGameResults(bool winner)
 {
-  UpdateGameResults(millis(), winner);
+  UpdateGameResults(winner);
   serializeJson(gameResults, jsonGameResultsSer);
-  client.publish("gameResults", jsonGameResultsSer);
+  client.publish("hetJachtSeizoen/gameResults", jsonGameResultsSer);
 }
 
 void ProcessMessage(byte index, String &payload)
 {
   switch (index)
   {
-  case 0:
-    deserializeJson(gameInfo, payload);
-    gameInProgress = gameInfo["inProgress"];
-    Serial.println(gameInProgress);
-    if (gameInProgress)
+  case 0: // GameInfo on start up
+    if (!gameInProgress)
     {
-      timeLimit = gameInfo["timeLimit"];
-      currDuration = gameInfo["runTime"];
-      Serial.println("Game started");
+      deserializeJson(gameInfo, payload);
+      gameInProgress = gameInfo["inProgress"]; // should be 1
+      gameCode = gameInfo["spelcode"];
+      //      Serial.print();
+      Serial.println("game info processed");
     }
     break;
 
-  case 1:
+  case 1: // game Results
     deserializeJson(gameResults, payload);
-    winner = gameResults["winner"];
+    if (1) // DO NOT REMOVE OR CODE BREAKS
+    {
+      const char *rcvdGameCode = gameResults["spelcode"];
+      Serial.println(rcvdGameCode);
+      Serial.println(gameCode);
+      if (String(gameCode) == String(rcvdGameCode))
+      {
+        Serial.println("logic works");
+        winner = gameResults["jagersWinnen"];
+        gameInProgress = gameResults["inProgress"]; // should be 0
+        gameOver = 1;
+      }
+    }
+    Serial.println("game results processed");
     break;
 
-  case 2:
+  case 2: // device availability
     deserializeJson(deviceAvailability, payload);
     const char *msgType = deviceAvailability["type"];
 
@@ -256,4 +279,11 @@ void ProcessMessage(byte index, String &payload)
   }
 }
 
-// remeber to write code to force win and loss for demo
+void FillLedsClr(byte red, byte green, byte blue)
+{
+  for (byte i = 0; i <= numLeds; i++)
+  {
+    leds[i] = CRGB(red, green, blue);
+  }
+  FastLED.show();
+}
