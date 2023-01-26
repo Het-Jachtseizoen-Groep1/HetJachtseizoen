@@ -1024,24 +1024,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const verloren = document.getElementById('verlorenOverlay');
 
 
-    /** Modal hier want anders 2 keer klikken **/
-    var modal = document.getElementById("closeModal");
-    var btn = document.getElementById("CloseBtn");
-    var btnCloseModal = document.getElementsByClassName("c-modal__close-btn")[0];
-    var btnCloseModal2 = document.getElementById('goBackToMap');
-
-    // When the user clicks the button, open the modal 
-    btn.onclick = function () {
-        modal.style.display = "block";
-    }
-      // When the user clicks on <span> (x), close the modal
-    btnCloseModal.onclick = function () {
-        modal.style.display = "none";
-    }
-    btnCloseModal2.onclick = function () {
-        modal.style.display = "none";
-    }
-
     //functie voor elke pagina laden
     if (index) {
     }
