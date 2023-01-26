@@ -1,4 +1,13 @@
-// //***__________ lOTTIE ANIMATION __________***//
+//***__________ MODAL WINDOW LEADERBOARD __________***//
+function modalWindow(){
+    jQuery(document).ready(function($) {
+        // auto timer
+        setTimeout(function() {
+          $('#lab-slide-bottom-popup').modal('show');
+        }, 200); // optional - automatically opens in xxxx milliseconds
+    });
+}
+//***__________ lOTTIE ANIMATION __________***//
 function lottieWaiting() {
     var animation = bodymovin.loadAnimation({
         container: document.getElementById('wachtende'),
@@ -228,7 +237,7 @@ function createNewGame() {
 
 
 
-//***__________ Deelnemers omhoog doen __________***//
+//***__________ Deelnemers omhoog doen in db __________***//
 let updateDeelnemers = async (spelcode, spelId) => {
 
     var data = await getSpelCode(spelcode)
@@ -324,6 +333,18 @@ let showSpelData = async () => {
             .then(response => {
                 console.log(response.data);
                 document.querySelector('.js-aantalDeelnemers').innerHTML = response.data[0].aantalSpelers
+                
+                const aantalSpelers = response.data[0].aantalSpelers;
+
+                console.log(aantalSpelers);
+                if (aantalSpelers == 1) {
+                    console.log('1 deelnemer')
+                    document.querySelector('.js-woordDeelnemers').innerHTML = "deelnemer";
+                } else {
+                    console.log("0 of >2 deelnemers")
+                    document.querySelector('.js-woordDeelnemers').innerHTML = "deelnemers";
+                }
+
             })
             .catch(error => {
                 axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${spelCode}?`)
@@ -368,16 +389,23 @@ function startTimer(durationSeconds, display) {
     var seconds = new Date().getTime() + durationSeconds * 1000;
     const secondsCount = Math.ceil((seconds - new Date().getTime()) / 1000);
 
-    var timer = secondsCount, minutes, seconds;
-    setInterval(function () {
 
+    var timer = secondsCount, minutes, seconds;    
+
+    setInterval(function () {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
+
+        console.log(secondsCount, minutes, seconds)
 
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        display.textContent = minutes + ":" + seconds;
+        timeFull = minutes + ":" + seconds;
+
+        console.log(timeFull)
+        
+        display.textContent = timeFull;
 
         if (--timer < 0) {
             timer = durationSeconds;
@@ -446,6 +474,7 @@ function goBackToRoles() {
     window.location.href = "../pages/spelKeuze.html";
     localStorage.removeItem('role');
 }
+
 
 
 
@@ -559,6 +588,7 @@ function spelStartenCountdown() {
                     "spelcode": code,
                     "inProgress": response.data[0].inProgress,
                     "startTime": response.data[0].id.startTime,
+                    //"startTime":  new Date().getTime(),
                     "endTime": response.data[0].id.endTime,
                     "aantalSpelers": response.data[0].id.aantalSpelers,
                     "winner": response.data[0].id.winner,
@@ -617,7 +647,7 @@ function setDuration() {
             localStorage.setItem('durationLocation', 600);
         }
 
-
+// you got hacked
         axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
             .then(response => {
 
@@ -680,6 +710,7 @@ function showTimesMap() {
     startTimer(gameDuration, gameDurationplace);
     startTimer(locationDuration, locationDurationPlace);
 }
+
 
 //***__________ SHOW TIMER OP MAP JAGER __________***//
 function showTimesMapJager() {
@@ -858,6 +889,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const boef = document.getElementById('boef');
     const jagerWachten = document.getElementById('jagerWachtHostPage');
     const mapBoef = document.getElementById('js-mapBoef');
+    const leaderboard = document.getElementById('leaderboard');
 
     //functie voor elke pagina laden
     if (index) {
@@ -914,7 +946,9 @@ document.addEventListener('DOMContentLoaded', function () {
         lottieWaiting();
         const code = localStorage.getItem('spelCode');
         SynchronizedStartCountdown(code);
+    } if (leaderboard) {
+        modalWindow();
+        console.log("leaderboard")
     }
     // showSpelData();
-
 })
