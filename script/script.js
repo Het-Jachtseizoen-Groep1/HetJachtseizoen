@@ -1091,4 +1091,5 @@ document.addEventListener('DOMContentLoaded', function () {
         afterGamestat();
     }
     // showSpelData();
+
 })

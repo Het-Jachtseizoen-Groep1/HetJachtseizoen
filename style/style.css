@@ -22,6 +22,7 @@
     --global-selection-backgroundColor: var(--global-color-alpha);
 
     /* border radius */
+    --global-border-radius: 4px;
 
     /* transitions */
     --global-transitionEasing-out: ease-out;
@@ -580,59 +581,54 @@ input::placeholder {
     ---
     A list wich contains the contestants
 */
-.modal.fade.in .lab-modal-body {
-    bottom: 0;
-    opacity: 1;
-  }
-  
-  
-  .lab-modal-body {
+.lab-modal-body {
     position: relative;
-    bottom: -250px;
     margin: 150px auto 0;
     padding: 40px;
-    max-width: 60%;
-    height: content-fit;
+    max-width: 100%;
+    height: fit-content;
     background-color: rgba(226, 226, 226, .25);
     border: none;
-    border-radius: 4px 4px 0 0;
-    opacity: 0;
-    -webkit-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
-    -moz-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
-    -o-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
-    transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
-  }
-  
-  .close {
+    border-radius: var(--global-border-radius) var(--global-border-radius) 0 0;
+}
+.close {
     margin-top: -20px;
     margin-right: -20px;
     text-shadow: 0 1px 0 #ffffff;
-  }
-  
-  .popup-button {
-    margin-top: 70px;
-  }
-  .c-leaderboard-list__item{
+}
+.c-leaderboard-list__item{
     display: flex;
     justify-content: space-between;
-    margin: 0 0 1.5rem 0 ;
-  }
-  .c-leaderboard-line{
+    margin:  0 auto;
+    font-weight: var(--global-fontweight-medium);
+    font-size: var(--global-fontsize-s);
+}
+.c-leaderboard-line{
     height:2px;
     border: none;
     background-color: #FCA311;
     opacity: 50%;
-  }
-  .c-apple-line{
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.c-apple-line{
     height: 3px;
+    width: 58px;
     border: none;
-    border-radius: 3px;
+    border-radius: var(--global-border-radius);
     background-color: white;
     z-index: +1;
-    width: 58px;
-    margin-top: -2.5rem;
+    margin: auto;
     margin-bottom: 3rem;
-  }
+    margin-top: -1.5rem;
+}
+.c-leaderboard-list__line{
+    list-style: none;
+}
+.hidden{
+    display: none;
+}
 
 /*
     Component: When more hunters join
@@ -680,7 +676,7 @@ input::placeholder {
     text-decoration: none;
     color: var(--global-color-beta) !important;
     background-color: var(--global-color-alpha);
-    border-radius: 4px;
+    border-radius: var(--global-border-radius);
     font-size: var(--global-fontsize-m);
     font-weight: var(--global-fontweight-medium);
     display: flex;
@@ -748,7 +744,7 @@ input::placeholder {
 .c-topthree__second {
     background-color: #C9820D;
     position: relative;
-    border-radius: 4px 0 0 4px;
+    border-radius: var(--global-border-radius) 0 0 var(--global-border-radius);
     height: 100px;
     margin-top: 74px;
 }
@@ -756,7 +752,7 @@ input::placeholder {
 .c-topthree__third {
     background-color: #C9820D;
     position: relative;
-    border-radius: 0 4px 4px 0;
+    border-radius: 0 var(--global-border-radius) var(--global-border-radius) 0;
     height: 100px;
     margin-top: 74px;
 }
@@ -799,7 +795,7 @@ input::placeholder {
     margin: auto;
     background-color: #434D63;
     padding: .5rem 1rem .5rem 1rem;
-    border-radius: 4px;
+    border-radius: var(--global-border-radius);
     color: var(--global-color-text);
     font-weight: var(--global-fontweight-medium);
     margin-bottom: 95px;
@@ -863,7 +859,7 @@ input::placeholder {
     text-align: center;
     padding: .5rem 1rem .5rem 1rem;
     border: 2px solid var(--global-color-text);
-    border-radius: 4px;
+    border-radius: var(--global-border-radius);
 }
 
 .c-difficulty__option:checked+.c-difficulty__option--label {
@@ -995,7 +991,7 @@ input::placeholder {
     background-color: var(--global-color-alpha);
     width: 108px;
     height: 73px;
-    border-radius: 4px;
+    border-radius: var(--global-border-radius);
     display: flex;
     justify-content: center;
     align-items: end;
@@ -1029,7 +1025,7 @@ input::placeholder {
     background-color: var(--global-color-alpha);
     width: 108px;
     height: 73px;
-    border-radius: 4px;
+    border-radius: var(--global-border-radius);
     border: none;
     gap: 8px;
 }
@@ -1080,7 +1076,7 @@ input::placeholder {
     margin-top: 16px;
     width: 250px;
     padding: .5rem .7rem .5rem .7rem;
-    border-radius: 4px;
+    border-radius: var(--global-border-radius);
     border: none;
     font-size: 1.37rem;
     background-color: var(--global-color-text);
@@ -1208,16 +1204,12 @@ input::placeholder {
         z-index: 1;
         background-color: #14213D;
         padding: 12px;
-        border-radius: 0px 4px 4px 0px;
+        border-radius: 0px var(--global-border-radius) var(--global-border-radius) 0px;
         height: 30px;
 }
 
 
-
-/*
-    Component: Code bert
-    ---
-*/
+/* 
 
 
 
@@ -1243,12 +1235,6 @@ input::placeholder {
     align-items: center;
     justify-content: center;
 }
-
-/*
-    Component: Leaderboard-list
-    ---
-    A list wich contains the contestants
-*/
 .lab-modal-body {
     position: relative;
     margin: 150px auto 0;
@@ -1257,7 +1243,7 @@ input::placeholder {
     height: fit-content;
     background-color: rgba(226, 226, 226, .25);
     border: none;
-    border-radius: 4px 4px 0 0;
+    border-radius: var(--global-border-radius) var(--global-border-radius) 0 0;
 }
 
 .close {
@@ -1288,7 +1274,7 @@ input::placeholder {
     height: 3px;
     width: 58px;
     border: none;
-    border-radius: 3px;
+    border-radius: var(--global-border-radius);
     background-color: white;
     z-index: +1;
     margin: auto;
@@ -1302,7 +1288,7 @@ input::placeholder {
 
 .hidden {
     display: none;
-}
+} */
 
 /*
     Component: When escapists join
@@ -1345,7 +1331,7 @@ input::placeholder {
     text-decoration: none;
     color: var(--global-color-beta) !important;
     background-color: var(--global-color-alpha);
-    border-radius: 4px;
+    border-radius: var(--global-border-radius);
     font-size: var(--global-fontsize-m);
     font-weight: var(--global-fontweight-medium);
     display: flex;
@@ -1415,14 +1401,14 @@ input::placeholder {
 .c-topthree__first {
     background-color: var(--global-color-alpha);
     position: relative;
-    border-radius: 4px 4px 0 0;
+    border-radius: var(--global-border-radius) var(--global-border-radius) 0 0;
     height: 174px;
 }
 
 .c-topthree__second {
     background-color: #C9820D;
     position: relative;
-    border-radius: 4px 0 0 4px;
+    border-radius: var(--global-border-radius) 0 0 var(--global-border-radius);
     height: 100px;
     margin-top: 74px;
 }
@@ -1430,7 +1416,7 @@ input::placeholder {
 .c-topthree__third {
     background-color: #C9820D;
     position: relative;
-    border-radius: 0 4px 4px 0;
+    border-radius: 0 var(--global-border-radius) var(--global-border-radius) 0;
     height: 100px;
     margin-top: 74px;
 }
