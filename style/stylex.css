@@ -105,10 +105,14 @@ body,
 .c-button_close {
     border: #FCA311 solid 2px;
     border-radius: 100%;
-    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
     height: 30px;
+    padding: 15px;
     color: #FCA311;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     background-color: #14213D;
     opacity: .9;
@@ -138,8 +142,8 @@ body,
 }
 
 .c-stat_value {
-    font-weight: normal;
-    font-size: 20px;
+    font-weight: 600;
+    font-size: 1.2rem;
     color: #FCA311;
 }
 
@@ -193,6 +197,7 @@ body,
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
 }
+
 /* Modal Content */
 .c-modal__content {
     background-color: #14213D;
@@ -203,6 +208,7 @@ body,
     width: 80%;
     border-radius: 4px;
 }
+
 /* The Close Button */
 .c-modal__close-btn {
     color: #aaaaaa;
@@ -217,13 +223,15 @@ body,
     text-decoration: none;
     cursor: pointer;
 }
-.c-modal__text{
+
+.c-modal__text {
     text-align: center;
     font-size: .9rem;
     color: white;
     margin-top: 30px;
 }
-.c-modal__buttons-flex{
+
+.c-modal__buttons-flex {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -231,7 +239,8 @@ body,
     gap: 20px;
     margin-top: 50px;
 }
-.c-modal__button{
+
+.c-modal__button {
     font-size: .9rem;
     font-weight: 500;
     padding: 10px;
@@ -240,7 +249,8 @@ body,
     color: #14213D;
     width: 125px;
 }
-.c-modal__button-beta{
+
+.c-modal__button-beta {
     background-color: #FDC770;
 }
 
@@ -253,11 +263,13 @@ body,
 
 .c-dubbelText-container {
     position: absolute;
-        left: 0;
-            right: 0;
-            margin-left: auto;
-            margin-right: auto;
-            width: 198px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 205px;
+    display: flex;
+    letter-spacing: 3px;
 }
 
 .c-dubbelText__border-text {
@@ -273,5 +285,82 @@ body,
 .c-dubbelText__regular-text {
     z-index: 1;
     font-size: 80px;
+    color: white;
+}
+
+
+.c-dubbelText-container__overlay{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 284px;
+}
+.c-dubbelText__border-text__overlay{
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    color: #14213D;
+    -webkit-text-stroke: 3px #FCA311;
+    font-size: 50px;
+    z-index: -1;
+    letter-spacing: 1.2px;
+}
+.c-dubbelText__regular-text__overlay{
+    z-index: 1;
+    font-size: 50px;
+    color: white;
+    letter-spacing: 1.2px;
+}
+
+
+.c-dubbelText-container__overlay-longer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 297px;
+}
+
+
+
+.c-stats{
+    margin-top: 80px;
+}
+
+
+.c-map__getikt-button {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    bottom: 10px;
+    z-index: 1;
+    background-color: #14213D;
+    padding: 12px;
+    border-radius: 4px 0px 0px 4px;
+    height: 30px;
+    border: none;
+}
+
+.c-map_tikButton_div {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1;
+    background-color: #14213D;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 53px;
     color: white;
 }
