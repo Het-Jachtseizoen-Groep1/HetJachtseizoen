@@ -20,7 +20,7 @@ function lottieCountDown() {
     var animation = bodymovin.loadAnimation({
         container: document.getElementById('countDown'),
         renderer: 'svg',
-        loop: true,
+        loop: false,
         autoplay: true,
         path: 'https://lottie.host/b8d10e0c-3c61-4d2b-98e4-515d38921c98/yLwXSqm6BT.json'
     })
@@ -350,6 +350,15 @@ let showSpelData = async () => {
                         if (response.data && response.data[0]) {
                             document.querySelector('.js-aantalDeelnemers').innerHTML = response.data[0].aantalSpelers
                         }
+
+                        const aantalSpelers = response.data[0].aantalSpelers;
+                        if (aantalSpelers == 1) {
+                        console.log('1 deelnemer')
+                        document.querySelector('.js-woordDeelnemers').innerHTML = "deelnemer";
+                        } else {
+                        console.log("0 of >2 deelnemers")
+                        document.querySelector('.js-woordDeelnemers').innerHTML = "deelnemers";
+                }
                     })
             });
     }, 1000);
@@ -381,6 +390,37 @@ function timeButtonBack() {
         timeButton.classList.add('u-showing');
     })
 }
+
+function getiktButton() {
+    var tikButton = document.querySelector('.js-tik_button');
+    var tikShow = document.querySelector('.js-tik_button_back');
+
+    tikButton.addEventListener('click', function () {
+        console.log("tik");
+        tikButton.classList.remove('u-showing');
+        tikButton.classList.add('u-hidden');
+        tikShow.classList.remove('u-hidden');
+        tikShow.classList.add('u-showing');
+        tikButtonBack();
+    })
+}
+
+function tikButtonBack() {
+    var tikButton = document.querySelector('.js-tik_button');
+    var tikShow = document.querySelector('.js-tik_button_back');
+
+    setTimeout(() => {
+        tikShow.classList.remove('u-showing');
+        tikShow.classList.add('u-hidden');
+        tikButton.classList.remove('u-hidden');
+        tikButton.classList.add('u-showing');
+        }, 3000);
+    
+}
+
+
+
+
 
 
 function startTimer(durationSeconds, display) {
@@ -569,7 +609,19 @@ function spelStartenCountdown() {
     console.log("updatefunctie countdown")
 
     const code = localStorage.getItem('spelCode');
-    //console.log(code)
+    
+    const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "spelcode": code,
+                "inProgress": true
+            })
+        };
+        console.log('naar hardware')
+        fetch('https://jachtseizoenapi.azurewebsites.net/api/mqtt/gameInfo', requestOptions)
+            .then(response => response.json())
+
 
     const startTijd = new Date().getTime();
     axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
@@ -585,11 +637,11 @@ function spelStartenCountdown() {
                     "BoefLatitude": response.data[0].BoefLatitude,
                     "BoefLongtitude": response.data[0].BoefLongtitude,
                     "spelcode": code,
-                    "inProgress": response.data[0].inProgress,
-                    "startTime": response.data[0].id.startTime,
-                    "endTime": response.data[0].id.endTime,
-                    "aantalSpelers": response.data[0].id.aantalSpelers,
-                    "winner": response.data[0].id.winner,
+                    "inProgress": true,
+                    "startTime": response.data[0].startTime,
+                    "endTime": response.data[0].endTime,
+                    "aantalSpelers": response.data[0].aantalSpelers,
+                    "winner": response.data[0].winner,
                     "startSpelkeuze": true,
                     "startSpel": true,
                     "startTimeJs": startTijd,
@@ -891,6 +943,9 @@ function showMapWithCoordinates() {
 }
 
 function checkTime() {
+
+    const code = localStorage.getItem('spelCode');
+
     setInterval(function(){
         if(document.getElementById("js-durationTime").innerHTML == "00:00"){
             console.log("time over")
@@ -900,11 +955,46 @@ function checkTime() {
                 setTimeout(() => { window.location.href = "../pages/GewonnenOverlay.html"; }, 200)
             }
 
+            const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "spelcode": code,
+                "inProgress": false ,
+                "jagersWinnen": false
+            })
+        };
+        console.log('naar hardware')
+        fetch('https://jachtseizoenapi.azurewebsites.net/api/mqtt/gameResults', requestOptions)
+            .then(response => response.json())
         }
         
     }, 1000)
 }
 
+
+function checkRFID() {
+
+    const code = localStorage.getItem('spelCode');
+    console.log(code)
+
+    setInterval(() => {
+
+            axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
+                .then(response => {
+
+                    if (response.data[0].inProgress == false){
+                        console.log("spel gedaan");
+                        getikt();
+                    }
+
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+
+    }, 1000);
+}
 
 
 
@@ -913,6 +1003,7 @@ function getikt() {
 
     const code = localStorage.getItem('spelCode');
     const stopTijd = new Date().getTime();
+    const role = localStorage.getItem('role');
 
     axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
             .then(response => {
@@ -959,7 +1050,12 @@ function getikt() {
                 };
                 fetch('https://jachtseizoenapi.azurewebsites.net/api/games', requestOptions)
 
-                setTimeout(() => { window.location.href = "../pages/GameOverOverlay.html"; }, 600)
+                if (role == 'boef'){
+                    setTimeout(() => { window.location.href = "../pages/GameOverOverlay.html"; }, 600)
+                }
+                else {
+                    setTimeout(() => { window.location.href = "../pages/GewonnenOverOverlay.html"; }, 600)
+                }
 
             })
             .catch(error => {
@@ -1001,6 +1097,20 @@ function afterGamestat (){
             });
 }
 
+function getleaderboardData(){
+
+    
+
+    axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/duration/${duration}?`)
+            .then(response => {
+                console.log(response.data[0].gespeeldeTijd)
+                document.querySelector(".js-gespeeldeTijd").innerHTML = response.data[0].gespeeldeTijd;
+            })
+            .catch(error => {
+                console.log(error)
+            });
+}
+
 
 
 
@@ -1023,20 +1133,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const gewonnen = document.getElementById('gewonnenOverlay');
     const verloren = document.getElementById('verlorenOverlay');
 
-
-    //functie voor elke pagina laden
+    //functies voor elke pagina laden
     if (index) {
     }
     if (startenSpelDataPage) {
         showSpelData();
     }
     if (startCountdown) {
-        console.log('Countdown page loaded');
         var durationSeconds = localStorage.getItem('waitTimeJager'), display = document.querySelector('.js-start_countdown');
         display2 = document.querySelector('.js-start_countdown2')
         startTimer(durationSeconds, display);
         startTimer(durationSeconds, display2);
         setTimeout(() => { window.location.href = "../pages/mapJager.html"; }, durationSeconds * 1000)
+        goCloseGame();
     }
     if (map) {
         // updateBoefLocatie();
@@ -1052,9 +1161,10 @@ document.addEventListener('DOMContentLoaded', function () {
         showTimesMapJager();
         showMapWithCoordinates();
         checkTime();
-        checkifGameDone ();
+        checkifGameDone();
+        goCloseGame();
+        checkRFID();
     }
-
     if (mapBoef) {
         timeButton();
         timeButtonBack();
@@ -1062,8 +1172,11 @@ document.addEventListener('DOMContentLoaded', function () {
         sendCoordinates();
         showMapBoef();
         checkTime();
+        goCloseGame();
+        checkRFID();
+        getiktButton();
+        //tikButtonBack();
     }
-
     if (wachtenHost) {
         const code = localStorage.getItem('spelCode');
         document.querySelector('.js-spelCode').innerHTML = code;
@@ -1082,14 +1195,16 @@ document.addEventListener('DOMContentLoaded', function () {
         lottieWaiting();
         const code = localStorage.getItem('spelCode');
         SynchronizedStartCountdown(code);
-    } if (leaderboard) {
-        modalWindow();
-        console.log("leaderboard")
-    } if (gewonnen) {
-        afterGamestat();
-    } if (verloren){
-        afterGamestat();
     }
-    // showSpelData();
-
+    if(leaderboard) {
+        modalWindow();
+    }
+    if (gewonnen) {
+        afterGamestat();
+        goCloseGame();
+    }
+    if (verloren) {
+        afterGamestat();
+        goCloseGame();
+    }
 })

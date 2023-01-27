@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <button class="c-map__getikt" onclick="getikt()">Tijd stoppen</button>
+   <!-- <button class="c-map__getikt" onclick="getikt()">Tijd stoppen</button> -->
 
     <div class="c-topbar">
         <p class="c-map_time" id="js-durationTime"></p>
@@ -49,9 +49,20 @@
 
     <div class="c-map_location_time js-time_button_back u-hidden">
         <p class="c-map_location_time__text">Locatie verzenden</p>
-        <p class="c-map_location_time__time" id="js-locationTime">00:00</p>
+        <p class="c-map_location_time__time" id="js-locationTime"></p>
         <img src="../assets/icons/stopwatch.svg" alt="icon">
     </div>
+
+
+
+    <div class="js-tik_button u-showing">
+        <img class="c-map__getikt-button" src="../assets/icons/Getikt.svg" alt="Getikt icon">
+    </div>
+
+    <div class="c-map_tikButton_div js-tik_button_back u-hidden">
+        <p class="c-map_location_time__text" onclick="getikt()">Getikt? Tik hier nogmaals</p>
+    </div>
+
 
     <div id="map">
     </div>
