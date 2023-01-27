@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../style/normalize.css">
     <link rel="stylesheet" href="../style/style.css">
     <script src="../script/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -30,9 +31,9 @@
     </div>
 
 
-    <form class="c-dropdown" action="/action_page.php">
-        <label class="c-dropdown__title" for="cars">Spel:</label>
-        <select class="c-dropdown__menu" name="cars" id="cars">
+    <form class="c-dropdown" name="formNiveau">
+        <label class="c-dropdown__title" for="spelNiveau">Spel:</label>
+        <select class="c-dropdown__menu" name="spelNiveaus" id="spelNiveau" onchange="getSelectedType()">
             <option class="c-dropdown__option" value="30">Makkelijk</option>
             <option class="c-dropdown__option" value="3600">Gemiddeld</option>
             <option class="c-dropdown__option" value="7200">Moeilijk</option>
@@ -46,22 +47,22 @@
                 <path id="crown-solid-silver" d="M24.141,37.781a3.125,3.125,0,1,0-3.281,0l-4.477,8.953a2.5,2.5,0,0,1-3.8.836L5.625,42a3.125,3.125,0,1,0-2.5,1.25H3.18L6.75,62.891A5,5,0,0,0,11.672,67H33.328a5.007,5.007,0,0,0,4.922-4.109L41.82,43.25h.055a3.125,3.125,0,1,0-2.5-1.25l-6.961,5.57a2.5,2.5,0,0,1-3.8-.836Z" transform="translate(0 -32)" fill="#e4ded3"/>
             </svg>
               
-            <p class="c-groepsnaam c-groepsnaam--first-losers">De badeentjes</p>
-            <p class="c-played-time">1:00</p>
+            <p class="c-groepsnaam c-groepsnaam--first-losers js-second_place-name">De badeentjes</p>
+            <p class="c-played-time js-second_place-time">1:00</p>
         </div>
         <div class="c-topthree--item c-topthree__first">
             <svg class="c-topthree__crown-first" xmlns="http://www.w3.org/2000/svg" width="45" height="35" viewBox="0 0 45 35">
                 <path id="crown-solid-gold" d="M24.141,37.781a3.125,3.125,0,1,0-3.281,0l-4.477,8.953a2.5,2.5,0,0,1-3.8.836L5.625,42a3.125,3.125,0,1,0-2.5,1.25H3.18L6.75,62.891A5,5,0,0,0,11.672,67H33.328a5.007,5.007,0,0,0,4.922-4.109L41.82,43.25h.055a3.125,3.125,0,1,0-2.5-1.25l-6.961,5.57a2.5,2.5,0,0,1-3.8-.836Z" transform="translate(0 -32)" fill="#fca311"/>
             </svg>
-            <p class="c-groepsnaam">De badeentjes</p>
-            <p class="c-played-time">1:00</p>
+            <p class="c-groepsnaam c-groepsnaam--first js-first_place-name">De badeentjes</p>
+            <p class="c-played-time js-first_place-time">1:00</p>
         </div>
         <div class="c-topthree--item c-topthree__third">
             <svg class="c-topthree__crown-third" xmlns="http://www.w3.org/2000/svg" width="45" height="35" viewBox="0 0 45 35">
                 <path id="crown-solid" d="M24.141,37.781a3.125,3.125,0,1,0-3.281,0l-4.477,8.953a2.5,2.5,0,0,1-3.8.836L5.625,42a3.125,3.125,0,1,0-2.5,1.25H3.18L6.75,62.891A5,5,0,0,0,11.672,67H33.328a5.007,5.007,0,0,0,4.922-4.109L41.82,43.25h.055a3.125,3.125,0,1,0-2.5-1.25l-6.961,5.57a2.5,2.5,0,0,1-3.8-.836Z" transform="translate(0 -32)" fill="#ad570d"/>
               </svg>
-              <p class="c-groepsnaam c-groepsnaam--first-losers">De badeentjes</p>
-              <p class="c-played-time">1:00</p>
+              <p class="c-groepsnaam c-groepsnaam--first-losers js-third_place-name">De badeentjes</p>
+              <p class="c-played-time js-third_place-time">1:00</p>
         </div>
     </div>
 
@@ -70,7 +71,7 @@
         <div class="lab-modal-body">
             <!-- modal body -->
             <hr class="c-apple-line">
-            <ul class="c-Leaderboard-list">
+            <ul class="c-Leaderboard-list js-leaderboard-list">
                 <li class="c-leaderboard-list__item"><span class="c-leaderboard-place">4.</span><span class="c-leaderboard-groepsnaam">De badeentjes</span> <span class="c-leaderboard-played-time">1:00</span></li>
                 <li class="c-leaderboard-list__line"><hr class="c-leaderboard-line"></li>
                 <li class="c-leaderboard-list__item"><span class="c-leaderboard-place">4.</span><span class="c-leaderboard-groepsnaam">De badeentjes</span> <span class="c-leaderboard-played-time">1:00</span></li>

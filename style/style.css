@@ -712,9 +712,11 @@ input::placeholder {
 .c-groepsnaam {
     font-size: var(--global-fontsize-xs);
     font-weight: var(--global-fontweight-bold);
-    max-width: 90px;
+    width: 90px;
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
+    text-overflow: ellipsis;
 }
 
 .c-topthree {

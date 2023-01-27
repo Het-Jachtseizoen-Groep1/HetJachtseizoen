@@ -1097,19 +1097,69 @@ function afterGamestat (){
             });
 }
 
-function getleaderboardData(){
 
-    
 
-    axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/duration/${duration}?`)
-            .then(response => {
-                console.log(response.data[0].gespeeldeTijd)
-                document.querySelector(".js-gespeeldeTijd").innerHTML = response.data[0].gespeeldeTijd;
+
+function getSelectedType() {
+    const item = document.formNiveau.spelNiveaus.selectedIndex;
+    const type = document.formNiveau.spelNiveaus.options[item].value;
+    console.log(type);
+
+    axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/duration/${type}?`)
+        .then(response => {
+
+                //alles leeg zetten
+                document.querySelector(".js-second_place-name").innerHTML = "";
+                document.querySelector(".js-second_place-time").innerHTML = "";
+                document.querySelector(".js-first_place-name").innerHTML = "";
+                document.querySelector(".js-first_place-time").innerHTML = "";
+                document.querySelector(".js-third_place-name").innerHTML = "";
+                document.querySelector(".js-third_place-time").innerHTML = "";
+                document.querySelector(".js-leaderboard-list").innerHTML = "";
+
+
+                //1ste team
+                document.querySelector(".js-second_place-name").innerHTML = response.data[1].groep;
+                if (response.data[1].gespeeldeTijd == null) {
+                    document.querySelector(".js-second_place-time").innerHTML = "00:00";
+                } else {
+                    document.querySelector(".js-second_place-time").innerHTML = response.data[1].gespeeldeTijd
+                }
+
+                //2de team
+                document.querySelector(".js-first_place-name").innerHTML = response.data[0].groep;
+                if (response.data[0].gespeeldeTijd == null) {
+                    document.querySelector(".js-first_place-time").innerHTML = "00:00";
+                } else {
+                    document.querySelector(".js-first_place-time").innerHTML = response.data[0].gespeeldeTijd
+                }
+                
+                //3de team
+                document.querySelector(".js-third_place-name").innerHTML = response.data[2].groep;
+                if (response.data[2].gespeeldeTijd == null) {
+                    document.querySelector(".js-third_place-time").innerHTML = "00:00";
+                } else {
+                    document.querySelector(".js-third_place-time").innerHTML = response.data[2].gespeeldeTijd
+                }
+            
+
+                //al de andere in de list
+                let htmlstring = "";
+                let number = 4;
+            for (let data of response.data.slice(3)) {
+                    htmlstring += `<li class="c-leaderboard-list__item"><span class="c-leaderboard-place">${number}.</span><span class="c-leaderboard-groepsnaam">${data.groep}</span> <span class="c-leaderboard-played-time">${data.gespeeldeTijd}</span></li>
+                                    <li class="c-leaderboard-list__line"><hr class="c-leaderboard-line"></li>`;
+                    document.querySelector(".js-leaderboard-list").innerHTML = htmlstring;
+                    number += 1
+            }
+                
             })
             .catch(error => {
                 console.log(error)
             });
 }
+
+
 
 
 
@@ -1198,6 +1248,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     if(leaderboard) {
         modalWindow();
+        getSelectedType();
     }
     if (gewonnen) {
         afterGamestat();
