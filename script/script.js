@@ -15,7 +15,6 @@ function lottieWaiting() {
         path: 'https://lottie.host/6cc54f82-cf99-434a-882e-80852d7ee71f/JFwILgbviQ.json'
     })
 }
-
 function lottieCountDown() {
     var animation = bodymovin.loadAnimation({
         container: document.getElementById('countDown'),
@@ -95,6 +94,7 @@ function showMap(lat, long) {
 }
 
 
+
 //***__________ CODE VOOR DE MAP BOEF__________***//
 var map;
 function showMapBoef() {
@@ -129,42 +129,6 @@ function showMapBoef() {
 
         });
     });
-}
-
-
-
-
-//***__________ API OPROEPEN VAN AZURE EN MAP TONEN __________***//
-let getAPI = async (groepsnaam) => {
-    // Eerst bouwen we onze url op
-    const ENDPOINT = `https://registratie.azurewebsites.net/api/games/${groepsnaam}?`
-
-    // Met de fetch API proberen we de data op te halen.
-    const request = await fetch(`${ENDPOINT}`)
-    const data = await request.json()
-    console.log(data)
-
-    console.log(data[0].BoefLatitude)
-    console.log(data[0].BoefLongtitude)
-
-    // showMap(data[0].BoefLatitude, data[0].BoefLongtitude);
-
-    return data
-}
-
-
-
-
-//***__________ API OPROEPEN VAN AZURE VOOR SPELCODE __________***//
-let getSpelCode = async (spelcode) => {
-    // Eerst bouwen we onze url op
-    const ENDPOINT = `https://jachtseizoenapi.azurewebsites.net/api/games/code/${spelcode}?`
-
-    // Met de fetch API proberen we de data op te halen.
-    const request = await fetch(`${ENDPOINT}`)
-    const data = await request.json()
-
-    return data
 }
 
 
@@ -224,11 +188,6 @@ function updateDeelnemers(spelcode){
             spelers = response.data[0].aantalSpelers;
             nieuweSpelers = spelers + 1;
 
-            console.log("spelers: ", spelers);
-            console.log("nieuwe spelers: ", nieuweSpelers);
-
-            console.log(response.data[0])
-
             const requestOptions = {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -256,12 +215,10 @@ function updateDeelnemers(spelcode){
             setTimeout(() => { window.location.href = "../pages/wachtenHost.html"; }, 200);
         })
         .catch(error => {
-            console.log(error)
             console.log("bestaat niet")
             document.querySelector('.js-form-error').innerHTML = "Spel code bestaat niet";
         });
 }
-
 
 
 
@@ -278,7 +235,6 @@ function participateGame(){
 
     //spel code controleren + als het ingevuld is
     const result = pattern.test(code);
-    console.log(result);
 
     //check als code niet leeg is
     if (!code) {
@@ -304,9 +260,12 @@ function participateGame(){
     inputField.addEventListener('focus', (event) => {
         document.querySelector('.js-form-error').innerHTML = "";
     });
+}
 
 
-    //auto "-" toevoegen
+
+//***__________ "-" TOEVOEGEN AUTOMATISCH BIJ SPELCODE INVULLEN __________***//
+function addDash() {
     document.querySelector('.js-input-spelCode').addEventListener('input', function (e) {
         var foo = this.value.split("-").join("");
         if (foo.length > 0) {
@@ -314,39 +273,27 @@ function participateGame(){
         }
         this.value = foo;
     });
-
-
 }
 
 
 
-
-
-
-//***__________ CODE EN GROEPSNAAM TONEN __________***//
+//***__________ CODE EN GROEPSNAAM TONEN WANNEER HOST WACHT OP DEELNEMERS __________***//
 let showSpelData = async () => {
     const groepsnaam = localStorage.getItem('groepsnaam');
     const spelCode = localStorage.getItem('spelCode');
     document.querySelector('.js-groepsnaam').innerHTML = groepsnaam;
     document.querySelector('.js-spelCode').innerHTML = spelCode;
 
-    // console.log(data)
-
     setInterval(() => {
         axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/${groepsnaam}?`)
             .then(response => {
-                console.log(response.data);
                 document.querySelector('.js-aantalDeelnemers').innerHTML = response.data[0].aantalSpelers
                 
                 const aantalSpelers = response.data[0].aantalSpelers;
-                console.log("aantal Spelers: ",aantalSpelers)
 
-                console.log(aantalSpelers);
                 if (aantalSpelers == 1) {
-                    console.log('1 deelnemer')
                     document.querySelector('.js-woordDeelnemers').innerHTML = "deelnemer";
                 } else {
-                    console.log("0 of >2 deelnemers")
                     document.querySelector('.js-woordDeelnemers').innerHTML = "deelnemers";
                 }
 
@@ -360,17 +307,13 @@ let showSpelData = async () => {
 
                         const aantalSpelers = response.data[0].aantalSpelers;
                         if (aantalSpelers == 1) {
-                        console.log('1 deelnemer')
-                        document.querySelector('.js-woordDeelnemers').innerHTML = "deelnemer";
+                            document.querySelector('.js-woordDeelnemers').innerHTML = "deelnemer";
                         } else {
-                        console.log("0 of >2 deelnemers")
-                        document.querySelector('.js-woordDeelnemers').innerHTML = "deelnemers";
-                }
+                            document.querySelector('.js-woordDeelnemers').innerHTML = "deelnemers";
+                        }
                     })
             });
     }, 1000);
-
-
 }
 
 
@@ -398,6 +341,9 @@ function timeButtonBack() {
     })
 }
 
+
+
+//***__________ BUTTON GETIKT OP MAP VAN DE BOEF __________***//
 function getiktButton() {
     var tikButton = document.querySelector('.js-tik_button');
     var tikShow = document.querySelector('.js-tik_button_back');
@@ -411,7 +357,6 @@ function getiktButton() {
         tikButtonBack();
     })
 }
-
 function tikButtonBack() {
     var tikButton = document.querySelector('.js-tik_button');
     var tikShow = document.querySelector('.js-tik_button_back');
@@ -422,18 +367,14 @@ function tikButtonBack() {
         tikButton.classList.remove('u-hidden');
         tikButton.classList.add('u-showing');
         }, 3000);
-    
 }
 
 
 
-
-
-
+//***__________ TIMER STARTEN __________***//
 function startTimer(durationSeconds, display) {
     var seconds = new Date().getTime() + durationSeconds * 1000;
     const secondsCount = Math.ceil((seconds - new Date().getTime()) / 1000);
-
 
     var timer = secondsCount, minutes, seconds;    
 
@@ -456,7 +397,6 @@ function startTimer(durationSeconds, display) {
 
 
 
-
 //***__________ BUTTONS SPELREGELS/LEADERBOARD/BOEF & Jager__________***//
 function goToLeaderboard() {
     window.location.href = "/pages/leaderboard.html";
@@ -469,12 +409,10 @@ function goToBoefPage() {
     localStorage.setItem('role', 'boef');
 }
 function goToJagerPage() {
-
     const code = localStorage.getItem('spelCode');
 
     axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
         .then(response => {
-            console.log("Data" + response.data);
 
             if (response.data[0].beginJager == false) {
                 const requestOptions = {
@@ -505,7 +443,7 @@ function goToJagerPage() {
                 setTimeout(() => { window.location.href = "/pages/jager.html"; }, 200)
 
             } else {
-                window.location.href = "/pages/jagerWaiting.html";
+                window.location.href = "../pages/moreJagers.html";
             }
         })
         .catch(error => {
@@ -522,13 +460,12 @@ function goBackToRoles() {
 
 
 
-//***__________ Synchronized start __________***//
+//***__________ USERS SAMEN NAAR "BOEF" & "JAGER" KNOPPEN __________***//
 function SynchronizedStart(code) {
 
     setInterval(() => {
         axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
             .then(response => {
-
                 if (response.data[0].startSpelkeuze == 1) {
                     window.location.href = "/pages/spelKeuze.html";
                 }
@@ -541,7 +478,7 @@ function SynchronizedStart(code) {
 
 
 
-//***__________ Synchronized start countdown __________***//
+//***__________ USERS SAMEN NAAR COUNTDOWN __________***//
 function SynchronizedStartCountdown(code) {
 
     setInterval(() => {
@@ -561,18 +498,12 @@ function SynchronizedStartCountdown(code) {
 
 
 
-
 //***__________ SPEL STARTEN WANNEER GROEPSNAAM IS OPGEGEVEN __________***//
 function spelStarten() {
-
-    console.log("updatefunctie")
-
     const code = localStorage.getItem('spelCode');
-    console.log(code)
 
     axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
         .then(response => {
-            console.log("id" + response.data[0].id);
 
             const requestOptions = {
                 method: 'PUT',
@@ -609,12 +540,8 @@ function spelStarten() {
 
 
 
-
 //***__________ SPEL STARTEN WANNEER DURATION IS OPGEGEVEN __________***//
 function spelStartenCountdown() {
-
-    console.log("updatefunctie countdown")
-
     const code = localStorage.getItem('spelCode');
     
     const requestOptions = {
@@ -673,7 +600,6 @@ function spelStartenCountdown() {
 
 //***__________ SAVES ALL DATA FOR THE GAME THAT IS SELECTED __________***//
 function setDuration() {
-
     const radioGroup = document.querySelectorAll('input[name="spel"]');
     let selectedValue;
 
@@ -711,14 +637,10 @@ function setDuration() {
 
         const startTijd = new Date().getTime();
         localStorage.setItem('startTime', startTijd);
-        console.log(startTijd);
 
 
         axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
             .then(response => {
-                console.log(code)
-                console.log(response.data)
-                console.log(response.data[0].id);
                 const requestOptions = {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
@@ -753,10 +675,8 @@ function setDuration() {
             .catch(error => {
                 console.log(error)
             });
-
     }
 }
-
 
 
 
@@ -771,8 +691,8 @@ function mapForBoefOrJager() {
 
 
 
-//***__________ SHOW TIMER OP MAP __________***//
-function showTimesMap() {
+//***__________ SHOW TIMER OP MAP BOEF __________***//
+function showTimesMapBoef() {
 
     const code = localStorage.getItem('spelCode');
 
@@ -794,6 +714,7 @@ function showTimesMap() {
                     console.log(error)
                 });
 }
+
 
 
 //***__________ SHOW TIMER OP MAP JAGER __________***//
@@ -819,12 +740,10 @@ function goCloseGame() {
     var btnCloseModal = document.getElementsByClassName("c-modal__close-btn")[0];
     var btnCloseModal2 = document.getElementById('goBackToMap');
 
-    // When the user clicks the button, open the modal 
     btn.onclick = function () {
         modal.style.display = "block";
     }
 
-    // When the user clicks on <span> (x), close the modal
     btnCloseModal.onclick = function () {
         modal.style.display = "none";
     }
@@ -832,16 +751,18 @@ function goCloseGame() {
         modal.style.display = "none";
     }
 
-    // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     }
 }
+
+
+
+//***__________ SPEL VERLATEN & LOCALSTORAGE VERWIJDEREN __________***//
 function leaveGame() {
     window.location.href = "../index.html";
-    //hier localstorage verwijderen
     localStorage.clear();
 }
 
@@ -850,7 +771,6 @@ function leaveGame() {
 //***__________ STUURT CURRENT LOCATION VAN DE BOEF NAAR DB __________***//
 function sendCoordinates() {
     const code = localStorage.getItem('spelCode');
-    const locationDuration = localStorage.getItem('durationLocation');  
 
     navigator.geolocation.getCurrentPosition(function (position) {
 
@@ -859,10 +779,6 @@ function sendCoordinates() {
 
         axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
             .then(response => {
-
-                console.log(response.data[0].id);
-                console.log(code);
-
                 const requestOptions = {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
@@ -893,7 +809,6 @@ function sendCoordinates() {
             .catch(error => {
                 console.log(error)
             });
-
     })
 
     setInterval(() => {
@@ -903,14 +818,8 @@ function sendCoordinates() {
             const lat = position.coords.latitude;
             const long = position.coords.longitude;
 
-            console.log("nieuwe lat long" + lat, long);
-            console.log("code" + code);
-
             axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
                 .then(response => {
-
-                    console.log(response.data[0].id);
-
                     const requestOptions = {
                         method: 'PUT',
                         headers: { 'Content-Type': 'application/json' },
@@ -951,7 +860,6 @@ function sendCoordinates() {
 
 //***__________ HAALT COORDINATEN UIT DB EN TOONT MAP __________***//
 function showMapWithCoordinates() {
-
     const code = localStorage.getItem('spelCode');
 
     axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
@@ -962,7 +870,6 @@ function showMapWithCoordinates() {
             console.log(error)
         });
 }
-
 
 
 
@@ -1002,18 +909,14 @@ function checkTime() {
 //***__________ CHECK ALS DE VALUE IN DB VERANDERD WANNEER HET HARNAS GETIKT WORDT MET RFID __________***//
 function checkRFID() {
     const code = localStorage.getItem('spelCode');
-    console.log(code)
 
     setInterval(() => {
-
             axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
                 .then(response => {
-
                     if (response.data[0].inProgress == false){
                         console.log("spel gedaan");
                         getikt();
                     }
-
                 })
                 .catch(error => {
                     console.log(error)
@@ -1024,7 +927,7 @@ function checkRFID() {
 
 
 
-//***__________ TIJD STOPPEN WANNEER GETIKT __________***//
+//***__________ TIJD STOPPEN WANNEER GETIKT & NAAR GAME OVER OF GEWONNEN PAGINA GAAN __________***//
 function getikt() {
 
     const code = localStorage.getItem('spelCode');
@@ -1108,8 +1011,10 @@ function checkifGameDone () {
     }, 1000)
 }
 
-function afterGamestat (){
 
+
+//***__________ TOONT DE GESPEELDE TIJD OP HET EINDE VAN HET SPEL __________***//
+function afterGamestat (){
     const code = localStorage.getItem('spelCode');
 
     axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
@@ -1124,7 +1029,7 @@ function afterGamestat (){
 
 
 
-
+//***__________ LEADERBOARD -> PAKT HET GESELECTEERDE VALUE VAN DROPDOWN & TOONT DE DATA IN LEADERBOARD __________***//
 function getSelectedType() {
     const item = document.formNiveau.spelNiveaus.selectedIndex;
     const type = document.formNiveau.spelNiveaus.options[item].value;
@@ -1187,6 +1092,7 @@ function getSelectedType() {
 
 
 
+
 //***__________ DOM CONTENT __________***//
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOM fully loaded and parsed');
@@ -1205,6 +1111,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const leaderboard = document.getElementById('leaderboard');
     const gewonnen = document.getElementById('gewonnenOverlay');
     const verloren = document.getElementById('verlorenOverlay');
+    const deelnemen = document.getElementById('deelnemenPage');
+    const moreJagers = document.getElementById('moreJagersPage');
 
     //functies voor elke pagina laden
     if (index) {
@@ -1240,7 +1148,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (mapBoef) {
         timeButton();
         timeButtonBack();
-        showTimesMap();
+        showTimesMapBoef();
         sendCoordinates();
         showMapBoef();
         checkTime();
@@ -1279,5 +1187,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (verloren) {
         afterGamestat();
         goCloseGame();
+    }
+    if (deelnemen) {
+        addDash();
+    }
+    if (moreJagers) {
+        const code = localStorage.getItem('spelCode');
+        SynchronizedStartCountdown(code);
     }
 })
