@@ -822,6 +822,8 @@ function goCloseGame() {
 }
 function leaveGame() {
     window.location.href = "../index.html";
+    //hier localstorage verwijderen
+    localStorage.clear();
 }
 
 
