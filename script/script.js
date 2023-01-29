@@ -32,10 +32,7 @@ var map;
 function showMap(lat, long) {
 
     const code = localStorage.getItem('spelCode');
-    console.log("code" + " " + code)
     const durationLocation = localStorage.getItem('durationLocation');
-
-    console.log("duration" + " " + durationLocation)
 
     navigator.geolocation.getCurrentPosition(function (position) {
         var map = L.map('map', { zoomControl: false }).setView([position.coords.latitude, position.coords.longitude], 15);
@@ -940,7 +937,7 @@ function getikt() {
                 var tussenTijd = stopTijd - response.data[0].startTimeJs;
                 const gespeeldeTijd = Math.ceil((tussenTijd) / 1000);
 
-                var timer = gespeeldeTijd, minutes, seconds;    
+                var timer = gespeeldeTijd, minutes, seconds; 
 
                 minutes = parseInt(timer / 60, 10);
                 seconds = parseInt(timer % 60, 10);
@@ -1020,7 +1017,13 @@ function afterGamestat (){
     axios.get(`https://jachtseizoenapi.azurewebsites.net/api/games/code/${code}?`)
             .then(response => {
                 console.log(response.data[0].gespeeldeTijd)
-                document.querySelector(".js-gespeeldeTijd").innerHTML = response.data[0].gespeeldeTijd;
+
+                if (response.data[0].gespeeldeTijd == null ||response.data[0].gespeeldeTijd.length == undefined) {
+                    document.querySelector(".js-gespeeldeTijd").innerHTML = "00:00 min";
+                } else {
+                    document.querySelector(".js-gespeeldeTijd").innerHTML = response.data[0].gespeeldeTijd + " min";
+                }
+                
             })
             .catch(error => {
                 console.log(error)
@@ -1084,7 +1087,8 @@ function getSelectedType() {
             }
                 
             })
-            .catch(error => {
+        .catch(error => {
+                document.querySelector(".js-leaderboard-list").innerHTML = "Geen data beschikbaar";
                 console.log(error)
             });
 }
