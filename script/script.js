@@ -165,7 +165,7 @@ function createNewGame() {
         fetch('https://jachtseizoenapi.azurewebsites.net/api/games?', requestOptions)
             .then(response => response.json())
 
-        setTimeout(() => { window.location.href = "../pages/startenSpelData.html"; }, 200);
+        setTimeout(() => { window.location.href = "../pages/startenSpelData.html"; }, 500);
     }
 
     //hide de error als ze terug typen
