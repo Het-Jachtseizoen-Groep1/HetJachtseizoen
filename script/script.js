@@ -938,9 +938,11 @@ function getikt() {
                 const gespeeldeTijd = Math.ceil((tussenTijd) / 1000);
 
                 var timer = gespeeldeTijd, minutes, seconds; 
+                var timerCorrect = timer - 9;
+        
 
-                minutes = parseInt(timer / 60, 10);
-                seconds = parseInt(timer % 60, 10);
+                minutes = parseInt(timerCorrect / 60, 10);
+                seconds = parseInt(timerCorrect % 60, 10);
 
                 minutes = minutes < 10 ? "0" + minutes : minutes;
                 seconds = seconds < 10 ? "0" + seconds : seconds;
@@ -974,12 +976,12 @@ function getikt() {
                 };
                 fetch('https://jachtseizoenapi.azurewebsites.net/api/games', requestOptions)
 
-                if (role == 'boef'){
-                    setTimeout(() => { window.location.href = "../pages/GameOverOverlay.html"; }, 600)
-                }
-                else {
-                    setTimeout(() => { window.location.href = "../pages/GewonnenOverOverlay.html"; }, 600)
-                }
+                // if (role == 'boef'){
+                //     setTimeout(() => { window.location.href = "../pages/GameOverOverlay.html"; }, 600)
+                // }
+                // else {
+                //     setTimeout(() => { window.location.href = "../pages/GewonnenOverOverlay.html"; }, 600)
+                // }
 
             })
             .catch(error => {
