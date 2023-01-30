@@ -2,7 +2,7 @@
 function modalWindow(){
     setTimeout(function(){
         document.querySelector('.modal').classList.remove("hidden");
-    }, 2000);
+    }, 200);
 }
 
 //***__________ lOTTIE ANIMATION __________***//
@@ -1081,7 +1081,9 @@ function getSelectedType() {
                 //al de andere in de list
                 let htmlstring = "";
                 let number = 4;
-            for (let data of response.data.slice(3)) {
+                
+                for (let data of response.data.slice(3)) {
+
                     htmlstring += `<li class="c-leaderboard-list__item"><span class="c-leaderboard-place">${number}.</span><span class="c-leaderboard-groepsnaam">${data.groep}</span> <span class="c-leaderboard-played-time">${data.gespeeldeTijd}</span></li>
                                     <li class="c-leaderboard-list__line"><hr class="c-leaderboard-line"></li>`;
                     document.querySelector(".js-leaderboard-list").innerHTML = htmlstring;
