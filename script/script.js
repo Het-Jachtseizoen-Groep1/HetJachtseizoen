@@ -976,12 +976,12 @@ function getikt() {
                 };
                 fetch('https://jachtseizoenapi.azurewebsites.net/api/games', requestOptions)
 
-                // if (role == 'boef'){
-                //     setTimeout(() => { window.location.href = "../pages/GameOverOverlay.html"; }, 600)
-                // }
-                // else {
-                //     setTimeout(() => { window.location.href = "../pages/GewonnenOverOverlay.html"; }, 600)
-                // }
+                if (role == 'boef'){
+                    setTimeout(() => { window.location.href = "../pages/GameOverOverlay.html"; }, 600)
+                }
+                else {
+                    setTimeout(() => { window.location.href = "../pages/GewonnenOverOverlay.html"; }, 600)
+                }
 
             })
             .catch(error => {
