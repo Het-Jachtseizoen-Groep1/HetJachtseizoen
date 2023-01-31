@@ -980,7 +980,7 @@ function getikt() {
                     setTimeout(() => { window.location.href = "../pages/GameOverOverlay.html"; }, 600)
                 }
                 else {
-                    setTimeout(() => { window.location.href = "../pages/GewonnenOverOverlay.html"; }, 600)
+                    setTimeout(() => { window.location.href = "../pages/GewonnenOverlay.html"; }, 600)
                 }
 
             })
