@@ -2,7 +2,7 @@
 function modalWindow(){
     setTimeout(function(){
         document.querySelector('.modal').classList.remove("hidden");
-    }, 2000);
+    }, 200);
 }
 
 //***__________ lOTTIE ANIMATION __________***//
@@ -615,9 +615,9 @@ function setDuration() {
         document.querySelector('.js-form-error').innerHTML = "";
 
         if (selectedValue == "15") {
-            localStorage.setItem('durationGame', 30);
-            localStorage.setItem('waitTimeJager', 5);
-            localStorage.setItem('durationLocation', 10);
+            localStorage.setItem('durationGame', 900);
+            localStorage.setItem('waitTimeJager', 90);
+            localStorage.setItem('durationLocation', 90);
         } else if (selectedValue == "60") {
             localStorage.setItem('durationGame', 3600);
             localStorage.setItem('waitTimeJager', 300);
@@ -1081,7 +1081,9 @@ function getSelectedType() {
                 //al de andere in de list
                 let htmlstring = "";
                 let number = 4;
-            for (let data of response.data.slice(3)) {
+                
+                for (let data of response.data.slice(3)) {
+
                     htmlstring += `<li class="c-leaderboard-list__item"><span class="c-leaderboard-place">${number}.</span><span class="c-leaderboard-groepsnaam">${data.groep}</span> <span class="c-leaderboard-played-time">${data.gespeeldeTijd}</span></li>
                                     <li class="c-leaderboard-list__line"><hr class="c-leaderboard-line"></li>`;
                     document.querySelector(".js-leaderboard-list").innerHTML = htmlstring;
