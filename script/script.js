@@ -615,9 +615,9 @@ function setDuration() {
         document.querySelector('.js-form-error').innerHTML = "";
 
         if (selectedValue == "15") {
-            localStorage.setItem('durationGame', 30);
-            localStorage.setItem('waitTimeJager', 5);
-            localStorage.setItem('durationLocation', 10);
+            localStorage.setItem('durationGame', 900);
+            localStorage.setItem('waitTimeJager', 90);
+            localStorage.setItem('durationLocation', 90);
         } else if (selectedValue == "60") {
             localStorage.setItem('durationGame', 3600);
             localStorage.setItem('waitTimeJager', 300);
